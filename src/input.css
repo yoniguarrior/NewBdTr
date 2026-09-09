@@ -1,0 +1,359 @@
+@import "tailwindcss";
+
+@source "../**/*.php";
+@source "../**/*.js";
+@source "../templates/**/*.html";
+@source "../parts/**/*.html";
+@source "../patterns/**/*.php";
+
+@theme {
+  --color-surface: #fcf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-surface-bright: #fcf9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container: #f0eded;
+  --color-surface-container-high: #eae7e7;
+  --color-surface-container-highest: #e5e2e1;
+  --color-on-surface: #1b1b1b;
+  --color-on-surface-variant: #50434f;
+  --color-inverse-surface: #313030;
+  --color-inverse-on-surface: #f3f0ef;
+  --color-outline: #827280;
+  --color-outline-variant: #d3c1d0;
+  --color-surface-tint: #91389e;
+  --color-primary: #440050;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #660476;
+  --color-on-primary-container: #e07fea;
+  --color-inverse-primary: #faabff;
+  --color-primary-fixed: #ffd6fe;
+  --color-primary-fixed-dim: #faabff;
+  --color-on-primary-fixed: #35003f;
+  --color-on-primary-fixed-variant: #751b84;
+  --color-secondary: #a14000;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fd6c10;
+  --color-on-secondary-container: #571f00;
+  --color-secondary-fixed: #ffdbcc;
+  --color-secondary-fixed-dim: #ffb694;
+  --color-on-secondary-fixed: #351000;
+  --color-on-secondary-fixed-variant: #7b2f00;
+  --color-tertiary: #192900;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #294100;
+  --color-on-tertiary-container: #7ab500;
+  --color-tertiary-fixed: #b2f746;
+  --color-tertiary-fixed-dim: #98da27;
+  --color-on-tertiary-fixed: #121f00;
+  --color-on-tertiary-fixed-variant: #334f00;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-background: #fcf9f8;
+  --color-on-background: #1b1b1b;
+  --color-surface-variant: #e5e2e1;
+
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-card: 28px;
+  --radius-btn: 20px;
+
+  --spacing-stack-sm: 0.5rem;
+  --spacing-stack-md: 1.5rem;
+  --spacing-stack-lg: 2.5rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-section-padding: 3rem;
+  --spacing-margin-mobile: 1rem;
+  --spacing-container-max: 1280px;
+}
+
+@layer base {
+  :root {
+    --newbdtr-header-height: 4rem;
+  }
+
+  body {
+    padding-top: var(--newbdtr-header-height);
+  }
+
+  .admin-bar {
+    padding-top: calc(var(--newbdtr-header-height) + 32px);
+  }
+
+  @media (max-width: 782px) {
+    .admin-bar {
+      padding-top: calc(var(--newbdtr-header-height) + 46px);
+    }
+  }
+
+  .admin-bar .newbdtr-header {
+    top: 32px;
+  }
+
+  @media (max-width: 782px) {
+    .admin-bar .newbdtr-header {
+      top: 46px;
+    }
+  }
+}
+
+@layer components {
+  .active-nav {
+    color: #a14000;
+    font-weight: 700;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #a14000;
+  }
+
+  .glass-nav {
+    background: rgba(252, 249, 248, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px -10px rgba(68, 0, 80, 0.15);
+  }
+
+  .step-path {
+    background-image: radial-gradient(circle, #d3c1d0 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  .material-symbols-outlined {
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rounded-full > .material-symbols-outlined {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .newbdtr-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+
+  .newbdtr-header__bar {
+    min-height: var(--newbdtr-header-height);
+    padding-inline: 1.5rem;
+  }
+
+  .newbdtr-wordmark {
+    font-family: Montserrat, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #440050;
+    margin: 0;
+  }
+
+  .newbdtr-wordmark a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .newbdtr-nav .wp-block-navigation-item__content {
+    color: #50434f;
+  }
+
+  .newbdtr-nav .current-menu-item > .wp-block-navigation-item__content,
+  .newbdtr-nav .current-menu-ancestor > .wp-block-navigation-item__content {
+    color: #a14000;
+    font-weight: 700;
+    border-bottom: 2px solid #a14000;
+  }
+
+  .newbdtr-footer {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .newbdtr-footer__grid {
+    margin-bottom: 1.5rem;
+  }
+
+  .newbdtr-footer__title {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .newbdtr-footer__legal {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    font-size: 12px;
+  }
+
+  .newbdtr-post-date {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: #50434f;
+  }
+
+  .newbdtr-post-title {
+    font-size: 1.125rem;
+  }
+
+  .newbdtr-query .wp-block-post-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .newbdtr-header-cta .wp-block-button__link {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .newbdtr-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+  }
+
+  .newbdtr-hero__stats {
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, #d3c1d0 30%, transparent);
+  }
+
+  .newbdtr-stat-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .newbdtr-escolar__logo {
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .newbdtr-section__link a {
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .newbdtr-card {
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid color-mix(in srgb, #d3c1d0 30%, transparent);
+    background: #fff;
+  }
+
+  .newbdtr-card__tag {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .newbdtr-step__num {
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: 0 auto;
+  }
+
+  .newbdtr-step__num--1 {
+    background: #440050;
+    color: #fff;
+  }
+
+  .newbdtr-step__num--2 {
+    background: #a14000;
+    color: #fff;
+  }
+
+  .newbdtr-step__num--3 {
+    background: #b2f746;
+    color: #121f00;
+  }
+
+  .newbdtr-step__num--4 {
+    background: #660476;
+    color: #e07fea;
+  }
+
+  .newbdtr-rounded-media img {
+    border-radius: 28px;
+  }
+
+  .newbdtr-activity-stats {
+    padding: 1.5rem;
+    border-radius: 28px;
+  }
+
+  .newbdtr-cta .wp-block-heading,
+  .newbdtr-cta p {
+    color: #fff;
+  }
+}
+
+/* wp-site-blocks applies blockGap as margin-block-start on every child after the first (the header). */
+.wp-site-blocks > main {
+  margin-block-start: 0;
+}
+
+.newbdtr-hero > .wp-block-cover__background {
+  background: linear-gradient(to right, #fcf9f8 0%, rgba(252, 249, 248, 0.7) 42%, transparent 78%);
+  opacity: 1;
+}
+
+.wp-block-buttons.newbdtr-header-cta {
+  gap: 10px;
+}
+
+.newbdtr-btn-login .wp-element-button,
+.newbdtr-btn-login .wp-block-button__link,
+.newbdtr-btn-profile .wp-element-button,
+.newbdtr-btn-profile .wp-block-button__link {
+  @apply bg-transparent text-primary font-semibold text-sm px-4 py-2 rounded-btn hover:bg-primary/5 hover:scale-95 active:scale-90 transition-all;
+}
+
+.newbdtr-btn-register .wp-element-button,
+.newbdtr-btn-register .wp-block-button__link {
+  @apply bg-primary text-on-primary font-semibold text-sm px-4 py-2 rounded-btn hover:scale-95 active:scale-90 transition-all;
+}

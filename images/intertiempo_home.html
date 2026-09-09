@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Intertiempo - Banco del Tiempo de Rivas</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed-variant": "#751b84",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-fixed-variant": "#7b2f00",
+                        "primary": "#440050",
+                        "on-surface-variant": "#50434f",
+                        "surface-container-high": "#eae7e7",
+                        "on-background": "#1b1b1b",
+                        "on-primary-container": "#e07fea",
+                        "on-secondary-container": "#571f00",
+                        "secondary": "#a14000",
+                        "secondary-container": "#fd6c10",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "surface-tint": "#91389e",
+                        "on-surface": "#1b1b1b",
+                        "tertiary": "#192900",
+                        "secondary-fixed": "#ffdbcc",
+                        "primary-fixed-dim": "#faabff",
+                        "on-tertiary-fixed-variant": "#334f00",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#660476",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#35003f",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#121f00",
+                        "on-tertiary-container": "#7ab500",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#faabff",
+                        "on-secondary-fixed": "#351000",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#827280",
+                        "background": "#fcf9f8",
+                        "tertiary-fixed-dim": "#98da27",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-container": "#294100",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffd6fe",
+                        "outline-variant": "#d3c1d0",
+                        "surface": "#fcf9f8",
+                        "secondary-fixed-dim": "#ffb694",
+                        "tertiary-fixed": "#b2f746"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "28px",
+                        "btn": "20px"
+                    },
+                    "spacing": {
+                        "stack-md": "1.5rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1.5rem",
+                        "stack-lg": "3rem",
+                        "section-padding": "4rem",
+                        "margin-mobile": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Montserrat"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px -10px rgba(68, 0, 80, 0.15);
+        }
+        .step-path {
+            background-image: radial-gradient(circle, #d3c1d0 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-outline-variant/30 h-20 shadow-sm">
+<nav class="max-w-container-max mx-auto px-gutter h-full flex justify-between items-center">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<img alt="Intertiempo Logo" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpYBhTTz41IjVQuQQT28Eaui6pVnnHMJymWG-FSPTimT0EL-FVCoOc6OZ6W2UAzWeb5sLz_3LmtxNS5qb7hk8uMwhHCNMiO3lMTHayuriAHYVE8GYf9JtNT0456n0iaWaxxksqmN8iQaEngtQKD-Nc41JC_Sd1K3KrvflZ8ey_kAjmDppl_4zxUXKyuMGF0vnS2w6vouE-fc9409FVbpJi5oPDOhDXDeyUsIDN6J3BP-e-0MwqtT_Tj5TBDrneUfAeyuQ"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Intertiempo</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-primary font-bold border-b-2 border-primary font-label-md text-label-md" href="#">¿Qué es?</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Servicios</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Proyectos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Comunidad</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-primary font-label-md text-label-md px-6 py-2 rounded-btn hover:bg-primary/5 transition-all">Entrar</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-btn shadow-md hover:scale-95 active:scale-90 transition-transform">Únete gratis</button>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden px-gutter">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A warm and high-quality photography shot of three diverse young adults smiling and interacting in a cozy modern co-working space. The lighting is soft and golden, creating a welcoming and communal atmosphere. The background is slightly blurred to emphasize the human connection, adhering to a premium glassmorphic UI style with subtle purple and orange light leaks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvCpA4HfYHdM5J4-Wl0MuBBvguk1sdmvWWOHwUEn-VCpKTGgeO2m9aPqGbIA1fWQpqIyFFIb7WAdu5VpQc8-rqBSVlWLp-zfvdSECkopS0YnLkJSAjb2E0ypb3RM4mGEM6RnyUmNqKqQXHYIyTtPLnengh66x7jdKWPm28aSs0PWJJruNBHgsKqUzopBvop6SE2DK7EC4Dvx3XFbTaHAgE-RDoPwUlCGNrrhHXO4O5iBacNFJHBByoYQ"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/50 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-label-md text-label-md text-primary">441 personas conectadas ahora</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary leading-tight">
+                        ¿Qué puedes <span class="text-secondary">intercambiar</span> hoy?
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos vida. La red social que construye barrio.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-btn shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2">
+                            Únete gratis
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="glass-card text-on-surface font-label-md text-label-md px-8 py-4 rounded-btn border border-outline-variant hover:bg-white transition-all">
+                            Descubre cómo funciona
+                        </button>
+</div>
+<!-- Stats Pill -->
+<div class="flex items-center gap-8 pt-8 border-t border-outline-variant/30">
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-primary">4.781</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Intercambios</p>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-secondary">+15.000</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Horas compartidas</p>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-tertiary-container">13</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proyectos</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- School Section Banner -->
+<section class="bg-tertiary-container py-12 px-gutter">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 rounded-card overflow-hidden bg-white p-2">
+<img alt="BdT Escolar" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAab4IyKfri7wQddz1v4fx_zzL-3CljmJEU5FXM_wsHwEyImx4Us_WkBtZjyhRHp0AIfnxv_DKkTSv8MkzGVrlQvYVZEXY3drZ5Tf2oLjnZn3mu2C-DFfIskDrqA2lZpyvCx7fTRPpxkugsOMy7_1Iry5kGk2sfh72KkDg7_RoB_gja0mi0f2L1GfjUljM1jEbipcBVZ2TjUsX489Ccw2zvPkqe2U3gz4r5IJw5tGersWYZK8DD_ymNomHf3PZk9B0bWoc"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-tertiary-container">Banco del Tiempo Escolar</h2>
+<p class="text-tertiary-fixed-dim font-body-md max-w-lg">Fomentando la solidaridad y el intercambio desde las aulas de Rivas. ¡Los más jóvenes también hacen barrio!</p>
+</div>
+</div>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md px-8 py-4 rounded-btn hover:scale-105 transition-transform">Ver proyectos escolares</button>
+</div>
+</section>
+<!-- Popular Services -->
+<section class="section-padding px-gutter bg-surface-container-low">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Servicios populares</h2>
+<p class="text-on-surface-variant font-body-md">Lo que más se está moviendo esta semana en la comunidad</p>
+</div>
+<a class="text-secondary font-label-md text-label-md flex items-center gap-1 hover:underline" href="#">
+                        Ver todos
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift group">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a person's hands helping another person with an English textbook in a bright library. The scene is warm and educational, following the modern community aesthetic with vibrant purple accents in the lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2BxMOglAuO_c0_I-9r6mj8Vc7r3ohKoSr5ERTDG4TIShingYKaw1wcK0vKaTjggULSY6LRgFcB7CW8AuhhqMw8iHa5lL8g4nJVde3NJfK19y-nwmuU6DG9idACPEZzqXMCczrXP-cdMgRZDkhG-8_EEO8Sk5Y1_2cRG1EqkSkQKdpA8K54GsEIciF4aV2_qRch1Eg8RZqVUBmzucpH5_8W7A3ai9bm-PXR_-p2lKHo3cn9QudNhdnlg"/>
+<span class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-label-sm font-label-sm text-primary uppercase">Clases</span>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Clases de Inglés</h3>
+<p class="text-on-surface-variant text-label-md mb-4">Ofrecido por Marta G.</p>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+</div>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    5.0
+                                </span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="A craftsman assembling a wooden chair in a bright, modern workshop. Fine wood dust is caught in the sunlight, creating a high-end atmospheric look that aligns with the corporate modern design system of Intertiempo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBhc3qCa849tp1xSuBchFaLscIz2ge83NhMOynXMo1JspKz8A1wqNYgUN4j46i9VtyAiHjYteMCETlhb7uo5pboeIM5HFzu2sUMgzQ-jfC2HKHWUGhPytcseDYAIhOrS89KzYljfCjwae_bDCZBZ4cG5ZyLbLnWOtptHdnUZiYHOTRyp22eVPH7nXTEC1sjYmDDMNLK1yu9utVVy8Z5mGgicYl0ztMzdAUUgRxmKgjnIvSH3zzdahvHQ"/>
+<span class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-label-sm font-label-sm text-secondary uppercase">Hogar</span>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Montar muebles</h3>
+<p class="text-on-surface-variant text-label-md mb-4">Ofrecido por Carlos R.</p>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+</div>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    4.9
+                                </span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="Two people sitting on a bench outdoors looking at a smartphone together, with one person explaining a feature to an elderly person. The lighting is natural and bright, capturing a genuine moment of intergenerational connection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA06nu5g2d1rB13BnRnc3Q6nCBP9a9vd1fHmZeuv2sDYCWSLR3c8vZfa9unZvYUJZJi0jhlpXrFvk7tyXlS0h_iuhfSC5G89ZKnjHv9wqO6JYlElxujogke9d_JoYK5z5kwHWTOfxIie0i8I6IwUgClMY4eGQplOr7AYkZ0X0qzlBUNKTnZ4CjSeKUoMo07dnnTJ13beY96SjomvQXkiqAZMZ5z7nHKmUyX1u_E033Lyu2oDPaWC_LtZA"/>
+<span class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-label-sm font-label-sm text-tertiary-container uppercase">Tecnología</span>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Ayuda con móviles</h3>
+<p class="text-on-surface-variant text-label-md mb-4">Ofrecido por Lucía M.</p>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+</div>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    5.0
+                                </span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="A person walking two dogs in a sunny urban park in Rivas. The scene is energetic and full of life, using a palette that emphasizes the accent green and warm orange tones of the Intertiempo brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkyIV4WKX_iWsZj-IJEUrHHxOyWEFXV_9EvYzabrBCMB4EWDS7pulVLlTWSVgzs_Qhk51NjNiN6wscXPfnfTlamXDE3v_qUXyljstk5jZPdCCyfVrRYVwcarh9s9aCCG1EKygUnbkza-20pZvpbfs1HvvN7L7Z3B1YrLGsIsc6SAmHT31XoHM0irZh-s3eCZrQytRuU19XkaHZey_wONVW06eqAu2cfqDjyTYCz1FJEamCP4O37OHEKQ"/>
+<span class="absolute top-4 left-4 bg-white/80 backdrop-blur px-3 py-1 rounded-full text-label-sm font-label-sm text-on-primary-fixed-variant uppercase">Mascotas</span>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Pasear perros</h3>
+<p class="text-on-surface-variant text-label-md mb-4">Ofrecido por Ana B.</p>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+</div>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    5.0
+                                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works Timeline -->
+<section class="section-padding px-gutter overflow-hidden relative">
+<div class="max-w-container-max mx-auto relative z-10">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-2">¿Cómo funciona?</h2>
+<p class="text-on-surface-variant font-body-md">Intercambiar es tan fácil como estos 4 pasos</p>
+</div>
+<div class="relative flex flex-col md:flex-row justify-between gap-8 md:gap-4 py-8">
+<!-- Timeline Path Mobile (Hidden on Desktop) -->
+<div class="absolute left-8 top-0 bottom-0 w-0.5 step-path md:hidden"></div>
+<!-- Timeline Path Desktop (Hidden on Mobile) -->
+<div class="absolute top-1/2 left-0 right-0 h-0.5 step-path hidden md:block -translate-y-1/2 mx-16"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group">
+<div class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white shrink-0 group-hover:scale-110 transition-transform">1</div>
+<div>
+<h4 class="font-headline-sm text-[18px] text-primary">Regístrate</h4>
+<p class="text-on-surface-variant text-label-md max-w-[200px]">Crea tu perfil y define qué sabes hacer y qué necesitas.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group">
+<div class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white shrink-0 group-hover:scale-110 transition-transform">2</div>
+<div>
+<h4 class="font-headline-sm text-[18px] text-secondary">Ofrece / Busca</h4>
+<p class="text-on-surface-variant text-label-md max-w-[200px]">Publica tus servicios o busca lo que otros vecinos ofrecen.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white shrink-0 group-hover:scale-110 transition-transform">3</div>
+<div>
+<h4 class="font-headline-sm text-[18px] text-tertiary">Conecta</h4>
+<p class="text-on-surface-variant text-label-md max-w-[200px]">Chatea con el vecino y acordad el momento para el intercambio.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white shrink-0 group-hover:scale-110 transition-transform">4</div>
+<div>
+<h4 class="font-headline-sm text-[18px] text-primary-container">Intercambia</h4>
+<p class="text-on-surface-variant text-label-md max-w-[200px]">Realiza el servicio y suma (o resta) horas en tu cuenta de tiempo.</p>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-stack-lg">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-10 py-4 rounded-btn shadow-xl hover:scale-105 transition-transform">Empezar ahora</button>
+</div>
+</div>
+</section>
+<!-- Projects Bento Grid -->
+<section class="section-padding px-gutter bg-surface">
+<div class="max-w-container-max mx-auto">
+<div class="mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Proyectos que mueven Rivas <span class="text-secondary">♥</span></h2>
+<p class="text-on-surface-variant font-body-md">Descubre todo lo que estamos creando juntos</p>
+</div>
+<div class="bento-grid">
+<div class="col-span-12 md:col-span-8 h-80 rounded-card overflow-hidden relative group hover-lift">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A group of people sitting around a long wooden table in a brightly lit community center, knitting together. Colorful yarns and half-finished projects are scattered, creating a cozy and productive atmosphere. The scene is framed with a high-end documentary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDslLLpTtYdDnewPrC_SOeOrwlGpdWa-WhubjpNgZRZk5qaZrqtm-79ekyEGkkWGy3XB2hIU0rXyVxPZ8qqe3KH6JnNd09ZiVdsiidgHUAZjkjyo7yksBDrK4t4ymvVt3hNEJfBrzyWGfnNTam07QSWWvc4qqpdg5JAVokPJlJPcD3F8v5n-IvWuVSft8F93O0zd7nCg2hWJs2ttgr5IZqtMThwQy7OMyQ1KkVQOWu41eCrM_M4lkOmtw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<h3 class="text-white font-headline-md text-headline-md">Té con Lanas</h3>
+<p class="text-white/80 font-body-md">Tejemos comunidad, un punto a la vez.</p>
+<button class="mt-4 w-fit bg-white/20 backdrop-blur text-white px-4 py-2 rounded-full font-label-md border border-white/30 hover:bg-white hover:text-primary transition-all">Más info</button>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 h-80 rounded-card overflow-hidden relative group hover-lift">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A library with a 'Take a Book, Leave a Book' sign. High contrast lighting highlighting the textures of old and new books. Minimalist and inviting composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhkYero_TnGM-vPtb8QYPtAAlqRi1PD2Jua-_cFk3mUtVgxM_q8cdmEURKr6QRn70V3q3fDCoj-prY1k8dHsV39G8dh8xtZYJ1Td1g32Dedc2Qef0Svm0vTep6AoVWh8VufN6vRWdcWA2350jQHvfmR7r0XXc4GqPxnC6ftm108BOBbDCo_GdeFNHHy8GjHWGmomyVJc8lqo0lkC5fjW0ZGYbr45u_XGdVk_ROUIpbQVr5gbYel99KdA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<h3 class="text-white font-headline-sm text-headline-sm">Rivas Lee</h3>
+<p class="text-white/80 font-label-md">Libros que viajan por el barrio.</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 h-64 rounded-card overflow-hidden relative group hover-lift">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Artistic heart-shaped pillows arranged on a clean, bright surface. The lighting is soft and empathetic, highlighting the handmade nature of the items." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5zEepFJpoae9PQ6CqD-jQ1vW_Fa9Jt3rKGry2-qoxHdGYqWws4lvsMO81jCBqsnOPx-65OZ5X9IBoQ6bVkB20VbPZWrUWE2IQ2eYX9Bf5X9ztwJ1ndKdkjMAtr4DE5PJS59BkfDtsz6a6qHUWs-l3c6maQGGyWTtHZwId3sMBe-0LtWihBCIbfYptnmVIAU8ayvae0KudFK9qqd3qUW_dPU9tZsicJHpGwoY2GQ8feT1D5mez0Zqp4w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+<h3 class="text-white font-headline-sm text-headline-sm">Almohadas de Corazón</h3>
+<p class="text-white/80 font-label-md">Hechas con amor para quien lo necesita.</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-8 h-64 rounded-card overflow-hidden relative group hover-lift">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vibrant community garden with lush green plants and people collaborating on planting seeds. The lighting is sunny and optimistic, following the Intertiempo secondary color palette of earthy oranges and greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFIq5IWCKOkd8NyW_JA2do06b7-N1pz9QhVSXR10mmeIKXdqawRiIHFaVjnyJd-VILloWHJM9sb844lJ4rvK2GRRcmHn_DahDti1B4DM42OtPyx1jodUVNa-bEeu5BYv9puqHGVDIwlYs7f60Jy1brE8SvsbXLkwESppCyHAB9vJVCilAGn_8wLlLWE8gnlJ6qZLGMCdFnomJ658uLBv6LSi6PfgKvVIcuDG2T9QQDN7nmMtVjX1wczQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+<h3 class="text-white font-headline-sm text-headline-sm">Huerto Vecinal</h3>
+<p class="text-white/80 font-body-md">Sembrando juntos el futuro de Rivas.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Map & Social -->
+<section class="section-padding px-gutter bg-surface-container-low">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Map Section -->
+<div class="lg:col-span-2 space-y-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Mapa en vivo</h2>
+<p class="text-on-surface-variant font-body-md">Mira dónde están ocurriendo intercambios ahora mismo</p>
+</div>
+<div class="h-[450px] rounded-card overflow-hidden shadow-inner bg-surface-dim relative border border-outline-variant/30">
+<img class="w-full h-full object-cover opacity-80" data-location="Rivas Vaciamadrid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2NzBTvfsu3Qtq4NakX87bkSScQRlmU4GJRUR8ffWGzd-vWgvEe3w5COW96RS94H7OWh6f8k8gmCOwIBgWEnQktAsSHsl14cfA3D5hydekRzIDf6QmMd4wcqAHmkJMguYgqgapKjbaizvGFXvJietJCLyxv0QnjcZ9_nj44jW0FOgqeydzxWZngE_6ePNwzO0gwXWvVUEIaeJrGw960emE57VrRjWXO0GztZYuKMxBFvIXfOSPLNVnqQ"/>
+<!-- Floating Card on Map -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card p-4 rounded-xl shadow-lg border-primary/20 w-64 animate-bounce-slow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-[20px]">music_note</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Clase de guitarra</p>
+<p class="text-[12px] text-on-surface-variant">Hoy, 18:00 - Centro de Rivas</p>
+<a class="text-secondary font-bold text-[12px] mt-2 inline-block" href="#">Ver intercambio →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Feed -->
+<div class="space-y-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Actividad reciente</h2>
+<p class="text-on-surface-variant font-body-md">Lo último que está pasando</p>
+</div>
+<div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/30 space-y-6 h-[450px] overflow-y-auto">
+<!-- Activity Item -->
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex-shrink-0"></div>
+<div>
+<p class="text-on-surface text-label-md"><strong>María</strong> ha ofrecido <strong>Clases de yoga</strong></p>
+<p class="text-on-surface-variant text-[12px]">Hace 10 min</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-t border-outline-variant/20 pt-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex-shrink-0"></div>
+<div>
+<p class="text-on-surface text-label-md"><strong>Carlos</strong> ha recibido <strong>Ayuda con el móvil</strong></p>
+<p class="text-on-surface-variant text-[12px]">Hace 25 min</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-t border-outline-variant/20 pt-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex-shrink-0"></div>
+<div>
+<p class="text-on-surface text-label-md"><strong>Lucía</strong> ha ofrecido <strong>Pasear perros</strong></p>
+<p class="text-on-surface-variant text-[12px]">Hace 1 hora</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-t border-outline-variant/20 pt-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex-shrink-0"></div>
+<div>
+<p class="text-on-surface text-label-md"><strong>Ana</strong> ha recibido <strong>Clases de guitarra</strong></p>
+<p class="text-on-surface-variant text-[12px]">Hace 2 horas</p>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-surface-variant text-primary font-label-md text-label-md py-3 rounded-full hover:bg-primary/10 transition-colors">Ver toda la actividad</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gamification / CTA Area -->
+<section class="section-padding px-gutter overflow-hidden bg-primary relative">
+<!-- Subtle background interaction -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-10 right-20 w-64 h-64 bg-white rounded-full blur-[100px]"></div>
+<div class="absolute bottom-10 left-20 w-96 h-96 bg-secondary rounded-full blur-[150px]"></div>
+</div>
+<div class="max-w-container-max mx-auto text-center relative z-10">
+<div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-secondary text-on-secondary mb-8 shadow-2xl">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-white mb-6">Únete a nuestra comunidad</h2>
+<p class="text-white/80 font-body-lg mb-stack-lg max-w-2xl mx-auto">Recibe novedades, eventos y mucho más. Ayúdanos a seguir construyendo una red de apoyo mutuo en Rivas Vaciamadrid.</p>
+<form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-stack-lg">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-btn px-6 py-4 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Tu email" type="email"/>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-btn font-label-md shadow-lg hover:scale-105 active:scale-95 transition-all">Suscribirme</button>
+</form>
+<div class="flex justify-center gap-6 text-white/60">
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-[32px]">hub</span></a>
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-[32px]">diversity_3</span></a>
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-[32px]">verified</span></a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/30 py-stack-lg">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-gutter mb-12">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<img alt="Intertiempo Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLO6EXbdkFbTImLjqSzTIgtEgszQdH8DhEqQjpRproSqNKWIWX5qq9jv8rP1vcs6Wcg9SrTk8Ong2R3MpbVkKbQVPR6GPAEc841RfXnN07A6ec7fpx0YsX1C2DKu1JfhBz7Wetjh-_yE0wQV-ubzbgDRd29IULckfpkQ3l2Lc6wnZJ9ZZSOmBclrd6LnH-WRU4HowqyeWN8IbhzlR_jJlbc1Zl1wnujDpAJUrNq7rBtuCyaFjPy8uM7FKDX3Up0U2jZh4"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Intertiempo</span>
+</div>
+<p class="text-on-surface-variant font-body-md">
+                    Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos vida.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
+<a class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-[20px]">camera_alt</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-6">Navegación</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Inicio</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">¿Qué es el BdT?</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Servicios</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Proyectos</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase tracking-widest mb-6">Recursos</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Preguntas frecuentes</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Guía de uso</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Blog</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Eventos</a></li>
+</ul>
+</div>
+<div class="bg-surface-container-high rounded-card p-6">
+<h4 class="font-label-md text-label-md text-primary mb-4">¿Necesitas ayuda?</h4>
+<p class="text-on-surface-variant font-body-md mb-4 text-sm">Contáctanos directamente vía WhatsApp o mail.</p>
+<a class="flex items-center gap-3 text-secondary font-bold hover:underline mb-2" href="#">
+<span class="material-symbols-outlined">call</span>
+                    649 73 24 86
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant font-label-md text-sm hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+                    info@bancodeltiempo.org
+                </a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+<p class="text-on-surface-variant font-label-sm">© 2024 Intertiempo - Banco del Tiempo de Rivas | Hacemos barrio</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:underline font-label-sm" href="#">Aviso legal</a>
+<a class="text-on-surface-variant hover:underline font-label-sm" href="#">Privacidad</a>
+<a class="text-on-surface-variant hover:underline font-label-sm" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 glass-nav border-t border-outline-variant/20 md:hidden h-16">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-label-sm">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">exchange_auto</span>
+<span class="text-[10px] font-label-sm">Servicios</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="text-[10px] font-label-sm">Proyectos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-label-sm">Perfil</span>
+</a>
+</nav>
+<script>
+        // Simple counter animation logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.font-headline-md');
+            const speed = 200;
+
+            const animateCounter = (counter) => {
+                const target = +counter.innerText.replace(/\D/g, '');
+                const count = 0;
+                const updateCount = () => {
+                    const inc = target / speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc).toLocaleString();
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                updateCount();
+            };
+            
+            // In a real scenario, use Intersection Observer here
+        });
+
+        // Hover lift micro-interactions logic handled by CSS classes
+    </script>
+</body></html>

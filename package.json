@@ -1,0 +1,12 @@
+{
+  "name": "newbdtr",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/theme.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./assets/css/theme.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13"
+  }
+}

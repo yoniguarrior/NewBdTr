@@ -1,0 +1,230 @@
+# Copyright (C) 2023 Peqherlin
+# This file is distributed under the .
+msgid ""
+msgstr ""
+"Project-Id-Version: New BdT Rivas 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/NewBdTRivas\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-11-27T00:59:06+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+
+#. Theme Name of the theme
+msgid "New BdT Rivas"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://bancodeltiemporivas.org"
+msgstr ""
+
+#. Description of the theme
+msgid "TwentyTwentyFive Child Theme for Banco del Tiempo Rivas"
+msgstr ""
+
+#. Author of the theme
+msgid "Peqherlin"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://peqherlin.com"
+msgstr ""
+
+#. Template Name of the theme
+msgid "BdT Content Template"
+msgstr ""
+
+#. Template Name of the theme
+msgid "BdT Front Template"
+msgstr ""
+
+#. Template Name of the theme
+msgid "BdT Logged Template"
+msgstr ""
+
+#. Template Name of the theme
+msgid "BdT Management Template"
+msgstr ""
+
+#: single-event_bk.php:32
+msgid "Date: "
+msgstr ""
+
+#: single-event_bk.php:38
+msgid "Start time: "
+msgstr ""
+
+#: single-event_bk.php:45
+msgid "End time: "
+msgstr ""
+
+#: single-event_bk.php:64
+msgid "Location: "
+msgstr ""
+
+#: single-event_bk.php:80
+msgid "Bus: "
+msgstr ""
+
+#: single-event_bk.php:82
+msgid "Underground: "
+msgstr ""
+
+#: single-gallery_bk.php:35
+msgid "No images found for this gallery"
+msgstr ""
+
+#: inc/register-notice.php:19
+msgctxt "Post Type General Name"
+msgid "Notices"
+msgstr ""
+
+#: inc/register-notice.php:20
+msgctxt "Post Type Singular Name"
+msgid "Notice"
+msgstr ""
+
+#: inc/register-notice.php:21
+msgid "Notices archives"
+msgstr ""
+
+#: inc/register-notice.php:22
+msgid "Notice attributes"
+msgstr ""
+
+#: inc/register-notice.php:23
+msgid "All Notices"
+msgstr ""
+
+#: inc/register-notice.php:24
+msgid "Add new Notice"
+msgstr ""
+
+#: inc/register-notice.php:25
+msgid "Add Notice"
+msgstr ""
+
+#: inc/register-notice.php:26
+msgid "New Notice"
+msgstr ""
+
+#: inc/register-notice.php:27
+msgid "Edit Notice"
+msgstr ""
+
+#: inc/register-notice.php:28
+msgid "Update Notice"
+msgstr ""
+
+#: inc/register-notice.php:29
+msgid "View Notice"
+msgstr ""
+
+#: inc/register-notice.php:30
+msgid "View Notices"
+msgstr ""
+
+#: inc/register-notice.php:31
+msgid "Search Notices"
+msgstr ""
+
+#: inc/register-notice.php:32
+msgid "No Notices found"
+msgstr ""
+
+#: inc/register-notice.php:33
+msgid "No Notices found in trash"
+msgstr ""
+
+#: inc/register-notice.php:34
+msgid "Insert into Notice"
+msgstr ""
+
+#: inc/register-notice.php:35
+msgid "Uploaded to this Notices"
+msgstr ""
+
+#: inc/register-notice.php:36
+msgid "Notices list"
+msgstr ""
+
+#: inc/register-notice.php:37
+msgid "Notices list navigation"
+msgstr ""
+
+#: inc/register-notice.php:38
+msgid "Filter Notices list"
+msgstr ""
+
+#: inc/register-notice.php:39
+msgid "Notice published"
+msgstr ""
+
+#: inc/register-notice.php:40
+msgid "Notice updated."
+msgstr ""
+
+#: inc/register-notice.php:44
+msgid "Notice"
+msgstr ""
+
+#: inc/register-notice.php:45
+msgid "Notice pieces"
+msgstr ""
+
+#: inc/register-notice.php:78
+msgctxt "taxonomy general name"
+msgid "Topics"
+msgstr ""
+
+#: inc/register-notice.php:79
+msgctxt "taxonomy singular name"
+msgid "Topic"
+msgstr ""
+
+#: inc/register-notice.php:80
+msgid "Search Topics"
+msgstr ""
+
+#: inc/register-notice.php:81
+msgid "Popular Topics"
+msgstr ""
+
+#: inc/register-notice.php:82
+msgid "All the Topics"
+msgstr ""
+
+#: inc/register-notice.php:85
+msgid "Edit Topics"
+msgstr ""
+
+#: inc/register-notice.php:86
+msgid "Update Topics"
+msgstr ""
+
+#: inc/register-notice.php:87
+msgid "Add Topics"
+msgstr ""
+
+#: inc/register-notice.php:88
+msgid "New Topic name"
+msgstr ""
+
+#: inc/register-notice.php:89
+msgid "Separate Topics with commas"
+msgstr ""
+
+#: inc/register-notice.php:90
+msgid "Add or remove Topics"
+msgstr ""
+
+#: inc/register-notice.php:91
+msgid "Choose from most used Topics"
+msgstr ""
+
+#: inc/register-notice.php:92
+msgid "&larr; Back to Topics"
+msgstr ""

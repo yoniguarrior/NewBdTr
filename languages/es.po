@@ -1,0 +1,577 @@
+# Copyright (C) 2023 Peqherlin
+# This file is distributed under the .
+msgid ""
+msgstr ""
+"Project-Id-Version: New BdT Rivas 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/NewBdTRivas\n"
+"POT-Creation-Date: 2023-11-27T00:59:06+00:00\n"
+"PO-Revision-Date: 2026-09-03 11:38+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#. Theme Name of the theme
+msgid "New BdT Rivas"
+msgstr "New BdT Rivas"
+
+#. Theme URI of the theme
+msgid "https://bancodeltiemporivas.org"
+msgstr "https://bancodeltiemporivas.org"
+
+#. Description of the theme
+msgid "TwentyTwentyFive Child Theme for Banco del Tiempo Rivas"
+msgstr "Tema hijo de TwentyTwentyFive para Banco del Tiempo Rivas"
+
+#. Author of the theme
+msgid "Peqherlin"
+msgstr "Peqherlin"
+
+#. Author URI of the theme
+msgid "https://peqherlin.com"
+msgstr "https://peqherlin.com"
+
+#. Template Name of the theme
+msgid "BdT Content Template"
+msgstr "Plantilla de contenidos BdT"
+
+#. Template Name of the theme
+msgid "BdT Front Template"
+msgstr "Plantilla Frontend de BdT"
+
+#. Template Name of the theme
+msgid "BdT Logged Template"
+msgstr "Plantilla Conectado de Bdt"
+
+#. Template Name of the theme
+msgid "BdT Management Template"
+msgstr "Plantilla Gestión BdT"
+
+#: single-event_bk.php:32
+msgid "Date: "
+msgstr "Fecha: "
+
+#: single-event_bk.php:38
+msgid "Start time: "
+msgstr "Hora inicio: "
+
+#: single-event_bk.php:45
+msgid "End time: "
+msgstr "Hora fin: "
+
+#: single-event_bk.php:64
+msgid "Location: "
+msgstr "Ubicación: "
+
+#: single-event_bk.php:80
+msgid "Bus: "
+msgstr "Bus: "
+
+#: single-event_bk.php:82
+msgid "Underground: "
+msgstr "Metro: "
+
+#: single-gallery_bk.php:35
+msgid "No images found for this gallery"
+msgstr "No se han encontrado imágenes para esta galería"
+
+#: inc/register-notice.php:19
+msgctxt "Post Type General Name"
+msgid "Notices"
+msgstr "Noticias"
+
+#: inc/register-notice.php:20
+msgctxt "Post Type Singular Name"
+msgid "Notice"
+msgstr "Noticia"
+
+#: inc/register-notice.php:21
+msgid "Notices archives"
+msgstr "Archivo de Noticias"
+
+#: inc/register-notice.php:22
+msgid "Notice attributes"
+msgstr "Atributos de Noticia"
+
+#: inc/register-notice.php:23
+msgid "All Notices"
+msgstr "Todas las Noticias"
+
+#: inc/register-notice.php:24
+msgid "Add new Notice"
+msgstr "Añadir nueva Noticia"
+
+#: inc/register-notice.php:25
+msgid "Add Notice"
+msgstr "Añadir Noticia"
+
+#: inc/register-notice.php:26
+msgid "New Notice"
+msgstr "Nueva Noticia"
+
+#: inc/register-notice.php:27
+msgid "Edit Notice"
+msgstr "Editar Noticia"
+
+#: inc/register-notice.php:28
+msgid "Update Notice"
+msgstr "Actualizar Noticia"
+
+#: inc/register-notice.php:29
+msgid "View Notice"
+msgstr "Ver Noticia"
+
+#: inc/register-notice.php:30
+msgid "View Notices"
+msgstr "Ver Noticias"
+
+#: inc/register-notice.php:31
+msgid "Search Notices"
+msgstr "Buscar Noticias"
+
+#: inc/register-notice.php:32
+msgid "No Notices found"
+msgstr "No se encontraron Noticias"
+
+#: inc/register-notice.php:33
+msgid "No Notices found in trash"
+msgstr "No se encontraron Noticias en la papelera"
+
+#: inc/register-notice.php:34
+msgid "Insert into Notice"
+msgstr "Insertar en Noticia"
+
+#: inc/register-notice.php:35
+msgid "Uploaded to this Notices"
+msgstr "Subido a esta noticia"
+
+#: inc/register-notice.php:36
+msgid "Notices list"
+msgstr "Lista de Noticias"
+
+#: inc/register-notice.php:37
+msgid "Notices list navigation"
+msgstr "Navegación por lista de noticias"
+
+#: inc/register-notice.php:38
+msgid "Filter Notices list"
+msgstr "Filtrar lista de Noticias"
+
+#: inc/register-notice.php:39
+msgid "Notice published"
+msgstr "Noticia Publicada"
+
+#: inc/register-notice.php:40
+msgid "Notice updated."
+msgstr "Noticia actualizada."
+
+#: inc/register-notice.php:44
+msgid "Notice"
+msgstr "Noticia"
+
+#: inc/register-notice.php:45
+msgid "Notice pieces"
+msgstr "Noticias"
+
+#: inc/register-notice.php:78
+msgctxt "taxonomy general name"
+msgid "Topics"
+msgstr "Temas"
+
+#: inc/register-notice.php:79
+msgctxt "taxonomy singular name"
+msgid "Topic"
+msgstr "Tema"
+
+#: inc/register-notice.php:80
+msgid "Search Topics"
+msgstr "Buscar Temas"
+
+#: inc/register-notice.php:81
+msgid "Popular Topics"
+msgstr "Temas populares"
+
+#: inc/register-notice.php:82
+msgid "All the Topics"
+msgstr "Todos los Temas"
+
+#: inc/register-notice.php:85
+msgid "Edit Topics"
+msgstr "Editar Temas"
+
+#: inc/register-notice.php:86
+msgid "Update Topics"
+msgstr "Actualizar Temas"
+
+#: inc/register-notice.php:87
+msgid "Add Topics"
+msgstr "Añadir Temas"
+
+#: inc/register-notice.php:88
+msgid "New Topic name"
+msgstr "Nuevo nombre de Tema"
+
+#: inc/register-notice.php:89
+msgid "Separate Topics with commas"
+msgstr "Separar Temas con comas"
+
+#: inc/register-notice.php:90
+msgid "Add or remove Topics"
+msgstr "Añadir o eliminar Temas"
+
+#: inc/register-notice.php:91
+msgid "Choose from most used Topics"
+msgstr "Elija entre los Temas más usados"
+
+#: inc/register-notice.php:92
+msgid "&larr; Back to Topics"
+msgstr "&larr; Volver a Temas"
+
+#: inc/register-event.php:19
+msgctxt "Post Type General Name"
+msgid "Events"
+msgstr "Eventos"
+
+#: inc/register-event.php:20
+msgctxt "Post Type Singular Name"
+msgid "Event"
+msgstr "Evento"
+
+#: inc/register-event.php:21
+msgid "Events archives"
+msgstr "Archivo de Eventos"
+
+#: inc/register-event.php:22
+msgid "Event attributes"
+msgstr "Atributos de Evento"
+
+#: inc/register-event.php:23
+msgid "All Events"
+msgstr "Todos los Eventos"
+
+#: inc/register-event.php:24
+msgid "Add new Event"
+msgstr "Añadir nuevo Evento"
+
+#: inc/register-event.php:25
+msgid "Add Event"
+msgstr "Añadir Evento"
+
+#: inc/register-event.php:26
+msgid "New Event"
+msgstr "Nuevo Evento"
+
+#: inc/register-event.php:27
+msgid "Edit Event"
+msgstr "Editar Evento"
+
+#: inc/register-event.php:28
+msgid "Update Event"
+msgstr "Actualizar Evento"
+
+#: inc/register-event.php:29
+msgid "View Event"
+msgstr "Ver Evento"
+
+#: inc/register-event.php:30
+msgid "View Events"
+msgstr "Ver Eventos"
+
+#: inc/register-event.php:31
+msgid "Search Events"
+msgstr "Buscar Eventos"
+
+#: inc/register-event.php:32
+msgid "No Events found"
+msgstr "No se encontraron Eventos"
+
+#: inc/register-event.php:33
+msgid "No Events found in trash"
+msgstr "No se encontraron Eventos en la papelera"
+
+#: inc/register-event.php:34
+msgid "Insert into Event"
+msgstr "Insertar en Evento"
+
+#: inc/register-event.php:35
+msgid "Uploaded to this event"
+msgstr "Subido a este evento"
+
+#: inc/register-event.php:36
+msgid "Events list"
+msgstr "Lista de Eventos"
+
+#: inc/register-event.php:37
+msgid "Events list navigation"
+msgstr "Navegación por lista de eventos"
+
+#: inc/register-event.php:38
+msgid "Filter Events list"
+msgstr "Filtrar lista de Eventos"
+
+#: inc/register-event.php:39
+msgid "Event published"
+msgstr "Evento Publicado"
+
+#: inc/register-event.php:40
+msgid "Event updated."
+msgstr "Evento actualizado."
+
+#: inc/register-event.php:44
+msgid "Event"
+msgstr "Evento"
+
+#: inc/register-event.php:45
+msgid "Events"
+msgstr "Eventos"
+
+#: inc/register-event.php:78
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr "Categorías"
+
+#: inc/register-event.php:79
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr "Categoría"
+
+#: inc/register-event.php:80
+msgid "Search Categories"
+msgstr "Buscar Categorías"
+
+#: inc/register-event.php:81
+msgid "Popular Categories"
+msgstr "Categorías populares"
+
+#: inc/register-event.php:82
+msgid "All the Categories"
+msgstr "Todas las Categorías"
+
+#: inc/register-event.php:85
+msgid "Edit Categories"
+msgstr "Editar Categorías"
+
+#: inc/register-event.php:86
+msgid "Update Categories"
+msgstr "Actualizar Categorías"
+
+#: inc/register-event.php:87
+msgid "Add Categories"
+msgstr "Añadir Categorías"
+
+#: inc/register-event.php:88
+msgid "New Category name"
+msgstr "Nuevo nombre de Categoría"
+
+#: inc/register-event.php:89
+msgid "Separate Categories with commas"
+msgstr "Separar Categorías con comas"
+
+#: inc/register-event.php:90
+msgid "Add or remove Categories"
+msgstr "Añadir o eliminar Categorías"
+
+#: inc/register-event.php:91
+msgid "Choose from most used Categories"
+msgstr "Elija entre las Categorías más usadas"
+
+#: inc/register-event.php:92
+msgid "&larr; Back to Categories"
+msgstr "&larr; Volver a Categorías"
+
+#: inc/register-location.php:19
+msgctxt "Post Type General Name"
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#: inc/register-location.php:20
+msgctxt "Post Type Singular Name"
+msgid "Location"
+msgstr "Ubicación"
+
+#: inc/register-location.php:21
+msgid "Locations archives"
+msgstr "Archivo de Ubicaciones"
+
+#: inc/register-location.php:22
+msgid "Location attributes"
+msgstr "Atributos de Ubicación"
+
+#: inc/register-location.php:23
+msgid "All Locations"
+msgstr "Todas las Ubicaciones"
+
+#: inc/register-location.php:24
+msgid "Add new Location"
+msgstr "Añadir nueva Ubicación"
+
+#: inc/register-location.php:25
+msgid "Add Location"
+msgstr "Añadir Ubicación"
+
+#: inc/register-location.php:26
+msgid "New Location"
+msgstr "Nueva Ubicación"
+
+#: inc/register-location.php:27
+msgid "Edit Location"
+msgstr "Editar Ubicación"
+
+#: inc/register-location.php:28
+msgid "Update Location"
+msgstr "Actualizar Ubicación"
+
+#: inc/register-location.php:29
+msgid "View Location"
+msgstr "Ver Ubicación"
+
+#: inc/register-location.php:30
+msgid "View Locations"
+msgstr "Ver Ubicaciones"
+
+#: inc/register-location.php:31
+msgid "Search Locations"
+msgstr "Buscar Ubicaciones"
+
+#: inc/register-location.php:32
+msgid "No Locations found"
+msgstr "No se encontraron ubicaciones"
+
+#: inc/register-location.php:33
+msgid "No Locations found in trash"
+msgstr "No se encontraron Ubicaciones en la papelera"
+
+#: inc/register-location.php:34
+msgid "Insert into Location"
+msgstr "Insertar en Ubicación"
+
+#: inc/register-location.php:35
+msgid "Uploaded to this location"
+msgstr "Subido a esta ubicación"
+
+#: inc/register-location.php:36
+msgid "Locations list"
+msgstr "Lista de Ubicaciones"
+
+#: inc/register-location.php:37
+msgid "Locations list navigation"
+msgstr "Navegación por lista de Ubicaciones"
+
+#: inc/register-location.php:38
+msgid "Filter Locations list"
+msgstr "Filtrar lista de Ubicaciones"
+
+#: inc/register-location.php:39
+msgid "Location published"
+msgstr "Ubicación Publicada"
+
+#: inc/register-location.php:40
+msgid "Location updated."
+msgstr "Ubicación actualizada."
+
+#: inc/register-location.php:44
+msgid "Location"
+msgstr "Ubicación"
+
+#: inc/register-location.php:45
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#: inc/register-gallery.php:19 inc/register-gallery.php:45
+msgid "Galleries"
+msgstr "Galerías"
+
+#: inc/register-gallery.php:20
+msgid "Gallery"
+msgstr "Galería"
+
+#: inc/register-gallery.php:21
+msgid "All Galleries"
+msgstr "Todas las Galerías"
+
+#: inc/register-gallery.php:22
+msgid "Add new Gallery"
+msgstr "Añadir nueva galería"
+
+#: inc/register-gallery.php:23
+msgid "Add Gallery"
+msgstr "Añadir Galería"
+
+#: inc/register-gallery.php:24
+msgid "New Gallery"
+msgstr "Nueva Galería"
+
+#: inc/register-gallery.php:25
+msgid "Edit Gallery"
+msgstr "Editar Galería"
+
+#: inc/register-gallery.php:26
+msgid "Update Gallery"
+msgstr "Actualizar Galería"
+
+#: inc/register-gallery.php:27
+msgid "View Gallery"
+msgstr "Ver Galería"
+
+#: inc/register-gallery.php:28
+msgid "View Galleries"
+msgstr "Ver Galerías"
+
+#: inc/register-gallery.php:29
+msgid "Search Galleries"
+msgstr "Buscar Galerías"
+
+#: inc/register-gallery.php:30
+msgid "No Galleries found"
+msgstr "No se encontraron Galerías"
+
+#: inc/register-gallery.php:31
+msgid "No Galleries found in trash"
+msgstr "No se encontraron Galerías en la papelera"
+
+#: inc/register-gallery.php:32
+msgid "Featured image"
+msgstr "Imagen destacada"
+
+#: inc/register-gallery.php:33
+msgid "Set Featured image"
+msgstr "Establecer Imagen destacada"
+
+#: inc/register-gallery.php:34
+msgid "Remove Featured image"
+msgstr "Eliminar Imagen destacada"
+
+#: inc/register-gallery.php:35
+msgid "Insert into Gallery"
+msgstr "Insertar en Galería"
+
+#: inc/register-gallery.php:36
+msgid "Upload to this Gallery"
+msgstr "Subir a esta Galería"
+
+#: inc/register-gallery.php:37
+msgid "Galleries list"
+msgstr "Lista de Galerías"
+
+#: inc/register-gallery.php:38
+msgid "Galleries list navigation"
+msgstr "Navegación por lista de Galerías"
+
+#: inc/register-gallery.php:39
+msgid "Filter Galleries list"
+msgstr "Filtrar lista de Galerías"
+
+#: inc/register-gallery.php:40
+msgid "Gallery published"
+msgstr "Galería Publicada"
+
+#: inc/register-gallery.php:41
+msgid "Gallery updated."
+msgstr "Galería actualizada."
+
+#: inc/register-gallery.php:46
+msgid "Post type for galleries"
+msgstr "Tipo de entrada para Galerías"

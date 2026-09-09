@@ -1,0 +1,14 @@
+/*
+ Theme Name:   New BdT Rivas
+ Theme URI:  https://bancodeltiemporivas.org
+ Description:  Tema de bloques Intertiempo (hijo de Twenty Twenty-Five) para el Banco del Tiempo de Rivas.
+ Author:   Peqherlin
+ Author URI:   https://peqherlin.com
+ Template:  twentytwentyfive 
+ Version:  1.0.0
+*/
+
+/* =Theme customization starts here
+------------------------------------------------------- */
+
+html.sbdtpq-no-margin-top {margin-top: 0 !important;}
