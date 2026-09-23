@@ -13,8 +13,8 @@ $fondo4 = newbdtr_img('fondo4.png');
 $fondo5 = newbdtr_img('fondo5.png');
 $fondo2 = newbdtr_img('fondo2.png');
 ?>
-<!-- wp:group {"align":"full","backgroundColor":"surface-container-low","className":"newbdtr-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|60"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
-<div class="wp-block-group alignfull newbdtr-section has-surface-container-low-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"align":"full","backgroundColor":"surface-container-low","className":"newbdtr-section py-8 px-4 sm:py-section-padding sm:px-gutter","style":{"spacing":{"blockGap":"var:preset|spacing|60"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+<div class="wp-block-group alignfull newbdtr-section has-surface-container-low-background-color has-background py-8 px-4 sm:py-section-padding sm:px-gutter">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"0.5rem"}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading {"textAlign":"center","level":2} -->
@@ -42,8 +42,8 @@ $fondo2 = newbdtr_img('fondo2.png');
 			<!-- wp:paragraph {"textColor":"on-surface-variant"} -->
 			<p class="has-on-surface-variant-color has-text-color">La inscripción se gestiona en la <strong>Secretaría de la Asociación Intertiempo</strong> (Casa de Asociaciones de Barrio Oeste). Puede solicitarse vía web, rellenando este <a href="<?php echo $register; ?>">formulario</a>, o presencialmente en la propia Secretaría.</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:group {"className":"newbdtr-note","style":{"spacing":{"padding":{"top":"1.5rem","bottom":"1.5rem","left":"1.5rem","right":"1.5rem"}},"border":{"radius":"12px"}},"backgroundColor":"background","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group newbdtr-note has-background-background-color has-background" style="border-radius:12px;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem">
+			<!-- wp:group {"className":"newbdtr-note rounded-xl p-6","backgroundColor":"background","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group newbdtr-note rounded-xl p-6 has-background-background-color has-background">
 				<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"small"} -->
 				<p class="has-on-surface-variant-color has-text-color has-small-font-size">Una vez realizada la inscripción, se te entrevistará para conocerte un poco mejor y orientarte y, finalmente se aprobará y formalizará tu alta en la comunidad.</p>
 				<!-- /wp:paragraph -->
@@ -57,7 +57,7 @@ $fondo2 = newbdtr_img('fondo2.png');
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"aspectRatio":"7/5","scale":"cover","sizeSlug":"large","className":"newbdtr-rounded-media"} -->
-			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo3; ?>" alt="Bienvenida a un nuevo miembro" style="aspect-ratio:7/5;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo3; ?>" alt="Bienvenida a un nuevo miembro" class="aspect-7/5 object-cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -69,7 +69,7 @@ $fondo2 = newbdtr_img('fondo2.png');
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"aspectRatio":"7/5","scale":"cover","sizeSlug":"large","className":"newbdtr-rounded-media"} -->
-			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo4; ?>" alt="Ofrece y busca servicios" style="aspect-ratio:7/5;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo4; ?>" alt="Ofrece y busca servicios" class="aspect-7/5 object-cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -107,7 +107,7 @@ $fondo2 = newbdtr_img('fondo2.png');
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"aspectRatio":"7/5","scale":"cover","sizeSlug":"large","className":"newbdtr-rounded-media"} -->
-			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo5; ?>" alt="Conecta con la comunidad" style="aspect-ratio:7/5;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo5; ?>" alt="Conecta con la comunidad" class="aspect-7/5 object-cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -119,7 +119,7 @@ $fondo2 = newbdtr_img('fondo2.png');
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"aspectRatio":"7/5","scale":"cover","sizeSlug":"large","className":"newbdtr-rounded-media"} -->
-			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo2; ?>" alt="Intercambio completado" style="aspect-ratio:7/5;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo2; ?>" alt="Intercambio completado" class="aspect-7/5 object-cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

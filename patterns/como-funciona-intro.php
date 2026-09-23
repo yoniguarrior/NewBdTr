@@ -9,14 +9,14 @@
 
 $fondo = newbdtr_img('fondo1.png');
 ?>
-<!-- wp:group {"align":"full","className":"newbdtr-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
-<div class="wp-block-group alignfull newbdtr-section" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"align":"full","className":"newbdtr-section py-8 px-4 sm:py-section-padding sm:px-gutter","layout":{"type":"constrained","contentSize":"1280px"}} -->
+<div class="wp-block-group alignfull newbdtr-section py-8 px-4 sm:py-section-padding sm:px-gutter">
 	<!-- wp:columns {"align":"wide","verticalAlignment":"center"} -->
 	<div class="wp-block-columns alignwide are-vertically-aligned-center">
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:heading {"level":1} -->
-			<h1 class="wp-block-heading">¿Qué es un <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-secondary-color">Banco del Tiempo</mark>?</h1>
+			<h1 class="wp-block-heading">¿Qué es un <mark class="bg-transparent has-inline-color has-secondary-color">Banco del Tiempo</mark>?</h1>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"large"} -->
@@ -57,7 +57,7 @@ $fondo = newbdtr_img('fondo1.png');
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"aspectRatio":"7/5","scale":"cover","sizeSlug":"large","className":"newbdtr-rounded-media"} -->
-			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo; ?>" alt="Concepto de Banco del Tiempo" style="aspect-ratio:7/5;object-fit:cover"/></figure>
+			<figure class="wp-block-image size-large newbdtr-rounded-media"><img src="<?php echo $fondo; ?>" alt="Concepto de Banco del Tiempo" class="aspect-7/5 object-cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

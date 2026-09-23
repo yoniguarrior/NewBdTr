@@ -17,6 +17,8 @@ $wanted_slugs = array(
   'eventos',
   'fotos',
   'bdtescolar',
+  'preguntas-frecuentes',
+  'guia-de-uso',
 );
 
 $trashed_pages = get_posts(
@@ -117,6 +119,8 @@ $pages = array(
     '<!-- wp:paragraph {"textColor":"on-surface-variant"} --><p class="has-on-surface-variant-color has-text-color">Proyectos e historias del Banco del Tiempo Escolar.</p><!-- /wp:paragraph -->',
     'page-bdtescolar.php',
   ),
+  'preguntas-frecuentes' => array('Preguntas frecuentes', '', ''),
+  'guia-de-uso' => array('Guía de uso', '', ''),
 );
 
 $ids = array();

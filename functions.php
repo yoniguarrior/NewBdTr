@@ -26,7 +26,7 @@ function newbdtr_setup()
   add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script'));
   add_editor_style(
     array(
-      'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap',
+      'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,0&display=swap',
       'assets/css/theme.css',
     )
   );
@@ -82,7 +82,7 @@ function newbdtr_enqueue_assets()
 {
   wp_enqueue_style(
     'newbdtr-fonts',
-    'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap',
+    'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,0&display=swap',
     array(),
     null
   );
@@ -148,28 +148,30 @@ add_action('pre_get_posts', 'newbdtr_exclude_escolar_from_blog');
 function sbdtpq_login_logo()
 {
   $logo_url = get_theme_file_uri('images/logo_BdT.png');
-  ?>
-<style type="text/css">
-body.login #login h1 a {
-  background-image: url(<?php echo esc_url($logo_url); ?>);
-  height: 200px;
-  width: auto;
-  background-position: bottom;
-  background-size: 220px auto;
-  background-repeat: no-repeat;
-  padding-bottom: 0;
-}
-.login #nav a,
-.login #backtoblog a {
-  font-size: 1rem;
-  text-decoration: none;
-  color: #666;
-}
-.login #nav,
-.login #backtoblog {
-  text-align: center;
-}
-</style>
+?>
+  <style type="text/css">
+    body.login #login h1 a {
+      background-image: url(<?php echo esc_url($logo_url); ?>);
+      height: 200px;
+      width: auto;
+      background-position: bottom;
+      background-size: 220px auto;
+      background-repeat: no-repeat;
+      padding-bottom: 0;
+    }
+
+    .login #nav a,
+    .login #backtoblog a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: #666;
+    }
+
+    .login #nav,
+    .login #backtoblog {
+      text-align: center;
+    }
+  </style>
   <?php
 }
 add_action('login_head', 'sbdtpq_login_logo');
@@ -187,3 +189,89 @@ function sbdtpq_login_logo_url_title()
 add_filter('login_headertext', 'sbdtpq_login_logo_url_title');
 
 add_filter('login_display_language_dropdown', '__return_false');
+
+/**
+ * Autohide the front-end admin bar on desktop.
+ *
+ * Visible when the pointer is within 10px of the top edge; hidden again
+ * when it moves more than 33px away. Always visible below 782px.
+ *
+ * WordPress puts `.admin-bar` on `body`, not `html`. Hide/show styles are
+ * attached to the `admin-bar` stylesheet so they win over core bump CSS.
+ *
+ * @return void
+ */
+function newbdtr_custom_admin_bar_behavior()
+{
+  if (!is_admin_bar_showing()) {
+    return;
+  }
+  ?>
+  <script>
+    (function() {
+      var SHOW_WITHIN = 10;
+      var HIDE_BEYOND = 33;
+      var desktopQuery = window.matchMedia('(min-width: 783px)');
+      var html = document.documentElement;
+
+      function setVisible(visible) {
+        html.classList.toggle('newbdtr-admin-bar-visible', visible);
+      }
+
+      function syncMode() {
+        setVisible(!desktopQuery.matches);
+      }
+
+      function onMouseMove(event) {
+        if (!desktopQuery.matches) {
+          return;
+        }
+        if (event.clientY < SHOW_WITHIN) {
+          setVisible(true);
+        } else if (event.clientY > HIDE_BEYOND) {
+          setVisible(false);
+        }
+      }
+
+      syncMode();
+      window.addEventListener('mousemove', onMouseMove, {
+        passive: true
+      });
+
+      if (desktopQuery.addEventListener) {
+        desktopQuery.addEventListener('change', syncMode);
+      } else if (desktopQuery.addListener) {
+        desktopQuery.addListener(syncMode);
+      }
+    })();
+  </script>
+  <?php
+}
+add_action('wp_footer', 'newbdtr_custom_admin_bar_behavior');
+
+/**
+ * Admin-bar autohide CSS (must load with core admin-bar styles).
+ *
+ * @return void
+ */
+function newbdtr_custom_admin_bar_css()
+{
+  if (!is_admin_bar_showing()) {
+    return;
+  }
+
+  wp_add_inline_style(
+    'admin-bar',
+    '@media screen and (min-width: 783px) {
+      html { margin-top: 0 !important; }
+      #wpadminbar {
+        top: -32px !important;
+        transition: top 0.2s ease;
+      }
+      html.newbdtr-admin-bar-visible #wpadminbar {
+        top: 0 !important;
+      }
+    }'
+  );
+}
+add_action('wp_enqueue_scripts', 'newbdtr_custom_admin_bar_css', 20);

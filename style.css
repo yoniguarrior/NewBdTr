@@ -11,4 +11,17 @@
 /* =Theme customization starts here
 ------------------------------------------------------- */
 
-html.sbdtpq-no-margin-top {margin-top: 0 !important;}
+@media screen and (min-width: 783px) {
+  html {
+    margin-top: 0 !important;
+  }
+
+  #wpadminbar {
+    top: -32px !important;
+    transition: top 0.2s ease;
+  }
+
+  html.newbdtr-admin-bar-visible #wpadminbar {
+    top: 0 !important;
+  }
+}

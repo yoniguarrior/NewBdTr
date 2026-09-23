@@ -12,68 +12,69 @@ $fondo = newbdtr_img('fondo6.png');
 $register = esc_url(newbdtr_page_url('register'));
 $como = esc_url(newbdtr_page_url('como-funciona'));
 ?>
-<!-- wp:cover {"url":"<?php echo $fondo; ?>","alt":"Comunidad de Intertiempo","dimRatio":0,"isUserOverlayColor":true,"isDark":false,"minHeight":85,"minHeightUnit":"vh","contentPosition":"center left","align":"full","className":"newbdtr-hero","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1280px","justifyContent":"left"}} -->
-<div class="wp-block-cover alignfull is-light newbdtr-hero has-custom-content-position is-position-center-left" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--40);min-height:85vh">
-	<span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span>
+<!-- wp:cover {"url":"<?php echo $fondo; ?>","alt":"Comunidad de Intertiempo","dimRatio":100,"isUserOverlayColor":true,"isDark":false,"align":"full","className":"newbdtr-hero my-0 mb-0 min-h-[85vh]! py-8 px-4 sm:py-section-padding sm:px-gutter"} -->
+<div class="wp-block-cover alignfull is-light newbdtr-hero my-0 mb-0 min-h-[85vh]! py-8 px-4 sm:py-section-padding sm:px-gutter">
+	<span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient bg-linear-45 from-background via-background/60 to-transparent"></span>
 	<img class="wp-block-cover__image-background" alt="Comunidad de Intertiempo" src="<?php echo $fondo; ?>" data-object-fit="cover"/>
 	<div class="wp-block-cover__inner-container">
-		<!-- wp:group {"className":"newbdtr-hero__copy","style":{"spacing":{"blockGap":"2rem"}},"layout":{"type":"constrained","justifyContent":"left","contentSize":"36rem"}} -->
+		<!-- wp:group {"className":"newbdtr-hero__copy","style":{"spacing":{"blockGap":"2rem"}},"layout":{"type":"constrained","justifyContent":"left","contentSize":"720px"}} -->
 		<div class="wp-block-group newbdtr-hero__copy">
-			<!-- wp:paragraph {"className":"newbdtr-hero__badge","textColor":"primary","fontSize":"small"} -->
-			<p class="newbdtr-hero__badge has-primary-color has-text-color has-small-font-size">441 personas conectadas ahora</p>
+			<!-- wp:paragraph {"className":"newbdtr-hero__badge","textColor":"primary"} -->
+			<p class="newbdtr-hero__badge has-primary-color has-text-color">441 personas conectadas ahora</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":1} -->
-			<h1 class="wp-block-heading">¿Qué puedes <mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-secondary-color">intercambiar</mark> hoy?</h1>
+			<!-- wp:heading {"level":1,"className":"newbdtr-hero__title text-3xl sm:text-4xl md:text-5xl"} -->
+			<h1 class="wp-block-heading newbdtr-hero__title text-3xl sm:text-4xl md:text-5xl">¿Qué puedes <mark class="bg-transparent has-inline-color has-secondary-color">intercambiar</mark> hoy?</h1>
 			<!-- /wp:heading -->
 
-			<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"large"} -->
-			<p class="has-on-surface-variant-color has-text-color has-large-font-size">Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos vida. La red social que construye barrio.</p>
+			<!-- wp:paragraph {"className":"newbdtr-hero__lead text-base md:text-[1.125rem] md:leading-[1.6rem]","textColor":"on-surface-variant"} -->
+			<p class="newbdtr-hero__lead text-[1.0625rem] leading-[1.5rem] md:text-[1.125rem] md:leading-[1.6rem]">Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos vida. La red social que construye barrio.</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:buttons {"style":{"spacing":{"blockGap":"1rem"}}} -->
-			<div class="wp-block-buttons">
-				<!-- wp:button {"backgroundColor":"primary","textColor":"on-primary","className":"newbdtr-btn-register"} -->
-				<div class="wp-block-button newbdtr-btn-register"><a class="wp-block-button__link has-on-primary-color has-primary-background-color has-text-color has-background wp-element-button" href="<?php echo $register; ?>">Únete gratis</a></div>
+			<!-- wp:buttons {"className":"newbdtr-hero__actions","style":{"spacing":{"blockGap":"1rem"}}} -->
+			<div class="wp-block-buttons newbdtr-hero__actions">
+				<!-- wp:button {"backgroundColor":"primary","textColor":"on-primary","className":"newbdtr-hero__btn-primary"} -->
+				<div class="wp-block-button newbdtr-hero__btn-primary"><a class="wp-block-button__link has-on-primary-color has-primary-background-color has-text-color has-background wp-element-button" href="<?php echo $register; ?>">Únete gratis</a></div>
 				<!-- /wp:button -->
 
-				<!-- wp:button {"className":"is-style-outline newbdtr-btn-login"} -->
-				<div class="wp-block-button is-style-outline newbdtr-btn-login"><a class="wp-block-button__link wp-element-button" href="<?php echo $como; ?>">Descubre cómo funciona</a></div>
+				<!-- wp:button {"className":"newbdtr-hero__btn-secondary"} -->
+				<div class="wp-block-button newbdtr-hero__btn-secondary"><a class="wp-block-button__link wp-element-button" href="<?php echo $como; ?>">Descubre cómo funciona</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
 
-			<!-- wp:columns {"className":"newbdtr-hero__stats"} -->
-			<div class="wp-block-columns newbdtr-hero__stats">
+			<!-- wp:columns {"className":"newbdtr-hero__stats gap-4! sm:gap-6! md:gap-8!","isStackedOnMobile":false} -->
+			<div class="wp-block-columns newbdtr-hero__stats is-not-stacked-on-mobile gap-4! sm:gap-6! md:gap-8!">
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3} -->
-					<h3 class="wp-block-heading">4.781</h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value text-2xl! sm:text-3xl!">4.781</h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr-stat-label","textColor":"on-surface-variant","fontSize":"small"} -->
-					<p class="newbdtr-stat-label has-on-surface-variant-color has-text-color has-small-font-size">Intercambios</p>
+					<!-- wp:paragraph {"className":"newbdtr__stat-label text-[10px] sm:text-xs"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs">Intercambios</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
 
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"textColor":"secondary"} -->
-					<h3 class="wp-block-heading has-secondary-color has-text-color">+15.000</h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!","textColor":"secondary"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value has-secondary-color has-text-color text-2xl! sm:text-3xl!">+15.000</h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr-stat-label","textColor":"on-surface-variant","fontSize":"small"} -->
-					<p class="newbdtr-stat-label has-on-surface-variant-color has-text-color has-small-font-size">Horas compartidas</p>
-					<!-- /wp:paragraph -->
+					<!-- wp:paragraph {"className":"newbdtr-stat-label text-[10px] sm:text-xs"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs">Horas compartidas</p>
+					<!--
+           /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
 
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"textColor":"tertiary"} -->
-					<h3 class="wp-block-heading has-tertiary-color has-text-color">13</h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!","textColor":"tertiary"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value has-tertiary-color has-text-color text-2xl! sm:text-3xl!">13</h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr-stat-label","textColor":"on-surface-variant","fontSize":"small"} -->
-					<p class="newbdtr-stat-label has-on-surface-variant-color has-text-color has-small-font-size">Proyectos</p>
+					<!-- wp:paragraph {"className":"newbdtr-stat-label text-[10px] sm:text-xs"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs">Proyectos</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->

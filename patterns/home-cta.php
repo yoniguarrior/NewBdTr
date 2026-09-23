@@ -9,23 +9,44 @@
  */
 
 $register = esc_url(newbdtr_page_url('register'));
+$comunidad = esc_url(newbdtr_page_url('comunidad'));
+$como = esc_url(newbdtr_page_url('como-funciona'));
+$proyectos = esc_url(newbdtr_page_url('proyectos'));
 ?>
-<!-- wp:group {"align":"full","backgroundColor":"primary","className":"newbdtr-section newbdtr-cta","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"},"blockGap":"1.5rem"}},"layout":{"type":"constrained","contentSize":"42rem"}} -->
-<div class="wp-block-group alignfull newbdtr-section newbdtr-cta has-primary-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--40)">
+<!-- wp:group {"align":"full","backgroundColor":"primary","className":"newbdtr-section newbdtr-cta my-0 py-8 px-4 sm:py-section-padding sm:px-gutter","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+<div class="wp-block-group alignfull newbdtr-section newbdtr-cta has-primary-background-color has-background my-0 py-8 px-4 sm:py-section-padding sm:px-gutter">
+	<!-- wp:paragraph {"align":"center","className":"newbdtr-cta__icon"} -->
+	<p class="has-text-align-center newbdtr-cta__icon"></p>
+	<!-- /wp:paragraph -->
+
 	<!-- wp:heading {"textAlign":"center","level":2,"textColor":"on-primary"} -->
 	<h2 class="wp-block-heading has-text-align-center has-on-primary-color has-text-color">Únete a nuestra comunidad</h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:paragraph {"align":"center","textColor":"on-primary"} -->
-	<p class="has-text-align-center has-on-primary-color has-text-color">Recibe novedades, eventos y mucho más. Ayúdanos a seguir construyendo una red de apoyo mutuo en Rivas Vaciamadrid.</p>
+	<!-- wp:paragraph {"align":"center","className":"newbdtr-cta__lead","textColor":"on-primary"} -->
+	<p class="has-text-align-center newbdtr-cta__lead has-on-primary-color has-text-color">Recibe novedades, eventos y mucho más. Ayúdanos a seguir construyendo una red de apoyo mutuo en Rivas Vaciamadrid.</p>
 	<!-- /wp:paragraph -->
 
-	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-	<div class="wp-block-buttons">
-		<!-- wp:button {"backgroundColor":"secondary","textColor":"on-secondary"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-on-secondary-color has-secondary-background-color has-text-color has-background wp-element-button" href="<?php echo $register; ?>">Suscribirme</a></div>
-		<!-- /wp:button -->
+	<!-- wp:html -->
+	<form class="newbdtr-cta__form" action="<?php echo $register; ?>" method="get">
+		<label class="screen-reader-text" for="newbdtr-cta-email">Tu email</label>
+		<input id="newbdtr-cta-email" type="email" name="email" placeholder="Tu email" required />
+		<button type="submit">Suscribirme</button>
+	</form>
+	<!-- /wp:html -->
+
+	<!-- wp:group {"className":"newbdtr-cta__glyphs","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
+	<div class="wp-block-group newbdtr-cta__glyphs">
+		<!-- wp:paragraph {"className":"newbdtr-cta__glyph newbdtr-cta__glyph--hub"} -->
+		<p class="newbdtr-cta__glyph newbdtr-cta__glyph--hub"><a href="<?php echo $comunidad; ?>">Comunidad</a></p>
+		<!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"newbdtr-cta__glyph newbdtr-cta__glyph--diversity"} -->
+		<p class="newbdtr-cta__glyph newbdtr-cta__glyph--diversity"><a href="<?php echo $como; ?>">Cómo funciona</a></p>
+		<!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"newbdtr-cta__glyph newbdtr-cta__glyph--verified"} -->
+		<p class="newbdtr-cta__glyph newbdtr-cta__glyph--verified"><a href="<?php echo $proyectos; ?>">Proyectos</a></p>
+		<!-- /wp:paragraph -->
 	</div>
-	<!-- /wp:buttons -->
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
