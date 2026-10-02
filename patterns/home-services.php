@@ -44,7 +44,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group newbdtr-card__media">
 					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $ingles; ?>" alt="Clases de inglés" class="h-full w-full object-cover"/></figure>
+					<figure class="wp-block-image size-large"><img src="<?php echo $ingles; ?>" alt="Clases de inglés" style="object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--primary"} -->
 					<p class="newbdtr-card__tag newbdtr-card__tag--primary">Idiomas</p>
@@ -70,7 +70,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group newbdtr-card__media">
 					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $bricolaje; ?>" alt="Bricolaje" class="h-full w-full object-cover"/></figure>
+					<figure class="wp-block-image size-large"><img src="<?php echo $bricolaje; ?>" alt="Bricolaje" style="object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--secondary"} -->
 					<p class="newbdtr-card__tag newbdtr-card__tag--secondary">Reparaciones domésticas</p>
@@ -96,7 +96,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group newbdtr-card__media">
 					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $internet; ?>" alt="Manejar internet" class="h-full w-full object-cover"/></figure>
+					<figure class="wp-block-image size-large"><img src="<?php echo $internet; ?>" alt="Manejar internet" style="object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--tertiary"} -->
 					<p class="newbdtr-card__tag newbdtr-card__tag--tertiary">Informática</p>
@@ -122,7 +122,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group newbdtr-card__media">
 					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $mascotas; ?>" alt="Cuidado de animales" class="h-full w-full object-cover"/></figure>
+					<figure class="wp-block-image size-large"><img src="<?php echo $mascotas; ?>" alt="Cuidado de animales" style="object-fit:cover"/></figure>
 					<!-- /wp:image -->
 					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--primary"} -->
 					<p class="newbdtr-card__tag newbdtr-card__tag--primary">Atención a animales</p>

@@ -14,13 +14,13 @@ require_once get_stylesheet_directory() . '/inc/register-notice.php';
 require_once get_stylesheet_directory() . '/inc/register-event.php';
 require_once get_stylesheet_directory() . '/inc/register-location.php';
 require_once get_stylesheet_directory() . '/inc/register-gallery.php';
+require_once get_stylesheet_directory() . '/inc/projects-tree.php';
 
 /**
  * Theme setup.
  */
 function newbdtr_setup()
 {
-  load_theme_textdomain('bdtrivas', get_stylesheet_directory() . '/languages');
   add_theme_support('title-tag');
   add_theme_support('post-thumbnails');
   add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script'));
@@ -32,12 +32,32 @@ function newbdtr_setup()
   );
   register_nav_menus(
     array(
-      'primary' => __('Menú principal', 'bdtrivas'),
-      'footer' => __('Menú pie', 'bdtrivas'),
+      'primary' => 'Menú principal',
+      'footer' => 'Menú pie',
     )
   );
 }
 add_action('after_setup_theme', 'newbdtr_setup');
+
+/**
+ * Warn in wp-admin when the management plugin is inactive.
+ *
+ * Public pages still load. Extra fields on notices, galleries, events
+ * and locations stay empty until the plugin registers them.
+ *
+ * @return void
+ */
+function newbdtr_require_sbdtpq_notice()
+{
+  if (defined('SBDTPQ_VERSION')) {
+    return;
+  }
+
+  echo '<div class="notice notice-warning"><p>'
+    . esc_html('El plugin sbdtpq no está activo. La gestión del banco del tiempo y los metadatos de noticias, galerías, eventos y ubicaciones no están disponibles.')
+    . '</p></div>';
+}
+add_action('admin_notices', 'newbdtr_require_sbdtpq_notice');
 
 /**
  * Pattern categories, Intertiempo namespace.
@@ -47,15 +67,15 @@ function newbdtr_pattern_categories()
   register_block_pattern_category(
     'newbdtr',
     array(
-      'label' => __('Intertiempo', 'bdtrivas'),
-      'description' => __('Patrones del Banco del Tiempo de Rivas.', 'bdtrivas'),
+      'label' => 'Intertiempo',
+      'description' => 'Patrones del Banco del Tiempo de Rivas.',
     )
   );
   register_block_pattern_category(
     'newbdtr_page',
     array(
-      'label' => __('Páginas Intertiempo', 'bdtrivas'),
-      'description' => __('Layouts de página completa.', 'bdtrivas'),
+      'label' => 'Páginas Intertiempo',
+      'description' => 'Layouts de página completa.',
     )
   );
 }
@@ -102,6 +122,10 @@ function newbdtr_enqueue_assets()
     '1.0.0',
     true
   );
+
+  if (is_user_logged_in()) {
+    wp_enqueue_style('dashicons');
+  }
 }
 add_action('wp_enqueue_scripts', 'newbdtr_enqueue_assets');
 
@@ -147,7 +171,7 @@ add_action('pre_get_posts', 'newbdtr_exclude_escolar_from_blog');
  */
 function sbdtpq_login_logo()
 {
-  $logo_url = get_theme_file_uri('images/logo_BdT.png');
+  $logo_url = get_theme_file_uri('assets/images/logo_BdT.png');
 ?>
   <style type="text/css">
     body.login #login h1 a {
@@ -275,3 +299,127 @@ function newbdtr_custom_admin_bar_css()
   );
 }
 add_action('wp_enqueue_scripts', 'newbdtr_custom_admin_bar_css', 20);
+
+/**
+ * Impact figures for the home activity section.
+ *
+ * Years are counted from 7 September 2005. Hours are the sum of exchange
+ * durations. Numbers use a thousands separator.
+ *
+ * @return array{years: string, users: string, exchanges: string, hours: string, projects: string}
+ */
+function newbdtr_get_facts()
+{
+  global $wpdb;
+
+  $format = static function ($value) {
+    return number_format((float) $value, 0, ',', '.');
+  };
+
+  return array(
+    'years' => $format((new DateTime('2005-09-07'))->diff(new DateTime())->y),
+    'users' => $format($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->users}")),
+    'exchanges' => $format($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}sbdtpq_svcs_provided")),
+    'hours' => $format($wpdb->get_var("SELECT COALESCE(SUM(duration), 0) FROM {$wpdb->prefix}sbdtpq_svcs_provided")),
+    'projects' => $format($wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'project' AND post_status = 'publish'")),
+  );
+}
+
+/**
+ * Four most recent exchanges for the home activity list.
+ *
+ * Icon falls back from subtype, to type, to a default Material Symbol.
+ *
+ * @return array<int, array{name: string, icon: string, elapsed: string}>
+ */
+function newbdtr_get_recent_activity()
+{
+  global $wpdb;
+
+  $rows = $wpdb->get_results(
+    "SELECT p.date_provided, s.svc_subtype_name,
+      COALESCE(NULLIF(s.svc_subtype_icon, ''), NULLIF(t.svc_type_icon, ''), 'nest_clock_farsight_analog') AS icon
+    FROM {$wpdb->prefix}sbdtpq_svcs_provided p
+    LEFT JOIN {$wpdb->prefix}sbdtpq_svc_subtypes s ON s.svc_subtype_id = p.svc_subtype_id
+    LEFT JOIN {$wpdb->prefix}sbdtpq_svc_types t ON t.svc_type_id = s.svc_type_id
+    ORDER BY p.date_provided DESC, p.svc_id DESC
+    LIMIT 4"
+  );
+
+  if (!is_array($rows)) {
+    return array();
+  }
+
+  return array_map(
+    static function ($row) {
+      return array(
+        'name' => $row->svc_subtype_name ?: '',
+        'icon' => $row->icon ?: 'nest_clock_farsight_analog',
+        'elapsed' => newbdtr_elapsed_since($row->date_provided),
+      );
+    },
+    $rows
+  );
+}
+
+/**
+ * Elapsed time since a service date: hours under 24, otherwise days.
+ */
+function newbdtr_elapsed_since($date)
+{
+  $timezone = wp_timezone();
+  $provided = new DateTimeImmutable($date, $timezone);
+  $now = new DateTimeImmutable('now', $timezone);
+  $hours = (int) floor(($now->getTimestamp() - $provided->getTimestamp()) / HOUR_IN_SECONDS);
+
+  if ($hours < 1) {
+    return 'Hace menos de 1 hora';
+  }
+
+  if ($hours < 24) {
+    return $hours === 1 ? 'Hace 1 hora' : sprintf('Hace %d horas', $hours);
+  }
+
+  $days = (int) floor($hours / 24);
+
+  return $days === 1 ? 'Hace 1 día' : sprintf('Hace %d días', $days);
+}
+
+/**
+ * Replace the static activity items with the latest exchanges.
+ *
+ * @param string $content
+ * @param array  $block
+ * @return string
+ */
+function newbdtr_render_activity_list($content, $block)
+{
+  if (($block['blockName'] ?? '') !== 'core/group') {
+    return $content;
+  }
+
+  $class = $block['attrs']['className'] ?? '';
+  if (!str_contains($class, 'newbdtr-activity-list')) {
+    return $content;
+  }
+
+  $items = '';
+  foreach (newbdtr_get_recent_activity() as $activity) {
+    $items .= sprintf(
+      '<div class="wp-block-group newbdtr-activity-item"><span class="material-symbols-outlined newbdtr-activity-item__icon" aria-hidden="true">%s</span><p><strong>%s</strong></p><p class="has-on-surface-variant-color has-text-color has-small-font-size">%s</p></div>',
+      esc_html($activity['icon']),
+      esc_html($activity['name']),
+      esc_html($activity['elapsed'])
+    );
+  }
+
+  $replaced = preg_replace(
+    '/<div class="wp-block-group newbdtr-activity-item[\s\S]*?(?=<div class="wp-block-buttons)/',
+    $items,
+    $content,
+    1
+  );
+
+  return is_string($replaced) ? $replaced : $content;
+}
+add_filter('render_block', 'newbdtr_render_activity_list', 10, 2);

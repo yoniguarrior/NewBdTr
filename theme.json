@@ -48,11 +48,14 @@
 			"defaultFontSizes": false,
 			"fluid": true,
 			"fontSizes": [
-				{ "fluid": false, "name": "Small", "size": "0.875rem", "slug": "small" },
-				{ "name": "Medium", "size": "1rem", "slug": "medium", "fluid": { "min": "1rem", "max": "1.125rem" } },
-				{ "name": "Large", "size": "1.25rem", "slug": "large", "fluid": { "min": "1.125rem", "max": "1.375rem" } },
-				{ "name": "Extra Large", "size": "1.75rem", "slug": "x-large", "fluid": { "min": "1.5rem", "max": "2rem" } },
-				{ "name": "Huge", "size": "3rem", "slug": "xx-large", "fluid": { "min": "2.25rem", "max": "3.75rem" } }
+				{ "fluid": false, "name": "Extra Small", "size": "0.75rem", "slug": "x-small" },
+				{ "name": "Small", "size": "0.875", "slug": "small", "fluid": { "min": "0.825", "max": "0.925rem" } },
+				{ "name": "Medium", "size": "1rem", "slug": "medium", "fluid": { "min": "0.925rem", "max": "1.075rem" } },
+				{ "name": "Large", "size": "1.25rem", "slug": "large", "fluid": { "min": "1.1rem", "max": "1.4rem" } },
+				{ "name": "Extra Large", "size": "1.5rem", "slug": "x-large", "fluid": { "min": "1.25rem", "max": "1.75rem" } },
+				{ "name": "Double Extra Large", "size": "2rem", "slug": "xx-large", "fluid": { "min": "1.75rem", "max": "2.25rem" } },
+				{ "name": "Triple ExtraLarge", "size": "2.5rem", "slug": "xxx-large", "fluid": { "min": "2rem", "max": "3rem" } },
+				{ "name": "Huge", "size": "3rem", "slug": "xxxx-large", "fluid": { "min": "2.25rem", "max": "3.75rem" } }
 			],
 			"fontFamilies": [
 				{
@@ -158,8 +161,6 @@
 		{ "name": "page-fotos", "title": "Fotos", "postTypes": ["page"] },
 		{ "name": "page-bdtescolar", "title": "BdTescolar", "postTypes": ["page"] },
 		{ "name": "front-template", "title": "BdT Front Template", "postTypes": ["page"] },
-		{ "name": "logged-template", "title": "BdT Logged Template", "postTypes": ["page"] },
-		{ "name": "content-template", "title": "BdT Content Template", "postTypes": ["page"] },
-		{ "name": "management-template", "title": "BdT Management Template", "postTypes": ["page"] }
+		{ "name": "logged-template", "title": "BdT Logged Template", "postTypes": ["page"] }
 	]
 }

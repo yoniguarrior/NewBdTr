@@ -228,7 +228,8 @@ $parent_id = wp_update_nav_menu_item(
 $children = array(
   array('noticias', 'Noticias'),
   array('eventos', 'Eventos'),
-  array('bdtescolar', 'BdTescolar'),
+  array('fotos', 'Fotos'),
+  array('bdtescolar', 'BdT Escolar'),
   array('blog', 'Blog'),
 );
 foreach ($children as $item) {

@@ -18,7 +18,7 @@ $escolar = esc_url(newbdtr_page_url('bdtescolar'));
 		<!-- wp:group {"style":{"spacing":{"blockGap":"1.5rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":"96px","height":"96px","scale":"contain","className":"newbdtr-escolar__logo"} -->
-			<figure class="wp-block-image newbdtr-escolar__logo is-resized"><img class="size-24 object-contain" src="<?php echo $logo; ?>" alt="BdT Escolar"/></figure>
+			<figure class="wp-block-image is-resized newbdtr-escolar__logo"><img src="<?php echo $logo; ?>" alt="BdT Escolar" style="object-fit:contain;width:96px;height:96px"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained","justifyContent":"left"}} -->

@@ -11,12 +11,12 @@ defined('ABSPATH') || die('No script kiddies please!');
 /**
  * Theme image URL.
  *
- * @param string $file Filename inside /images.
+ * @param string $file Filename inside /assets/images.
  * @return string
  */
 function newbdtr_img($file)
 {
-  return esc_url(get_stylesheet_directory_uri() . '/images/' . ltrim($file, '/'));
+  return esc_url(get_stylesheet_directory_uri() . '/assets/images/' . ltrim($file, '/'));
 }
 
 /**

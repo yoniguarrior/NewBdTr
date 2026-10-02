@@ -33,8 +33,8 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 		<div class="wp-block-columns newbdtr-projects">
 			<!-- wp:column {"className":"basis-2/3"} -->
 			<div class="wp-block-column basis-2/3">
-				<!-- wp:cover {"url":"<?php echo $lanas; ?>","alt":"Té con Lanas","dimRatio":100,"isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project newbdtr-project--wide hover-lift min-h-80! rounded-xl p-8!"} -->
-				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project newbdtr-project--wide hover-lift min-h-80! rounded-xl p-8!"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient bg-linear-45 from-black to-transparent"></span><img class="wp-block-cover__image-background" alt="Té con Lanas" src="<?php echo $lanas; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+				<!-- wp:cover {"url":"<?php echo $lanas; ?>","alt":"Té con Lanas","isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project newbdtr-project--wide hover-lift min-h-80! rounded-xl p-8!"} -->
+				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project newbdtr-project--wide hover-lift min-h-80! rounded-xl p-8!"><img class="wp-block-cover__image-background" alt="Té con Lanas" src="<?php echo $lanas; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 					<!-- wp:heading {"level":3} -->
 					<h3 class="wp-block-heading">Té con Lanas</h3>
 					<!-- /wp:heading -->
@@ -55,8 +55,8 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 
 			<!-- wp:column {"className":"basis-1/3"} -->
 			<div class="wp-block-column basis-1/3">
-				<!-- wp:cover {"url":"<?php echo $lee; ?>","alt":"Rivas Lee","dimRatio":100,"isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project hover-lift min-h-80! rounded-xl p-8!"} -->
-				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project hover-lift min-h-80! rounded-xl p-8!"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient bg-linear-45 from-black to-transparent"></span><img class="wp-block-cover__image-background" alt="Rivas Lee" src="<?php echo $lee; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+				<!-- wp:cover {"url":"<?php echo $lee; ?>","alt":"Rivas Lee","isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project hover-lift min-h-80! rounded-xl p-8!"} -->
+				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project hover-lift min-h-80! rounded-xl p-8!"><img class="wp-block-cover__image-background" alt="Rivas Lee" src="<?php echo $lee; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 					<!-- wp:heading {"level":3} -->
 					<h3 class="wp-block-heading">Rivas Lee</h3>
 					<!-- /wp:heading -->
@@ -81,8 +81,8 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 		<div class="wp-block-columns newbdtr-projects">
 			<!-- wp:column {"className":"basis-1/3"} -->
 			<div class="wp-block-column basis-1/3">
-				<!-- wp:cover {"url":"<?php echo $almohadas; ?>","alt":"Almohadas de Corazón","dimRatio":100,"isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project hover-lift min-h-64! rounded-xl p-6!"} -->
-				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project hover-lift min-h-64! rounded-xl p-6!"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient bg-linear-45 from-black to-transparent"></span><img class="wp-block-cover__image-background" alt="Almohadas de Corazón" src="<?php echo $almohadas; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+				<!-- wp:cover {"url":"<?php echo $almohadas; ?>","alt":"Almohadas de Corazón","isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project hover-lift min-h-64! rounded-xl p-6!"} -->
+				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project hover-lift min-h-64! rounded-xl p-6!"><img class="wp-block-cover__image-background" alt="Almohadas de Corazón" src="<?php echo $almohadas; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 					<!-- wp:heading {"level":3} -->
 					<h3 class="wp-block-heading">Almohadas de Corazón</h3>
 					<!-- /wp:heading -->
@@ -103,8 +103,8 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 
 			<!-- wp:column {"className":"basis-2/3"} -->
 			<div class="wp-block-column basis-2/3">
-				<!-- wp:cover {"url":"<?php echo $huerto; ?>","alt":"Huerto Vecinal","dimRatio":100,"isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project newbdtr-project--wide hover-lift min-h-64! rounded-xl p-8!"} -->
-				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project newbdtr-project--wide hover-lift min-h-64! rounded-xl p-8!"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient bg-linear-45 from-black to-transparent"></span><img class="wp-block-cover__image-background" alt="Huerto Vecinal" src="<?php echo $huerto; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+				<!-- wp:cover {"url":"<?php echo $huerto; ?>","alt":"Huerto Vecinal","isUserOverlayColor":true,"contentPosition":"bottom left","className":"newbdtr-project newbdtr-project--wide hover-lift min-h-64! rounded-xl p-8!"} -->
+				<div class="wp-block-cover has-custom-content-position is-position-bottom-left newbdtr-project newbdtr-project--wide hover-lift min-h-64! rounded-xl p-8!"><img class="wp-block-cover__image-background" alt="Huerto Vecinal" src="<?php echo $huerto; ?>" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 					<!-- wp:heading {"level":3} -->
 					<h3 class="wp-block-heading">Huerto Vecinal</h3>
 					<!-- /wp:heading -->

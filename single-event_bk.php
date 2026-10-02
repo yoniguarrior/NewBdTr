@@ -29,20 +29,20 @@ get_header();
             </div>
             <div class="entry-content">
               <h4 class="event-start-date">
-                <?php _e('Date: ', 'bdtrivas');
+                <?php echo 'Fecha: ';
                 $startDate = get_post_meta(get_the_ID(), 'bdt_ev_start_date', true);
                 echo date_i18n('j F Y', strtotime($startDate));
                 ?>
               </h4>
               <h4 class="event-start-time">
-                <?php _e('Start time: ', 'bdtrivas');
+                <?php echo 'Hora inicio: ';
                 $date = get_post_meta(get_the_ID(), 'bdt_ev_start_time', true);
                 $date = date_create($date);
                 echo date_format($date, 'H:i');
                 ?>
               </h4>
               <h4 class="event-end-time">
-                <?php _e('End time: ', 'bdtrivas');
+                <?php echo 'Hora fin: ';
                 $date = get_post_meta(get_the_ID(), 'bdt_ev_end_time', true);
                 $date = date_create($date);
                 echo date_format($date, 'H:i');
@@ -61,7 +61,7 @@ get_header();
               <div class="event-location">
                 <h4>
                   <?php
-                  _e('Location: ', 'bdtrivas');
+                  echo 'Ubicación: ';
                   echo $locationName;
                   ?>
                 </h4>
@@ -77,9 +77,9 @@ get_header();
                 </p>
                 <p>
                   <?php
-                  echo ($locationBus !== '' ? __('Bus: ', 'bdtrivas') . $locationBus : '');
+                  echo ($locationBus !== '' ? 'Bus: ' . $locationBus : '');
                   echo ($locationBus !== '' && $locationUnderground !== '' ? ' - ' : '');
-                  echo ($locationUnderground !== '' ? __('Underground: ', 'bdtrivas') . $locationUnderground : '');
+                  echo ($locationUnderground !== '' ? 'Metro: ' . $locationUnderground : '');
                   ?>
                 </p>
               </div>

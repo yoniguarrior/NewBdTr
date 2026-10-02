@@ -8,6 +8,14 @@
 @source "../templates/**/*.html";
 @source "../parts/**/*.html";
 @source "../patterns/**/*.php";
+@source inline("text-fluid-2xl");
+
+@layer base {
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.5rem;
+  }
+}
 
 @theme {
   --color-surface: #fcf9f8;
@@ -60,6 +68,8 @@
 
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --font-display: "Montserrat", sans-serif;
+
+  --text-fluid-2xl: clamp(1.875rem, 1.875rem + 1.125rem * (100vw - 460px) / (1024px - 460px), 3rem);
 
   --radius: 0.25rem;
   --radius-lg: 0.5rem;
@@ -508,17 +518,16 @@
 
 .wp-site-blocks > main,
 main {
-  padding-top: var(--newbdtr-header-height);
+  padding-top: calc(var(--newbdtr-header-height) + var(--newbdtr-appbar-height, 0px));
 }
 
 /* Listing/inner pages already use py-section-padding; keep that space under the header. */
 .wp-site-blocks > main.newbdtr-main,
 main.newbdtr-main {
-  padding-top: calc(var(--newbdtr-header-height) + var(--spacing-section-padding, 3rem));
+  padding-top: calc(var(--newbdtr-header-height) + var(--newbdtr-appbar-height, 0px) + var(--spacing-section-padding, 3rem));
 }
 
-header:has(.newbdtr-header),
-.newbdtr-header {
+header:has(.newbdtr-header) {
   position: fixed;
   top: 0;
   left: 0;
@@ -528,8 +537,104 @@ header:has(.newbdtr-header),
   overflow: visible;
 }
 
-.admin-bar header:has(.newbdtr-header),
-.admin-bar .newbdtr-header {
+header:has(.newbdtr-header) .newbdtr-header {
+  position: relative;
+  top: auto;
+}
+
+body:has(.newbdtr-appbar) {
+  --newbdtr-appbar-height: 2.25rem;
+}
+
+nav.newbdtr-appbar {
+  position: relative;
+  top: auto;
+  z-index: 60;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: var(--newbdtr-appbar-height, 2.25rem);
+  padding-inline: 0.75rem;
+  background: #000;
+  color: #fff;
+}
+
+.newbdtr-appbar .wp-block-navigation__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.newbdtr-appbar .wp-block-navigation-item {
+  margin: 0;
+  background: transparent;
+}
+
+.newbdtr-appbar .wp-block-navigation-item__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.45rem;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.newbdtr-appbar .wp-block-navigation-item__content::before {
+  font-family: dashicons;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.newbdtr-appbar__item--chart-area .wp-block-navigation-item__content::before { content: "\f239"; }
+.newbdtr-appbar__item--admin-generic .wp-block-navigation-item__content::before { content: "\f111"; }
+.newbdtr-appbar__item--edit-large .wp-block-navigation-item__content::before { content: "\f327"; }
+.newbdtr-appbar__item--search .wp-block-navigation-item__content::before { content: "\f179"; }
+.newbdtr-appbar__item--feedback .wp-block-navigation-item__content::before { content: "\f175"; }
+.newbdtr-appbar__item--admin-users .wp-block-navigation-item__content::before { content: "\f110"; }
+.newbdtr-appbar__item--exit .wp-block-navigation-item__content::before { content: "\f14a"; }
+
+.newbdtr-appbar .wp-block-navigation-item__content:hover,
+.newbdtr-appbar .wp-block-navigation-item__content:focus-visible,
+.newbdtr-appbar .current-menu-item .wp-block-navigation-item__content {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+@media (max-width: 767.98px) {
+  .newbdtr-appbar .wp-block-navigation-item__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .newbdtr-appbar .wp-block-navigation-item__content {
+    padding-inline: 0.35rem;
+  }
+}
+
+.admin-bar header:has(.newbdtr-header) {
   top: 0;
 }
 
@@ -550,8 +655,7 @@ header:has(.newbdtr-header),
 }
 
 @media (max-width: 782px) {
-  .admin-bar header:has(.newbdtr-header),
-  .admin-bar .newbdtr-header {
+  .admin-bar header:has(.newbdtr-header) {
     top: 46px;
   }
 }
@@ -767,16 +871,15 @@ header:has(.newbdtr-header),
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: #440050;
-  font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.5;
   white-space: nowrap;
 }
 
 .newbdtr-hero__badge::before {
   content: "group";
   font-family: "Material Symbols Outlined";
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 400;
   font-style: normal;
   line-height: 1;
@@ -786,16 +889,24 @@ header:has(.newbdtr-header),
   -webkit-font-smoothing: antialiased;
 }
 
+@media (min-width: 768px) {
+  .newbdtr-hero__badge::before {
+    font-size: 2rem;
+  }
+}
+
+
 .newbdtr-hero__title {
   font-family: Montserrat, sans-serif;
   font-weight: 700;
   color: #440050;
+  line-height: 1.125;
   margin: 0;
 }
 
 @media (min-width: 768px) {
   .newbdtr-hero__title {
-    font-size: 3.75rem;
+    line-height: 1.1;
   }
 }
 
@@ -808,7 +919,12 @@ header:has(.newbdtr-header),
 .newbdtr-hero__lead {
   max-width: 28rem;
   margin: 0;
-  color: #333333;
+  color: #50434f;
+}
+
+/* Same rhythm as the mockup's space-y-8. Child margin: 0 would otherwise cancel it. */
+.newbdtr-hero__copy > :not(:last-child) {
+  margin-block-end: 2rem;
 }
 
 .newbdtr-hero__actions {
@@ -865,21 +981,21 @@ header:has(.newbdtr-header),
 
 .newbdtr-hero__stats {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   padding-top: 2rem;
-  margin-left: 1.5rem;
+  margin-left: 0;
   border-top: 1px solid color-mix(in srgb, #d3c1d0 30%, transparent);
 }
 
 .newbdtr-hero__stats.wp-block-columns {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .newbdtr-hero__stats .wp-block-column {
-  flex-basis: auto !important;
+  flex: 1 1 0 !important;
   width: auto !important;
-  flex-grow: 0;
+  min-width: 0;
   text-align: center;
 }
 
@@ -902,9 +1018,7 @@ header:has(.newbdtr-header),
 }
 
 .newbdtr-btn-login .wp-element-button,
-.newbdtr-btn-login .wp-block-button__link,
-.newbdtr-btn-profile .wp-element-button,
-.newbdtr-btn-profile .wp-block-button__link {
+.newbdtr-btn-login .wp-block-button__link {
   @apply bg-transparent text-primary font-semibold text-sm px-4 py-2 rounded-btn hover:bg-primary/5 hover:scale-95 active:scale-90 transition-all;
 }
 
@@ -1114,6 +1228,7 @@ header:has(.newbdtr-header),
 .newbdtr-steps {
   position: relative;
   overflow: hidden;
+  background-color: #fff !important;
 }
 
 .newbdtr-steps__row {
@@ -1270,6 +1385,12 @@ header:has(.newbdtr-header),
   transform: scale(1.1);
 }
 
+.newbdtr-projects-section h2 mark {
+  background: none;
+  color: #a14000;
+  padding: 0;
+}
+
 .newbdtr-project h3 {
   font-family: Montserrat, sans-serif;
   font-size: 1.25rem;
@@ -1280,6 +1401,13 @@ header:has(.newbdtr-header),
 
 .newbdtr-project--wide h3 {
   font-size: 1.5rem;
+}
+
+.newbdtr-project-back {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .newbdtr-project p {
@@ -1466,8 +1594,7 @@ header:has(.newbdtr-header),
   border-top: 1px solid color-mix(in srgb, #d3c1d0 20%, transparent);
 }
 
-.newbdtr-activity-item::before {
-  content: "self_improvement";
+.newbdtr-activity-item__icon {
   grid-column: 1;
   grid-row: 1 / span 2;
   display: flex;
@@ -1482,19 +1609,8 @@ header:has(.newbdtr-header),
   font-size: 20px;
   font-weight: 400;
   line-height: 1;
+  font-feature-settings: "liga";
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
-
-.newbdtr-activity-item--internet::before {
-  content: "smartphone";
-}
-
-.newbdtr-activity-item--pets::before {
-  content: "pets";
-}
-
-.newbdtr-activity-item--music::before {
-  content: "music_note";
 }
 
 .newbdtr-activity-item p {
@@ -1620,12 +1736,12 @@ header:has(.newbdtr-header),
 .newbdtr-cta__icon::before {
   content: "volunteer_activism";
   font-family: "Material Symbols Outlined";
-  font-size: 36px;
-  width: 36px;
-  height: 36px;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
   font-weight: 400;
   line-height: 1;
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
 .newbdtr-cta__form {
@@ -1735,4 +1851,481 @@ header:has(.newbdtr-header),
 
 .newbdtr-cta__glyph--verified a::before {
   content: "verified";
+}
+
+@media (max-width: 639.98px) {
+  .newbdtr-escolar .wp-block-buttons,
+  .newbdtr-escolar__btn,
+  .newbdtr-escolar__btn .wp-block-button__link {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.newbdtr-ms {
+  font-family: "Material Symbols Outlined";
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  -webkit-font-smoothing: antialiased;
+}
+
+.newbdtr-cf-intro__title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #440050;
+  margin: 0 0 1.5rem;
+}
+
+.newbdtr-cf-intro__title mark {
+  background: none;
+  color: #a14000;
+  padding: 0;
+}
+
+.newbdtr-cf-intro__lead {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+.newbdtr-cf-intro__copy {
+  margin-bottom: 2rem;
+}
+
+.newbdtr-cf-intro__copy > * + * {
+  margin-top: 1rem;
+}
+
+.newbdtr-cf-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.newbdtr-cf-point {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.newbdtr-cf-point::before {
+  content: "";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 3rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background: #eae7e7;
+  color: #440050;
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  font-feature-settings: "liga";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.newbdtr-cf-point--schedule::before {
+  content: "schedule";
+}
+
+.newbdtr-cf-point--handshake::before {
+  content: "handshake";
+}
+
+.newbdtr-cf-point__title {
+  margin: 0;
+  font-weight: 700;
+  color: #440050;
+}
+
+.newbdtr-cf-point__text {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #50434f;
+}
+
+.newbdtr-cf .newbdtr-rounded-media {
+  margin: 0;
+  border-radius: 1.125rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.newbdtr-cf .newbdtr-rounded-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 7 / 5;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.newbdtr-cf-intro .newbdtr-rounded-media,
+.newbdtr-cf-benefits .newbdtr-rounded-media {
+  border: 1px solid color-mix(in srgb, #d3c1d0 30%, transparent);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.newbdtr-cf-steps__head {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.newbdtr-cf-steps__head h2 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  color: #440050;
+  margin: 0 0 1rem;
+}
+
+.newbdtr-cf-steps__lead {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.newbdtr-cf-row.wp-block-columns {
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.newbdtr-cf-steps .newbdtr-cf-row.wp-block-columns:last-child {
+  margin-bottom: 0;
+}
+
+.newbdtr-cf-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0 1.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.newbdtr-cf-num--1 {
+  background: #440050;
+  color: #fff;
+}
+
+.newbdtr-cf-num--2 {
+  background: #a14000;
+  color: #fff;
+}
+
+.newbdtr-cf-num--3 {
+  background: #b2f746;
+  color: #121f00;
+}
+
+.newbdtr-cf-num--4 {
+  background: #e07fea;
+  color: #fff;
+}
+
+.newbdtr-cf-step h3 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  color: #440050;
+  margin: 0 0 1rem;
+}
+
+.newbdtr-cf-step > p {
+  margin: 0 0 1rem;
+  line-height: 1.625;
+}
+
+.newbdtr-cf-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, #d3c1d0 30%, transparent);
+  border-radius: 0.75rem;
+  background: #fcf9f8;
+}
+
+.newbdtr-cf-note__item {
+  position: relative;
+  margin: 0;
+  padding-left: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #50434f;
+}
+
+.newbdtr-cf-note__item + .newbdtr-cf-note__item {
+  margin-top: 1rem;
+}
+
+.newbdtr-cf-note__item::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  color: #a14000;
+  font-feature-settings: "liga";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.newbdtr-cf-note__item--edit::before {
+  content: "edit_note";
+}
+
+.newbdtr-cf-note__item--info::before {
+  content: "info";
+}
+
+.newbdtr-cf-note__item--id::before {
+  content: "assignment_ind";
+}
+
+.newbdtr-cf-note__item a {
+  color: #a14000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.newbdtr-cf-note__item a:hover {
+  color: #440050;
+}
+
+.newbdtr-cf-checks {
+  margin-top: 1.5rem;
+}
+
+.newbdtr-cf-check {
+  position: relative;
+  margin: 0;
+  padding-left: 2.25rem;
+  color: #50434f;
+}
+
+.newbdtr-cf-check + .newbdtr-cf-check {
+  margin-top: 1rem;
+}
+
+.newbdtr-cf-check::before {
+  content: "check_circle";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  color: #440050;
+  font-feature-settings: "liga";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.newbdtr-cf-benefits h2 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  color: #440050;
+  margin: 0 0 1.5rem;
+}
+
+.newbdtr-cf-benefits__grid {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .newbdtr-cf-benefits__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.newbdtr-benefit {
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, #d3c1d0 20%, transparent);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, #eae7e7 50%, transparent) !important;
+}
+
+.newbdtr-benefit::before {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: "Material Symbols Outlined";
+  font-size: 1.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #440050;
+  font-feature-settings: "liga";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.newbdtr-benefit--community::before {
+  content: "diversity_3";
+}
+
+.newbdtr-benefit--talent::before {
+  content: "psychology";
+}
+
+.newbdtr-benefit--belong::before {
+  content: "volunteer_activism";
+}
+
+.newbdtr-benefit--balance::before {
+  content: "balance";
+}
+
+.newbdtr-benefit h4 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  color: #440050;
+}
+
+.newbdtr-benefit p {
+  margin: 0;
+}
+
+.newbdtr-cf-cta h2 {
+  margin: 0 0 1.5rem;
+}
+
+.newbdtr-cf-cta .newbdtr-cta__lead {
+  margin-bottom: 2rem;
+}
+
+.newbdtr-cf-cta__btn .wp-element-button,
+.newbdtr-cf-cta__btn .wp-block-button__link {
+  padding: 1rem 2.5rem;
+  border-radius: 20px;
+  background: #b2f746;
+  color: #121f00;
+  font-weight: 700;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.18), 0 8px 10px -6px rgb(0 0 0 / 0.12);
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.newbdtr-cf-cta__btn .wp-block-button__link:hover {
+  transform: scale(1.05);
+  background: #b2f746;
+  color: #121f00;
+}
+
+.newbdtr-project-tree {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 0.5rem auto 0;
+}
+
+.newbdtr-tree__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.newbdtr-fruit {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0.3rem;
+  background: #fff;
+  border: 3px solid #e06a12;
+  border-radius: 2px;
+  box-shadow: 0 8px 16px rgb(27 27 27 / 0.14);
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+  width: calc(14% * var(--aw) / max(var(--aw), var(--ah)));
+  aspect-ratio: var(--aw) / var(--ah);
+}
+
+.newbdtr-fruit img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.newbdtr-fruit:hover,
+.newbdtr-fruit:focus-visible {
+  z-index: 5;
+  text-decoration: none;
+}
+
+.newbdtr-fruit__name {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.7rem);
+  z-index: 2;
+  width: max-content;
+  max-width: 12rem;
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #e7d3c4;
+  border-radius: 0.35rem;
+  background: #fff;
+  color: #1b1b1b;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
+  box-shadow: 0 8px 18px rgb(27 27 27 / 0.16);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0.25rem);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.newbdtr-fruit--below .newbdtr-fruit__name {
+  bottom: auto;
+  top: calc(100% + 0.7rem);
+  transform: translateX(-50%) translateY(-0.25rem);
+}
+
+.newbdtr-fruit:hover .newbdtr-fruit__name,
+.newbdtr-fruit:focus-visible .newbdtr-fruit__name,
+.newbdtr-fruit:focus .newbdtr-fruit__name {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .newbdtr-fruit {
+    width: calc(20% * var(--aw) / max(var(--aw), var(--ah)));
+    border-width: 2px;
+    padding: 0.2rem;
+  }
+}
+
+@media (max-width: 781px) {
+  .newbdtr-cf-row--image-first.wp-block-columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .newbdtr-cf-row--image-first > .wp-block-column:first-child {
+    order: 2;
+  }
+
+  .newbdtr-cf-row.wp-block-columns {
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
 }

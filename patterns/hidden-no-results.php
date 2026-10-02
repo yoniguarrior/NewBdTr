@@ -8,5 +8,5 @@
  */
 ?>
 <!-- wp:paragraph {"textColor":"on-surface-variant"} -->
-<p class="has-on-surface-variant-color has-text-color"><?php esc_html_e('No hay contenidos todavía.', 'bdtrivas'); ?></p>
+<p class="has-on-surface-variant-color has-text-color"><?php echo esc_html('No hay contenidos todavía.'); ?></p>
 <!-- /wp:paragraph -->

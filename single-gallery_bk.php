@@ -32,7 +32,7 @@
               }
               echo '</div>';
             } else {
-              echo '<p>' . __('No images found for this gallery', SBDTPQ_TEXTDOMAIN) . ' </p>';
+              echo '<p>' . 'No se han encontrado imágenes para esta galería' . ' </p>';
             }
             ?>
           </div><!-- .entry-content -->

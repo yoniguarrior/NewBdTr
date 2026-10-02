@@ -19,10 +19,6 @@ function newbdtr_sbdtpq_template_levels()
     'front-template' => 'front',
     'logged-template.php' => 'logged',
     'logged-template' => 'logged',
-    'content-template.php' => 'content',
-    'content-template' => 'content',
-    'management-template.php' => 'management',
-    'management-template' => 'management',
   );
 }
 
@@ -44,25 +40,15 @@ function newbdtr_sbdtpq_current_access_level()
 }
 
 /**
- * Enforce login / capability before the block canvas renders.
+ * Send guests to the login screen when the page requires a session.
+ *
+ * Capability checks for a specific page stay in the plugin. Logged-in
+ * visitors continue and the logged template is rendered.
  */
 function newbdtr_sbdtpq_enforce_access()
 {
   $level = newbdtr_sbdtpq_current_access_level();
-  if ($level === '' || $level === 'front') {
-    return;
-  }
-
-  $ok = false;
-  if ($level === 'logged') {
-    $ok = is_user_logged_in();
-  } elseif ($level === 'content') {
-    $ok = current_user_can('moderate_content');
-  } elseif ($level === 'management') {
-    $ok = current_user_can('manage_system');
-  }
-
-  if ($ok) {
+  if ($level === '' || $level === 'front' || is_user_logged_in()) {
     return;
   }
 
@@ -83,8 +69,6 @@ function newbdtr_migrate_sbdtpq_page_templates()
   $map = array(
     'front-template.php' => 'front-template',
     'logged-template.php' => 'logged-template',
-    'content-template.php' => 'content-template',
-    'management-template.php' => 'management-template',
   );
 
   foreach ($map as $old => $new) {
@@ -110,3 +94,90 @@ function newbdtr_migrate_sbdtpq_page_templates()
   }
 }
 add_action('init', 'newbdtr_migrate_sbdtpq_page_templates');
+
+/**
+ * App bar entries for the logged-in user.
+ *
+ * Administrators and Gestora BdT see every item. Moderadora BdT sees content
+ * tools. Any other logged-in member sees search, ticket and account.
+ *
+ * @return array<int, array{label: string, url: string, icon: string}>
+ */
+function newbdtr_appbar_items()
+{
+  if (!is_user_logged_in()) {
+    return array();
+  }
+
+  $tier = 'user';
+  if (current_user_can('manage_system') || current_user_can('manage_options')) {
+    $tier = 'manager';
+  } elseif (current_user_can('moderate_content')) {
+    $tier = 'moderator';
+  }
+
+  $visible = array(
+    'manager' => array('manager', 'moderator', 'user'),
+    'moderator' => array('moderator', 'user'),
+    'user' => array('user'),
+  );
+
+  $entries = array(
+    array(
+      'label' => 'Informes',
+      'url' => newbdtr_page_url('reports'),
+      'icon' => 'dashicons-chart-area',
+      'tier' => 'manager',
+    ),
+    array(
+      'label' => 'Administración',
+      'url' => newbdtr_page_url('management'),
+      'icon' => 'dashicons-admin-generic',
+      'tier' => 'manager',
+    ),
+    array(
+      'label' => 'Contenido',
+      'url' => newbdtr_page_url('content'),
+      'icon' => 'dashicons-edit-large',
+      'tier' => 'moderator',
+    ),
+    array(
+      'label' => 'Buscar',
+      'url' => newbdtr_page_url('search'),
+      'icon' => 'dashicons-search',
+      'tier' => 'user',
+    ),
+    array(
+      'label' => 'Talón',
+      'url' => newbdtr_page_url('ticket'),
+      'icon' => 'dashicons-feedback',
+      'tier' => 'user',
+    ),
+    array(
+      'label' => 'Mi cuenta',
+      'url' => newbdtr_page_url('profile'),
+      'icon' => 'dashicons-admin-users',
+      'tier' => 'user',
+    ),
+  );
+
+  $items = array();
+  foreach ($entries as $entry) {
+    if (!in_array($entry['tier'], $visible[$tier], true)) {
+      continue;
+    }
+    $items[] = array(
+      'label' => $entry['label'],
+      'url' => $entry['url'],
+      'icon' => $entry['icon'],
+    );
+  }
+
+  $items[] = array(
+    'label' => 'Salir',
+    'url' => wp_logout_url(home_url('/')),
+    'icon' => 'dashicons-exit',
+  );
+
+  return $items;
+}
