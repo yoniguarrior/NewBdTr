@@ -423,3 +423,358 @@ function newbdtr_render_activity_list($content, $block)
   return is_string($replaced) ? $replaced : $content;
 }
 add_filter('render_block', 'newbdtr_render_activity_list', 10, 2);
+
+/**
+ * Whether a plugin table is installed.
+ *
+ * @param string $table Full table name, including the WordPress prefix.
+ * @return bool
+ */
+function newbdtr_table_exists($table)
+{
+  global $wpdb;
+
+  $found = $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table)));
+
+  return $found === $table;
+}
+
+/**
+ * Column names for a plugin table.
+ *
+ * @param string $table Full table name.
+ * @return string[]
+ */
+function newbdtr_table_columns($table)
+{
+  global $wpdb;
+
+  if (!newbdtr_table_exists($table)) {
+    return array();
+  }
+
+  $columns = $wpdb->get_col('SHOW COLUMNS FROM `' . str_replace('`', '', $table) . '`');
+
+  return is_array($columns) ? $columns : array();
+}
+
+/**
+ * First candidate column that exists, or a name matching the pattern.
+ *
+ * @param string[] $columns
+ * @param string[] $candidates
+ * @param string   $pattern
+ * @return string
+ */
+function newbdtr_pick_column($columns, $candidates, $pattern = '')
+{
+  foreach ($candidates as $candidate) {
+    if (in_array($candidate, $columns, true)) {
+      return $candidate;
+    }
+  }
+
+  if ($pattern !== '') {
+    foreach ($columns as $column) {
+      if (preg_match($pattern, $column)) {
+        return $column;
+      }
+    }
+  }
+
+  return '';
+}
+
+/**
+ * Image address stored on a service subtype.
+ *
+ * Numeric values are attachment IDs. Root-relative paths are site URLs.
+ *
+ * @param string $value
+ * @return string
+ */
+function newbdtr_service_image_url($value)
+{
+  $value = trim($value);
+  if ($value === '') {
+    return '';
+  }
+
+  if (ctype_digit($value)) {
+    $url = wp_get_attachment_url((int) $value);
+    return is_string($url) ? $url : '';
+  }
+
+  if (str_starts_with($value, '/')) {
+    return home_url($value);
+  }
+
+  return $value;
+}
+
+/**
+ * Lead sentence for the window that supplied the popular services.
+ *
+ * @param string $window month, quarter, semester, or year.
+ * @return string
+ */
+function newbdtr_popular_services_lead($window)
+{
+  $labels = array(
+    'month' => 'este mes',
+    'quarter' => 'este trimestre',
+    'semester' => 'este semestre',
+    'year' => 'este año',
+  );
+
+  $when = $labels[$window] ?? 'este mes';
+
+  return 'Lo que más se está moviendo ' . $when . ' en la comunidad';
+}
+
+/**
+ * Four most provided services, widening the window until four exist.
+ *
+ * Starts with the last month. If fewer than four distinct services were
+ * provided, retries the last quarter, then semester, then year.
+ *
+ * @return array{window: string, items: array<int, array{type: string, name: string, image: string}>}
+ */
+function newbdtr_get_popular_services()
+{
+  static $cached = null;
+
+  if ($cached !== null) {
+    return $cached;
+  }
+
+  $cached = newbdtr_query_popular_services();
+
+  return $cached;
+}
+
+/**
+ * @return array{window: string, items: array<int, array{type: string, name: string, image: string}>}
+ */
+function newbdtr_query_popular_services()
+{
+  global $wpdb;
+
+  $empty = array(
+    'window' => '',
+    'items' => array(),
+  );
+
+  $provided = $wpdb->prefix . 'sbdtpq_svcs_provided';
+  $subtypes = $wpdb->prefix . 'sbdtpq_svc_subtypes';
+  $types = $wpdb->prefix . 'sbdtpq_svc_types';
+
+  if (!newbdtr_table_exists($provided) || !newbdtr_table_exists($subtypes) || !newbdtr_table_exists($types)) {
+    return $empty;
+  }
+
+  $subtype_columns = newbdtr_table_columns($subtypes);
+  $type_columns = newbdtr_table_columns($types);
+  $image_column = newbdtr_pick_column(
+    $subtype_columns,
+    array(
+      'svc_subtype_image_url',
+      'svc_subtype_image',
+      'svc_subtype_img_url',
+      'svc_subtype_img',
+      'svc_subtype_photo',
+      'svc_subtype_picture',
+      'image_url',
+    ),
+    '/(image|img|foto|photo|picture|imagen)/i'
+  );
+  if ($image_column !== '' && !preg_match('/^[A-Za-z0-9_]+$/', $image_column)) {
+    $image_column = '';
+  }
+
+  $type_sql = in_array('svc_type_name', $type_columns, true) ? 't.svc_type_name' : "''";
+  $image_sql = $image_column !== '' ? "s.`{$image_column}`" : "''";
+
+  $windows = array(
+    'month' => '-1 month',
+    'quarter' => '-3 months',
+    'semester' => '-6 months',
+    'year' => '-1 year',
+  );
+
+  $widest = $empty;
+  $now = new DateTimeImmutable('now', wp_timezone());
+
+  foreach ($windows as $window => $modifier) {
+    $since = $now->modify($modifier)->format('Y-m-d H:i:s');
+    $sql = "SELECT s.svc_subtype_name AS service_name,
+        {$type_sql} AS service_type,
+        {$image_sql} AS image_url,
+        COUNT(*) AS total
+      FROM {$provided} p
+      INNER JOIN {$subtypes} s ON s.svc_subtype_id = p.svc_subtype_id
+      INNER JOIN {$types} t ON t.svc_type_id = s.svc_type_id
+      WHERE p.date_provided >= %s
+        AND s.svc_subtype_name <> ''
+      GROUP BY s.svc_subtype_id, s.svc_subtype_name, service_type, image_url
+      ORDER BY total DESC, s.svc_subtype_name ASC
+      LIMIT 4";
+
+    $rows = $wpdb->get_results($wpdb->prepare($sql, $since));
+    if (!is_array($rows)) {
+      return $empty;
+    }
+
+    $items = array();
+    foreach ($rows as $row) {
+      $items[] = array(
+        'type' => (string) $row->service_type,
+        'name' => (string) $row->service_name,
+        'image' => newbdtr_service_image_url((string) $row->image_url),
+      );
+    }
+
+    $widest = array(
+      'window' => $window,
+      'items' => $items,
+    );
+
+    if (count($items) >= 4) {
+      return $widest;
+    }
+  }
+
+  return $widest;
+}
+
+/**
+ * One popular-service card: type badge, image, and name.
+ *
+ * @param array{type: string, name: string, image: string} $service
+ * @param int                                               $index
+ * @return string
+ */
+function newbdtr_popular_service_card_html($service, $index)
+{
+  $variants = array('primary', 'secondary', 'tertiary');
+  $variant = $variants[$index % count($variants)];
+  $image = $service['image'] !== ''
+    ? '<figure class="wp-block-image size-large"><img src="' . esc_url($service['image']) . '" alt="' . esc_attr($service['name']) . '" style="object-fit:cover"/></figure>'
+    : '';
+
+  return '<div class="wp-block-column">'
+    . '<div class="wp-block-group newbdtr-card hover-lift">'
+    . '<div class="wp-block-group newbdtr-card__media">'
+    . $image
+    . '<p class="newbdtr-card__tag newbdtr-card__tag--' . esc_attr($variant) . '">' . esc_html($service['type']) . '</p>'
+    . '</div>'
+    . '<div class="wp-block-group p-6">'
+    . '<h3 class="wp-block-heading">' . esc_html($service['name']) . '</h3>'
+    . '</div>'
+    . '</div>'
+    . '</div>';
+}
+
+/**
+ * @param array<int, array{type: string, name: string, image: string}> $items
+ * @return string
+ */
+function newbdtr_popular_services_cards_html($items)
+{
+  $html = '';
+  foreach ($items as $index => $service) {
+    $html .= newbdtr_popular_service_card_html($service, (int) $index);
+  }
+
+  return $html;
+}
+
+/**
+ * Replace the saved homepage cards with the current popular services.
+ *
+ * @param string $content
+ * @param array  $block
+ * @return string
+ */
+function newbdtr_render_popular_services($content, $block)
+{
+  if (($block['blockName'] ?? '') !== 'core/group') {
+    return $content;
+  }
+
+  $class = $block['attrs']['className'] ?? '';
+  if (!preg_match('/(?:^|\s)newbdtr-services(?:\s|$)/', $class)) {
+    return $content;
+  }
+
+  $popular = newbdtr_get_popular_services();
+  if ($popular['items'] === array()) {
+    return $content;
+  }
+
+  $content = preg_replace(
+    '/Lo que más se está moviendo .+? en la comunidad/',
+    esc_html(newbdtr_popular_services_lead($popular['window'])),
+    $content,
+    1
+  );
+  if (!is_string($content)) {
+    return $content;
+  }
+
+  return newbdtr_replace_element_inner($content, 'newbdtr-cards', newbdtr_popular_services_cards_html($popular['items']));
+}
+add_filter('render_block', 'newbdtr_render_popular_services', 10, 2);
+
+/**
+ * Replace the inner HTML of the first div whose class list contains $class.
+ *
+ * @param string $html
+ * @param string $class
+ * @param string $inner
+ * @return string
+ */
+function newbdtr_replace_element_inner($html, $class, $inner)
+{
+  $class_pos = strpos($html, $class);
+  if ($class_pos === false) {
+    return $html;
+  }
+
+  $tag_start = strrpos(substr($html, 0, $class_pos), '<div');
+  if ($tag_start === false) {
+    return $html;
+  }
+
+  $tag_end = strpos($html, '>', $class_pos);
+  if ($tag_end === false) {
+    return $html;
+  }
+
+  $depth = 1;
+  $cursor = $tag_end + 1;
+  $length = strlen($html);
+
+  while ($cursor < $length && $depth > 0) {
+    $next_open = strpos($html, '<div', $cursor);
+    $next_close = strpos($html, '</div>', $cursor);
+    if ($next_close === false) {
+      return $html;
+    }
+
+    if ($next_open !== false && $next_open < $next_close) {
+      $depth++;
+      $cursor = $next_open + 4;
+      continue;
+    }
+
+    $depth--;
+    if ($depth === 0) {
+      return substr($html, 0, $tag_end + 1) . $inner . substr($html, $next_close);
+    }
+
+    $cursor = $next_close + 6;
+  }
+
+  return $html;
+}

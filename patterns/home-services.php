@@ -13,6 +13,10 @@ $ingles = newbdtr_img('clases_up.png');
 $bricolaje = newbdtr_img('montar_muebles.jpeg');
 $internet = newbdtr_img('moviles.png');
 $mascotas = newbdtr_img('mascotas_en.jpeg');
+$popular = newbdtr_get_popular_services();
+$lead = $popular['items']
+  ? newbdtr_popular_services_lead($popular['window'])
+  : 'Lo que más se está moviendo esta semana en la comunidad';
 ?>
 <!-- wp:group {"align":"full","backgroundColor":"surface-container-low","className":"newbdtr-section newbdtr-services py-8 px-4 sm:py-section-padding sm:px-gutter","style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
 <div class="wp-block-group alignfull newbdtr-section newbdtr-services has-surface-container-low-background-color has-background py-8 px-4 sm:py-section-padding sm:px-gutter">
@@ -24,7 +28,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 			<h2 class="wp-block-heading">Servicios populares</h2>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"textColor":"on-surface-variant"} -->
-			<p class="has-on-surface-variant-color has-text-color">Lo que más se está moviendo esta semana en la comunidad</p>
+			<p class="has-on-surface-variant-color has-text-color"><?php echo esc_html($lead); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -37,6 +41,9 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 
 	<!-- wp:columns {"align":"wide","className":"newbdtr-cards"} -->
 	<div class="wp-block-columns alignwide newbdtr-cards">
+		<?php if ($popular['items']) : ?>
+			<?php echo newbdtr_popular_services_cards_html($popular['items']); ?>
+		<?php else : ?>
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"newbdtr-card hover-lift","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
@@ -140,6 +147,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 			<!-- /wp:group -->
 		</div>
 		<!-- /wp:column -->
+		<?php endif; ?>
 	</div>
 	<!-- /wp:columns -->
 </div>
