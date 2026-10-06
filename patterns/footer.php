@@ -129,12 +129,12 @@ $cookies = esc_url(newbdtr_page_url('politica-de-cookies'));
   </div>
   <!-- /wp:group -->
 
-  <!-- wp:group {"align":"full","className":"newbdtr-footer__inner px-gutter py-0 border-t border-outline-variant/60","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-  <div class="wp-block-group newbdtr-footer__inner alignfull px-gutter py-0 border-t border-outline-variant/60">
+  <!-- wp:group {"align":"full","className":"newbdtr-footer__inner px-gutter py-0 border-t border-outline-variant/50","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group newbdtr-footer__inner alignfull px-gutter py-0 border-t border-outline-variant/50">
   <!-- wp:group {"align":"wide","className":"newbdtr-footer__legal","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
   <div class="wp-block-group alignwide newbdtr-footer__legal">
     <!-- wp:paragraph {"className":"newbdtr-footer__copy"} -->
-    <p class="newbdtr-footer__copy">© <?php echo $year; ?> Intertiempo – Banco del Tiempo de Rivas | Hacemos barrio</p>
+    <p class="newbdtr-footer__copy">© <?php echo $year; ?> Intertiempo &#45; Banco del Tiempo de Rivas<span class="footer-copy-sep"> |</span> Hacemos&nbsp;barrio</p>
     <!-- /wp:paragraph -->
     <!-- wp:group {"className":"newbdtr-footer__legal-links","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
     <div class="wp-block-group newbdtr-footer__legal-links">

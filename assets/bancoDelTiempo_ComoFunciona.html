@@ -1,0 +1,964 @@
+<!doctype html>
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cómo funciona - Intertiempo Rivas</title>
+    <!-- BEGIN: Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- END: Fonts & Icons -->
+    <!-- BEGIN: Tailwind Configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #440050;
+        --color-on-primary: #ffffff;
+        --color-primary-container: #660476;
+        --color-on-primary-container: #e07fea;
+        --color-secondary: #a14000;
+        --color-on-secondary: #ffffff;
+        --color-tertiary: #192900;
+        --color-on-tertiary: #ffffff;
+        --color-tertiary-container: #294100;
+        --color-on-tertiary-container: #7ab500;
+        --color-tertiary-fixed: #b2f746;
+        --color-on-tertiary-fixed: #121f00;
+        --color-background: #fcf9f8;
+        --color-on-background: #1b1b1b;
+        --color-surface: #fcf9f8;
+        --color-surface-dim: #dcd9d9;
+        --color-surface-container-low: #f6f3f2;
+        --color-surface-container-lowest: #ffffff;
+        --color-surface-container-high: #eae7e7;
+        --color-on-surface: #1b1b1b;
+        --color-on-surface-variant: #50434f;
+        --color-outline-variant: #d3c1d0;
+        --font-sans: "Plus Jakarta Sans", sans-serif;
+        --font-display: "Montserrat", sans-serif;
+        --radius: 0.25rem;
+        --radius-full: 9999px;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+        --radius-card: 1.125rem;
+        --radius-btn: 1.25rem;
+        --spacing-stack-sm: 0.5rem;
+        --spacing-stack-md: 1.5rem;
+        --spacing-stack-lg: 2.5rem;
+        --spacing-gutter: 1.5rem;
+        --spacing-section-padding: 3rem;
+        --spacing-margin-mobile: 1rem;
+        --spacing-container-max: 1280px;
+        --breakpoint-mxs: 83rem;
+      }
+      @layer base {
+        p {
+          margin-bottom: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+    </style>
+    <!-- END: Tailwind Configuration -->
+    <!-- BEGIN: Custom Styles -->
+    <style data-purpose="layout-effects">
+      :root {
+        --preset--font-size--x-small: 0.75rem;
+        --preset--font-size--small: clamp(0.825rem, 0.825rem + ((1vw - 0.2rem) * 0.167), 0.925rem);
+        --preset--font-size--medium: clamp(0.925rem, 0.925rem + ((1vw - 0.2rem) * 0.25), 1.075rem );
+        --preset--font-size--large: clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.5), 1.4rem );
+        --preset--font-size--x-large: clamp(1.25rem, 1.25rem + ((1vw - 0.2rem) * 0.835), 1.75rem );
+        --preset--font-size--2x-large: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 0.835), 2.25rem );
+        --preset--font-size--3x-large: clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.667), 3rem );
+        --preset--font-size--4x-large: clamp(2.25rem, 2.25rem + ((1vw - 0.2rem) * 2.5), 3.75rem );
+        --preset--line-height--x-small: 1.125;
+        --preset--line-height--small: 1.25;
+        --preset--line-height--base: 1.5;
+      }
+      @media (min-width: 48rem) { /* 768px */
+        :root {
+          --preset--line-height--x-small: 1.1;
+          --preset--line-height--small: 1.2;
+          --preset--line-height--base: 1.4;
+        }
+      }
+      body {
+        font-size: var(--preset--font-size--medium);
+        line-height: var(--preset--line-height--base);
+      }
+      body h1 {
+        font-size: var(--preset--font-size--3x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h1.hero-title {
+        font-size: var(--preset--font-size--4x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h2 {
+        font-size: var(--preset--font-size--2x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h3 {
+        font-size: var(--preset--font-size--x-large);
+        line-height: var(--preset--line-height--small);
+      }
+      body h4 {
+        font-size: var(--preset--font-size--large);
+        line-height: var(--preset--line-height--small);
+      }
+      .active-nav {
+        color: #a14000 !important; /* secondary */
+        font-weight: 700;
+        border-bottom: 2px solid #a14000; /* secondary */
+        border-top: 2px solid transparent;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-nav {
+        background: rgba(252, 249, 248, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      .step-path {
+        background-image: radial-gradient(circle, #d3c1d0 1px, transparent 1px);
+        background-size: 8px 8px;
+      }
+      .nav-dropdown {
+        position: relative;
+      }
+      .nav-dropdown__toggle {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+      .nav-dropdown__chevron {
+        font-size: 18px;
+        transition: transform 0.2s ease;
+      }
+      .nav-dropdown.is-open .nav-dropdown__chevron {
+        transform: rotate(180deg);
+      }
+      .nav-dropdown__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 60;
+        min-width: 12.5rem;
+        padding: 0.75rem 0 0;
+      }
+      .nav-dropdown__menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0.75rem;
+      }
+      .nav-dropdown__panel {
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem;
+        background: rgba(252, 249, 248, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid color-mix(in srgb, #d3c1d0 45%, transparent);
+        border-radius: 0.75rem;
+        box-shadow: 0 12px 24px -10px rgba(68, 0, 80, 0.18);
+      }
+      .nav-dropdown__menu a {
+        color: #50434f;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+      .nav-dropdown__menu a:hover {
+        color: #440050;
+        background: color-mix(in srgb, #440050 6%, transparent);
+      }
+      @media (min-width: 1024px) {
+        .nav-dropdown {
+          display: flex;
+          align-items: center;
+        }
+        .nav-dropdown__toggle {
+          appearance: none;
+          line-height: 1.25rem;
+        }
+        .nav-dropdown:hover .nav-dropdown__menu,
+        .nav-dropdown:focus-within .nav-dropdown__menu,
+        .nav-dropdown.is-open .nav-dropdown__menu {
+          display: block;
+        }
+      }
+      #mobile-menu .nav-dropdown__menu {
+        position: static;
+        min-width: 0;
+        padding: 0 0 0.25rem 0.75rem;
+      }
+      #mobile-menu .nav-dropdown__menu::before {
+        display: none;
+      }
+      #mobile-menu .nav-dropdown__panel {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+      #mobile-menu .nav-dropdown.is-open .nav-dropdown__menu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-sans">
+    <!-- Header (Synced with Home) -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-outline-variant/30 shadow-xs"
+    >
+      <nav
+        class="max-w-container-max mx-auto px-4 sm:px-gutter h-18 flex justify-between items-center gap-2"
+      >
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-2">
+            <img
+              alt="Intertiempo Logo"
+              class="h-8 lg:h-9 xl:h-10 object-contain"
+              src="wp-content\themes\NewBdTr\assets\images\logo_BdT.png"
+            />
+            <span
+              class="font-display text-lg lg:text-xl xl:text-2xl font-bold text-primary"
+              >Intertiempo</span
+            >
+          </div>
+          <div class="hidden lg:flex items-center gap-6">
+            <a
+              class="text-on-surface-variant hover:text-secondary transition-colors text-sm"
+              href="#"
+              >Inicio</a
+            ><a
+              class="active-nav text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Cómo funciona</a
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Comunidad</a
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Proyectos</a
+            >
+            <div class="nav-dropdown">
+              <button
+                type="button"
+                class="nav-dropdown__toggle text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm inline-flex items-center gap-0.5"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                Noticias y Eventos
+                <span
+                  class="material-symbols-outlined nav-dropdown__chevron"
+                  aria-hidden="true"
+                  >expand_more</span
+                >
+              </button>
+              <div class="nav-dropdown__menu">
+                <div class="nav-dropdown__panel">
+                  <a href="#">Noticias</a>
+                  <a href="#">Eventos</a>
+                  <a href="#">Fotos</a>
+                  <a href="#">BdT Escolar</a>
+                  <a href="#">Blog</a>
+                </div>
+              </div>
+            </div>
+            <a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Contacto</a
+            >
+          </div>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button
+            class="hidden sm:block text-primary font-semibold text-sm px-4 py-2 rounded-btn hover:bg-primary/5 hover:scale-95 active:scale-90 transition-all"
+          >
+            Entrar
+          </button>
+          <button
+            class="bg-primary text-on-primary font-semibold text-sm px-4 py-2 rounded-btn shadow-md hover:scale-95 active:scale-90 transition-transform"
+          >
+            Unirse
+          </button>
+          <button
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+            class="lg:hidden inline-flex items-center justify-center w-11 h-11 text-primary rounded-btn hover:bg-primary/5 transition-colors"
+            id="menu-toggle"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[28px]" id="menu-icon"
+              >menu</span
+            >
+          </button>
+        </div>
+      </nav>
+      <div
+        class="hidden md:hidden border-t border-outline-variant/20"
+        id="mobile-menu"
+      >
+        <div
+          class="max-w-container-max mx-auto px-gutter py-stack-md flex flex-col gap-1"
+        >
+          <a class="active-nav text-sm py-3" href="#">Inicio</a>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Cómo funciona</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Comunidad</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Proyectos</a
+          >
+          <div class="nav-dropdown">
+            <button
+              type="button"
+              class="nav-dropdown__toggle text-on-surface-variant hover:text-primary transition-colors text-sm py-3 inline-flex items-center gap-0.5"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              Noticias y Eventos
+              <span
+                class="material-symbols-outlined nav-dropdown__chevron"
+                aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+            <div class="nav-dropdown__menu">
+              <div class="nav-dropdown__panel">
+                <a class="py-2" href="#">Noticias</a>
+                <a class="py-2" href="#">Eventos</a>
+                <a class="py-2" href="#">Fotos</a>
+                <a class="py-2" href="#">BdT Escolar</a>
+                <a class="py-2" href="#">Blog</a>
+              </div>
+            </div>
+          </div>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Contacto</a
+          >
+          <button
+            class="sm:hidden mt-2 w-full text-primary font-semibold text-sm px-6 py-3 rounded-btn hover:bg-primary/5 transition-all border border-outline-variant/30"
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="pt-20">
+      <!-- Hero Section: What is a Time Bank? -->
+      <section class="py-section-padding px-gutter">
+        <div
+          class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
+          <div>
+            <h1 class="font-display text-primary font-bold leading-tight mb-6">
+              ¿Qué es un <span class="text-secondary">Banco del Tiempo</span>?
+            </h1>
+            <div
+              class="space-y-4 text-lg text-on-surface-variant leading-relaxed"
+            >
+              <p class="">
+                Es una red de ayuda mutua donde el dinero no existe. Aquí, la
+                unidad de valor es la <strong>hora</strong>. No importa el
+                servicio que ofrezcas o recibas: todas las habilidades valen lo
+                mismo.
+              </p>
+              <p class="">
+                Intercambiamos tiempo para resolver necesidades cotidianas,
+                desde clases de idiomas hasta pequeñas reparaciones en el hogar.
+                Es pura reciprocidad vecinal para construir un barrio más humano
+                y conectado.
+              </p>
+            </div>
+            <div class="mt-8 flex gap-6">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary"
+                >
+                  <span class="material-symbols-outlined">schedule</span>
+                </div>
+                <div>
+                  <p class="font-bold text-primary">Igualdad total</p>
+                  <p class="text-xs text-on-surface-variant">
+                    1 hora siempre vale 1 hora
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary"
+                >
+                  <span class="material-symbols-outlined">handshake</span>
+                </div>
+                <div>
+                  <p class="font-bold text-primary">Sin dinero</p>
+                  <p class="text-xs text-on-surface-variant">
+                    Economía colaborativa
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="rounded-card overflow-hidden shadow-2xl border border-outline-variant/30"
+            style="aspect-ratio: 7 / 5"
+          >
+            <img
+              alt="Concepto de Banco del Tiempo: intercambio y ayuda mutua entre vecinos"
+              class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5cJSPddrj4XJjnKDKG4kJqftsiMDFL4QBqQ2kCm5_HC7-ZWyvTWRZgFYv0HH5mZLHnHYNobg65riIrMUDypx2ZDE6GGInN8w4VHQtQeG9VqsZ1Hl3MukiioAdzMBAwRBCLRitRZeqNg0W96LehoLkpjHRcreKb86S69y8BOUxzxMfZfpwokLFV7x8B7zcVAbnSpbCoCQBB5k_Y8WpP16BEcWaLBR4SL-cQXjEOinWv5D_CRtAbfP"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- Steps Detail Section -->
+      <section class="py-section-padding px-gutter bg-surface-container-low">
+        <div class="max-w-container-max mx-auto">
+          <div class="text-center mb-stack-md">
+            <h2 class="font-display text-primary font-bold mb-4">
+              Cómo unirse a la comunidad de intercambio
+            </h2>
+            <p class="text-on-surface-variant max-w-2xl mx-auto">
+              Sigue estos pasos para unirte a una comunidad que construye
+              barrio.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16"
+          >
+            <!-- Step 1 (formerly 2 text) -->
+            <div class="order-2 md:order-1">
+              <div
+                class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white font-bold mb-6"
+              >
+                1
+              </div>
+              <h3 class="font-display text-primary font-bold mb-4">
+                Regístrate y forma parte
+              </h3>
+              <p class="text-on-surface-variant mb-4">
+                Cualquier persona que resida o trabaje en Rivas puede unirse.
+              </p>
+              <p class="text-on-surface-variant mb-4">
+                La inscripción se gestiona en la
+                <strong>Secretaría de la Asociación Intertiempo</strong> (Casa
+                de Asociaciones de Barrio Oeste).
+              </p>
+              <div
+                class="bg-surface mt-6 p-4 rounded-xl border border-outline-variant/30 space-y-4"
+              >
+                <div class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary"
+                    >edit_note</span
+                  >
+                  <p class="text-sm text-on-surface-variant">
+                    Puede solicitarse vía web, rellenando este
+                    <a
+                      href="/registro"
+                      class="text-secondary font-semibold underline hover:text-primary transition-colors"
+                      >formulario</a
+                    >, o presencialmente en la propia&nbsp;<strong
+                      >Secretaría de la Asociación Intertiempo</strong
+                    >
+                  </p>
+                </div>
+                <div class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary"
+                    >info</span
+                  >
+                  <p class="text-sm text-on-surface-variant">
+                    Una vez realizada la inscripción, se te entrevistará para
+                    conocerte un poco mejor y orientarte y, finalmente, se
+                    aprobará y formalizará tu alta en la comunidad
+                  </p>
+                </div>
+                <div class="flex items-start gap-4">
+                  <span class="material-symbols-outlined text-secondary"
+                    >assignment_ind</span
+                  >
+                  <p class="text-sm text-on-surface-variant">
+                    Dispondrás de un nombre de usuaria/o y una contraseña para
+                    acceder a la web y poder iniciar el intercambio de servicios
+                    con otros usuarios.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="order-1 md:order-2 rounded-card overflow-hidden shadow-xl"
+              style="aspect-ratio: 7 / 5"
+            >
+              <img
+                alt="Vecinos adultos de Rivas dando una cálida bienvenida a un nuevo miembro del Banco del Tiempo"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsjTcPnx8D4y7P0F-wByjlM2FSldOpbMPausN5iFlm21b6ErgE0w_gzPfQ-orlVv2-ZDjZYKBl-Iv-aV4rAcJuT-ItEF-GLY_6taoMErSAfurphGC_sIHcinw9LJqUPI-nsc6E7qKOwbK6pF69X6nlW8wnXG1eg0lKfTCUU8QTyRgGdoj3VKwNJ1GbPAizSDUWocqzwB8fMlsFGwhSiCmuHa5DQkNFfc-zYWd2zAsmm922gEWYkUTf"
+              />
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16"
+          >
+            <!-- Step 2 (formerly 1 text) -->
+            <div
+              class="rounded-card overflow-hidden shadow-xl"
+              style="aspect-ratio: 7 / 5"
+            >
+              <img
+                alt="Reloj de tiempo y manos"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2JT-utSVFrGF6yemkCWwAaYw0cwy4vwTpXBI3JbWae9cHd0hGQqAQIf0E_emjpD7zKmZ5-UAFd6Fb9fPxGMXI5VaNqa7oHu26bFX7dXFLhWFp-ZIEP2FIU0SZv3Pr5izAbRWV_klAoUaJ-bNLpa1aqyeEVcKYbs8e2SbTS1I302eNM4c7qh1HjGvB_uK6IOa-J--cePVEfCewdsV5xzg4f76MZ5rSe6WGE6vnAyfGsfu5MVU_xThb"
+              />
+            </div>
+            <div>
+              <div
+                class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-6"
+              >
+                2
+              </div>
+              <h3 class="font-display text-primary font-bold mb-4">
+                Ofrece/Busca
+              </h3>
+              <p class="text-on-surface-variant mb-6 leading-relaxed">
+                Registra, modifica, actualiza los servicios que ofreces y
+                demandas en la web. Localiza usuarios que ofrezcan servicios en
+                los que estés interesada/o
+              </p>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16"
+          >
+            <!-- Step 3 -->
+            <div class="order-2 md:order-1">
+              <div
+                class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold mb-6"
+              >
+                3
+              </div>
+              <h3 class="font-display text-primary font-bold mb-4">Conecta</h3>
+              <p class="text-on-surface-variant mb-6 leading-relaxed">
+                Ponte en contacto con quien solicita tu ayuda o con quien ofrece
+                el servicio que necesitas para acordar los detalles.
+              </p>
+            </div>
+            <div
+              class="order-1 md:order-2 rounded-card overflow-hidden shadow-xl"
+              style="aspect-ratio: 7 / 5"
+            >
+              <img
+                alt="Vecina coordinando actividades comunitarias por teléfono en Rivas"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgQvvTV_BbWPtHBKw6p-SJQIMReDefiT64U9Ppd-Euk1oczwk0yCbaS5erQX3extlvaDQQiwri48qpLDbkvhRTEgLXogrfH2bffOfXem1WEJJooCVBeJtirXW5OnVLt_yuuAVvTRNNu7ohDeKb_KxLz_oqKUTkX28o0mX3VZHrKlEwW8gL_XKuZR7Qa_K_52da1641EEYZBqMpE_pItcSk3sOZyEZ9JVFfANMVOg0Jg3DS7Bs585Is"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <!-- Step 4 -->
+            <div
+              class="rounded-card overflow-hidden shadow-xl"
+              style="aspect-ratio: 7 / 5"
+            >
+              <img
+                alt="Dos vecinos de Rivas sonriendo y dándose un apretón de manos satisfechos tras completar una tarea juntos"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxKACzgJJCW7PMj0EE8kH1erImF6MQMbk2lrrfvAAj4IOgGSXFxCHsc7_91lQ3qsQJ_8x_cZocBU2xEeiLmus7ib_XBcuLW32yX0b_kcWdBKgGM0v_6R7R4eBALNLkZ9y9sqYuLhDuvIMQBpejbBTIqGlxr60qxjbj5v4kx8F66-AK0onMv3gsDOT24Yx6lEUN_FKOYyOUVxCqY_1DyLKOpOE3Jb5g02QHFKJEHTu7rYWeVJdOvN0O"
+              />
+            </div>
+            <div>
+              <div
+                class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#e07fea] text-white font-bold mb-6"
+              >
+                4
+              </div>
+              <h3 class="font-display text-primary font-bold mb-4">
+                Intercambia
+              </h3>
+              <p class="text-on-surface-variant mb-6 leading-relaxed">
+                Una vez realizado el servicio, se registrará en la web el tipo
+                de servicio, la duración, usuario que ofrece y usuario que
+                recibe.
+              </p>
+              <ul class="space-y-4">
+                <li class="flex items-center gap-3 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-primary"
+                    >check_circle</span
+                  >
+                  <span class=""
+                    >El usuario que recibe el servicio es el encargado de
+                    registrarlo.</span
+                  >
+                </li>
+
+                <li class="flex items-center gap-3 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-primary"
+                    >check_circle</span
+                  >
+                  <span class=""
+                    >La duración en horas quedará registrada en positivo para el
+                    ofertante y en negativo para el receptor.</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Benefits Section -->
+      <section class="py-section-padding px-gutter">
+        <div class="max-w-container-max mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="font-display text-primary font-bold mb-6">
+                Beneficios de participar
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div
+                  class="bg-surface-container-high/50 p-6 rounded-xl border border-outline-variant/20"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mb-3 text-3xl"
+                    >diversity_3</span
+                  >
+                  <h4 class="font-bold text-primary mb-2">
+                    Construye comunidad
+                  </h4>
+                  <p class="text-sm text-on-surface-variant">
+                    Conoce a tus vecinos y crea lazos de confianza en el barrio.
+                  </p>
+                </div>
+                <div
+                  class="bg-surface-container-high/50 p-6 rounded-xl border border-outline-variant/20"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mb-3 text-3xl"
+                    >psychology</span
+                  >
+                  <h4 class="font-bold text-primary mb-2">
+                    Desarrolla talentos
+                  </h4>
+                  <p class="text-sm text-on-surface-variant">
+                    Comparte lo que sabes y aprende algo nuevo cada día.
+                  </p>
+                </div>
+                <div
+                  class="bg-surface-container-high/50 p-6 rounded-xl border border-outline-variant/20"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mb-3 text-3xl"
+                    >volunteer_activism</span
+                  >
+                  <h4 class="font-bold text-primary mb-2">
+                    Sentido de pertenencia
+                  </h4>
+                  <p class="text-sm text-on-surface-variant">
+                    Siéntete parte de un proyecto social reconocido en todo el
+                    mundo.
+                  </p>
+                </div>
+                <div
+                  class="bg-surface-container-high/50 p-6 rounded-xl border border-outline-variant/20"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mb-3 text-3xl"
+                    >balance</span
+                  >
+                  <h4 class="font-bold text-primary mb-2">Equilibrio vital</h4>
+                  <p class="text-sm text-on-surface-variant">
+                    Mejora tu vida familiar y personal mediante el apoyo mutuo.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="rounded-card overflow-hidden shadow-2xl"
+              style="aspect-ratio: 7 / 5"
+            >
+              <img
+                alt="Comunidad y pertenencia en Rivas Vaciamadrid"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1m0nyiYwbdGhx3Wwl4jMxWyLnus_EzotId0aknsKherTW03HgiNGw9dIyyIQU7icUZOU99NqI6xMqNlRirqDqf6TldPtoNg4unFbCIKshcjzjdc1mnOfHxpizNoXcuBDyl-VOCZmUv9qtsY3lo_Z8hKe7a16JvdYjq9hOatgDT5q-IryVERO1ogeI5Ag53O2rnqJe2xk8m6Nj5IC5GO74uR-q-4PwgLMwrV38QMsDCvATrFI962M_"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Final CTA -->
+      <section
+        class="py-section-padding px-gutter bg-primary relative overflow-hidden"
+      >
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+          <div
+            class="absolute top-10 right-20 w-64 h-64 bg-white rounded-full blur-[100px]"
+          ></div>
+          <div
+            class="absolute bottom-10 left-20 w-96 h-96 bg-secondary rounded-full blur-[150px]"
+          ></div>
+        </div>
+        <div class="max-w-container-max mx-auto text-center relative z-10">
+          <h2 class="font-display text-white font-bold mb-6">
+            ¿Listo para empezar?
+          </h2>
+          <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+            Únete a cientos de vecinos de Rivas que ya están intercambiando
+            tiempo y construyendo futuro juntos.
+          </p>
+          <button
+            class="bg-tertiary-fixed text-on-tertiary-fixed font-bold px-10 py-4 rounded-btn shadow-xl hover:scale-105 transition-transform"
+          >
+            Quiero unirme ahora
+          </button>
+        </div>
+      </section>
+    </main>
+    <!-- Footer (Synced with Home) -->
+    <footer
+      class="bg-surface-container-low border-t border-outline-variant/30 pt-[1.5rem] pb-[0.5rem] px-gutter"
+    >
+      <div
+        class="max-w-container-max mx-auto px-0 grid grid-cols-1 md:grid-cols-3 gap-gutter mb-6"
+      >
+        <div class="space-y-6">
+          <div class="flex items-center gap-2">
+            <img
+              alt="Intertiempo Logo"
+              class="h-8"
+              src="wp-content\themes\NewBdTr\assets\images\logo_BdT.png"
+            />
+            <span class="font-display text-xl font-bold text-primary"
+              >Intertiempo</span
+            >
+          </div>
+          <p class="text-on-surface-variant text-sm">
+            Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos
+            vida.
+          </p>
+          <div class="flex gap-4">
+            <a
+              class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[20px]">public</span>
+            </a>
+            <a
+              class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >camera_alt</span
+              >
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-row justify-evenly max-[460px]:justify-between">
+          <div class="flex flex-col h-full">
+            <h4
+              class="font-bold text-primary uppercase tracking-widest mt-2 mb-4"
+            >
+              Navegación
+            </h4>
+            <ul
+              class="text-sm text-on-surface-variant flex flex-col justify-between grow"
+            >
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Cómo funciona</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Comunidad</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Proyectos</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Noticias</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Eventos</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col h-full">
+            <h4
+              class="font-bold text-primary uppercase tracking-widest mt-2 mb-4"
+            >
+              Recursos
+            </h4>
+            <ul
+              class="text-sm text-on-surface-variant flex flex-col justify-between grow"
+            >
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Preguntas frecuentes</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Guía de uso</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Blog</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-surface-container-high p-4 rounded-xl">
+          <h4 class="font-bold text-primary mb-4">¿Necesitas ayuda?</h4>
+          <p class="text-on-surface-variant text-xs mb-4">
+            Contáctanos directamente vía WhatsApp o mail.
+          </p>
+          <a
+            class="flex items-center gap-3 text-secondary font-bold text-sm hover:underline mb-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined">call</span> 649 73 24 86
+          </a>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant text-sm hover:text-primary transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">mail</span>
+            info@bancodeltiempo.org
+          </a>
+        </div>
+      </div>
+      <div class="w-full border-t border-outline-variant/20">
+        <div
+          class="max-w-container-max mx-auto px-gutter pt-2 flex flex-col md:flex-row justify-between items-center gap-4 text-center"
+        >
+          <p class="text-on-surface-variant text-[12px] mb-0 leading-[1.1]">
+            © 2024 Intertiempo - Banco del Tiempo de Rivas | Hacemos barrio
+          </p>
+          <div class="footer-legal-links flex gap-6 text-[12px]">
+            <a class="text-on-surface-variant hover:underline" href="#"
+              >Aviso legal</a
+            ><a class="text-on-surface-variant hover:underline" href="#"
+              >Privacidad</a
+            ><a class="text-on-surface-variant hover:underline" href="#"
+              >Cookies</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      ;(function () {
+        var toggle = document.getElementById("menu-toggle")
+        var menu = document.getElementById("mobile-menu")
+        var icon = document.getElementById("menu-icon")
+        if (toggle && menu && icon) {
+          toggle.addEventListener("click", function () {
+            var open = menu.classList.toggle("hidden") === false
+            icon.textContent = open ? "close" : "menu"
+            toggle.setAttribute("aria-expanded", open ? "true" : "false")
+            toggle.setAttribute(
+              "aria-label",
+              open ? "Cerrar menú" : "Abrir menú",
+            )
+          })
+
+          menu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              menu.classList.add("hidden")
+              icon.textContent = "menu"
+              toggle.setAttribute("aria-expanded", "false")
+              toggle.setAttribute("aria-label", "Abrir menú")
+            })
+          })
+        }
+
+        document
+          .querySelectorAll(".nav-dropdown__toggle")
+          .forEach(function (button) {
+            button.addEventListener("click", function (event) {
+              event.stopPropagation()
+              var item = button.closest(".nav-dropdown")
+              var open = item.classList.toggle("is-open")
+              button.setAttribute("aria-expanded", open ? "true" : "false")
+              document
+                .querySelectorAll(".nav-dropdown.is-open")
+                .forEach(function (other) {
+                  if (other === item) return
+                  other.classList.remove("is-open")
+                  var otherButton = other.querySelector(".nav-dropdown__toggle")
+                  if (otherButton)
+                    otherButton.setAttribute("aria-expanded", "false")
+                })
+            })
+          })
+
+        document.addEventListener("click", function () {
+          document
+            .querySelectorAll(".nav-dropdown.is-open")
+            .forEach(function (item) {
+              item.classList.remove("is-open")
+              var button = item.querySelector(".nav-dropdown__toggle")
+              if (button) button.setAttribute("aria-expanded", "false")
+            })
+        })
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key !== "Escape") return
+          document
+            .querySelectorAll(".nav-dropdown.is-open")
+            .forEach(function (item) {
+              item.classList.remove("is-open")
+              var button = item.querySelector(".nav-dropdown__toggle")
+              if (button) button.setAttribute("aria-expanded", "false")
+            })
+        })
+      })()
+    </script>
+  </body>
+</html>

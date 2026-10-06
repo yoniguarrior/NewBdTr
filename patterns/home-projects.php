@@ -8,7 +8,6 @@
  * @package NewBdTr
  */
 
-$proyectos = esc_url(newbdtr_page_url('proyectos'));
 $lanas = newbdtr_img('teConLanas_up.png');
 $lee = newbdtr_img('rivasLee_up.png');
 $almohadas = newbdtr_img('almohadasDeCorazon_up.png');
@@ -44,7 +43,7 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
 						<!-- wp:button {"className":"newbdtr-project__btn"} -->
-						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo $proyectos; ?>">Más info</a></div>
+						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url(newbdtr_project_url('te-con-lanas')); ?>">Más info</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->
@@ -66,7 +65,7 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
 						<!-- wp:button {"className":"newbdtr-project__btn"} -->
-						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo $proyectos; ?>">Más info</a></div>
+						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url(newbdtr_project_url('rivas-lee')); ?>">Más info</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->
@@ -92,7 +91,7 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
 						<!-- wp:button {"className":"newbdtr-project__btn"} -->
-						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo $proyectos; ?>">Más info</a></div>
+						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url(newbdtr_project_url('almohadas-de-corazon')); ?>">Más info</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->
@@ -114,7 +113,7 @@ $huerto = newbdtr_img('huertoVecinal_up.png');
 					<!-- wp:buttons -->
 					<div class="wp-block-buttons">
 						<!-- wp:button {"className":"newbdtr-project__btn"} -->
-						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo $proyectos; ?>">Más info</a></div>
+						<div class="wp-block-button newbdtr-project__btn"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url(newbdtr_project_url('huerto-vecinal')); ?>">Más info</a></div>
 						<!-- /wp:button -->
 					</div>
 					<!-- /wp:buttons -->

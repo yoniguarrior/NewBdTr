@@ -16,12 +16,10 @@ $activities = newbdtr_get_recent_activity();
 ?>
 <!-- wp:group {"align":"full","backgroundColor":"surface-container-low","className":"newbdtr-section newbdtr-activity-section my-0 py-8 px-4 sm:py-section-padding sm:px-gutter","layout":{"type":"constrained","contentSize":"1280px"}} -->
 <div class="wp-block-group alignfull newbdtr-section newbdtr-activity-section has-surface-container-low-background-color has-background my-0 py-8 px-4 sm:py-section-padding sm:px-gutter">
-	<!-- wp:columns {"align":"wide","className":"newbdtr-activity"} -->
-	<div class="wp-block-columns alignwide newbdtr-activity">
-		<!-- wp:column {"className":"basis-2/3","style":{"spacing":{"blockGap":"1.5rem"}}} -->
-		<div class="wp-block-column basis-2/3">
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
-			<div class="wp-block-group">
+	<!-- wp:group {"align":"wide","className":"newbdtr-activity","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide newbdtr-activity">
+			<!-- wp:group {"className":"newbdtr-activity__heading","style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
+			<div class="wp-block-group newbdtr-activity__heading">
 				<!-- wp:heading {"level":2} -->
 				<h2 class="wp-block-heading">Logros</h2>
 				<!-- /wp:heading -->
@@ -47,8 +45,8 @@ $activities = newbdtr_get_recent_activity();
 					<!-- /wp:column -->
 					<!-- wp:column -->
 					<div class="wp-block-column">
-						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3} -->
-						<h3 class="wp-block-heading has-text-align-center newbdtr__stat-value"><?php echo esc_html($facts['users']); ?></h3>
+						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3,"textColor":"rose"} -->
+						<h3 class="wp-block-heading has-text-align-center has-rose-color has-text-color newbdtr__stat-value"><?php echo esc_html($facts['users']); ?></h3>
 						<!-- /wp:heading -->
 						<!-- wp:paragraph {"align":"center","className":"newbdtr__stat-label"} -->
 						<p class="has-text-align-center newbdtr__stat-label"><?php echo esc_html('Usuarios'); ?></p>
@@ -57,8 +55,8 @@ $activities = newbdtr_get_recent_activity();
 					<!-- /wp:column -->
 					<!-- wp:column -->
 					<div class="wp-block-column">
-						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3} -->
-						<h3 class="wp-block-heading has-text-align-center newbdtr__stat-value"><?php echo esc_html($facts['exchanges']); ?></h3>
+						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3,"textColor":"secondary"} -->
+						<h3 class="wp-block-heading has-text-align-center has-secondary-color has-text-color newbdtr__stat-value"><?php echo esc_html($facts['exchanges']); ?></h3>
 						<!-- /wp:heading -->
 						<!-- wp:paragraph {"align":"center","className":"newbdtr__stat-label"} -->
 						<p class="has-text-align-center newbdtr__stat-label"><?php echo esc_html('Intercambios'); ?></p>
@@ -67,8 +65,8 @@ $activities = newbdtr_get_recent_activity();
 					<!-- /wp:column -->
 					<!-- wp:column -->
 					<div class="wp-block-column">
-						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3,"textColor":"secondary"} -->
-						<h3 class="wp-block-heading has-text-align-center has-secondary-color has-text-color newbdtr__stat-value"><?php echo esc_html($facts['hours']); ?></h3>
+						<!-- wp:heading {"className":"newbdtr__stat-value","textAlign":"center","level":3,"textColor":"teal"} -->
+						<h3 class="wp-block-heading has-text-align-center has-teal-color has-text-color newbdtr__stat-value"><?php echo esc_html($facts['hours']); ?></h3>
 						<!-- /wp:heading -->
 						<!-- wp:paragraph {"align":"center","className":"newbdtr__stat-label"} -->
 						<p class="has-text-align-center newbdtr__stat-label"><?php echo esc_html('Horas'); ?></p>
@@ -89,13 +87,8 @@ $activities = newbdtr_get_recent_activity();
 				<!-- /wp:columns -->
 			</div></div>
 			<!-- /wp:cover -->
-		</div>
-		<!-- /wp:column -->
-
-		<!-- wp:column {"className":"basis-1/3","style":{"spacing":{"blockGap":"1.5rem"}}} -->
-		<div class="wp-block-column basis-1/3">
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
-			<div class="wp-block-group">
+			<!-- wp:group {"className":"newbdtr-activity__heading newbdtr-activity__heading--feed","style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
+			<div class="wp-block-group newbdtr-activity__heading newbdtr-activity__heading--feed">
 				<!-- wp:heading {"level":2} -->
 				<h2 class="wp-block-heading">Actividad reciente</h2>
 				<!-- /wp:heading -->
@@ -132,9 +125,7 @@ $activities = newbdtr_get_recent_activity();
 				<!-- /wp:buttons -->
 			</div>
 			<!-- /wp:group -->
-		</div>
-		<!-- /wp:column -->
 	</div>
-	<!-- /wp:columns -->
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->

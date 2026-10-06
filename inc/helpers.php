@@ -32,6 +32,21 @@ function newbdtr_page_url($slug)
 }
 
 /**
+ * Permalink for a project by slug, or /proyectos/{slug}/ if it is missing.
+ *
+ * @param string $slug Project slug.
+ * @return string
+ */
+function newbdtr_project_url($slug)
+{
+  $project = get_page_by_path($slug, OBJECT, 'project');
+  if ($project) {
+    return get_permalink($project);
+  }
+  return home_url('/proyectos/' . $slug . '/');
+}
+
+/**
  * Path only, no trailing slash. Home is ''.
  *
  * @param string $url Absolute or relative URL.

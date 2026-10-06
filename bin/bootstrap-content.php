@@ -95,8 +95,8 @@ $pages = array(
   ),
   'contacto' => array(
     'Contacto',
-    '<!-- wp:paragraph --><p>Escríbenos a <a href="mailto:info@bancodeltiemporivas.org">info@bancodeltiemporivas.org</a> o llama al <a href="https://wa.me/34649732486">649 73 24 86</a>.</p><!-- /wp:paragraph -->',
     '',
+    'page-contacto',
   ),
   'blog' => array('Blog', '', ''),
   'noticias' => array(

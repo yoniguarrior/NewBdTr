@@ -1,0 +1,1418 @@
+<!doctype html>
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Intertiempo - Banco del Tiempo de Rivas</title>
+    <!-- BEGIN: Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- END: Fonts & Icons -->
+    <!-- BEGIN: Tailwind Configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #440050;
+        --color-on-primary: #ffffff;
+        --color-primary-container: #660476;
+        --color-on-primary-container: #e07fea;
+        --color-secondary: #a14000;
+        --color-on-secondary: #ffffff;
+        --color-tertiary: #192900;
+        --color-on-tertiary: #ffffff;
+        --color-tertiary-container: #294100;
+        --color-on-tertiary-container: #7ab500;
+        --color-tertiary-fixed: #b2f746;
+        --color-on-tertiary-fixed: #121f00;
+        --color-rose: #8b2e5c;
+        --color-teal: #0f5c66;
+        --color-background: #fcf9f8;
+        --color-on-background: #1b1b1b;
+        --color-surface: #fcf9f8;
+        --color-surface-dim: #dcd9d9;
+        --color-surface-container-low: #f6f3f2;
+        --color-surface-container-lowest: #ffffff;
+        --color-surface-container-high: #eae7e7;
+        --color-on-surface: #1b1b1b;
+        --color-on-surface-variant: #50434f;
+        --color-outline-variant: #d3c1d0;
+        --font-sans: "Plus Jakarta Sans", sans-serif;
+        --font-display: "Montserrat", sans-serif;
+        --radius: 0.25rem;
+        --radius-full: 9999px;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+        --radius-card: 1.125rem;
+        --radius-btn: 1.25rem;
+        --spacing-stack-sm: 0.5rem;
+        --spacing-stack-md: 1.5rem;
+        --spacing-stack-lg: 2.5rem;
+        --spacing-gutter: 1.5rem;
+        --spacing-section-padding: 3rem;
+        --spacing-margin-mobile: 1rem;
+        --spacing-container-max: 1280px;
+        --breakpoint-mxs: 83rem;
+      }
+      @layer base {
+        p {
+          margin-bottom: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+    </style>
+    <!-- END: Tailwind Configuration -->
+    <!-- BEGIN: Custom Styles -->
+    <style data-purpose="layout-effects">
+      :root {
+        --preset--font-size--x-small: 0.75rem;
+        --preset--font-size--small: clamp(0.825rem, 0.825rem + ((1vw - 0.2rem) * 0.167), 0.925rem);
+        --preset--font-size--medium: clamp(0.925rem, 0.925rem + ((1vw - 0.2rem) * 0.25), 1.075rem );
+        --preset--font-size--large: clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.5), 1.4rem );
+        --preset--font-size--x-large: clamp(1.25rem, 1.25rem + ((1vw - 0.2rem) * 0.835), 1.75rem );
+        --preset--font-size--2x-large: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 0.835), 2.25rem );
+        --preset--font-size--3x-large: clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.667), 3rem );
+        --preset--font-size--4x-large: clamp(2.25rem, 2.25rem + ((1vw - 0.2rem) * 2.5), 3.75rem );
+        --preset--line-height--x-small: 1.125;
+        --preset--line-height--small: 1.25;
+        --preset--line-height--base: 1.5;
+      }
+      @media (min-width: 48rem) { /* 768px */
+        :root {
+          --preset--line-height--x-small: 1.1;
+          --preset--line-height--small: 1.2;
+          --preset--line-height--base: 1.4;
+        }
+      }
+      body {
+        font-size: var(--preset--font-size--medium);
+        line-height: var(--preset--line-height--base);
+      }
+      body h1 {
+        font-size: var(--preset--font-size--3x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h1.hero-title {
+        font-size: var(--preset--font-size--4x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h2 {
+        font-size: var(--preset--font-size--2x-large);
+        line-height: var(--preset--line-height--x-small);
+      }
+      body h3 {
+        font-size: var(--preset--font-size--x-large);
+        line-height: var(--preset--line-height--small);
+      }
+      body h4 {
+        font-size: var(--preset--font-size--large);
+        line-height: var(--preset--line-height--small);
+      }
+      .active-nav {
+        color: #a14000 !important; /* secondary */
+        font-weight: 700;
+        border-bottom: 2px solid #a14000; /* secondary */
+        border-top: 2px solid transparent; /* secondary */
+      }
+      .glass-nav {
+        background: rgba(252, 249, 248, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      .hover-lift {
+        transition:
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px -10px rgba(68, 0, 80, 0.15);
+      }
+      .step-path {
+        background-image: radial-gradient(circle, #d3c1d0 1px, transparent 1px);
+        background-size: 8px 8px;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.5rem;
+      }
+      .animate-bounce-slow {
+        animation: bounce 3s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translate(-50%, -60%);
+        }
+        50% {
+          transform: translate(-50%, -40%);
+        }
+      }
+      .material-symbols-outlined {
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .rounded-full > .material-symbols-outlined {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+      }
+      @media (min-width: 768px) {
+        footer .md\:grid-cols-3 {
+          grid-template-columns: minmax(10rem, 16rem) minmax(17rem, 1fr) 16rem;
+        }
+      }
+      .activity-stats {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: stretch;
+      }
+      .activity-stats .stat {
+        position: relative;
+        padding: 0 0.75rem;
+        text-align: center;
+      }
+      .activity-stats .stat p {
+        margin-bottom: 0;
+        line-height: 1.2;
+      }
+      .activity-stats .stat-value {
+        font-size: var(--preset--font-size--x-large);
+      }
+      .activity-stats .stat p:last-child {
+        font-size: var(--preset--font-size--small);
+        letter-spacing: 0.05em;
+      }
+      .activity-stats .stat:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 1px;
+        background: color-mix(in srgb, #1b1b1b 30%, transparent);
+      }
+      .activity-feed p {
+        margin-bottom: 0;
+      }
+      @media (width < 28rem) {
+        .footer-copy-sep {
+          display: none;
+        }
+      }
+      @media (max-width: 782px) {
+        .activity-stats {
+          padding: 1rem;
+        }
+      }
+      @media (max-width: 720px) {
+        .activity-stats {
+          flex-wrap: wrap;
+          justify-content: center;
+          row-gap: 1rem;
+        }
+        .activity-stats .stat {
+          flex: 1 1 45%;
+          max-width: 50%;
+          padding: 0 0.5rem;
+        }
+        .activity-stats .stat:nth-child(2n)::after {
+          content: none;
+        }
+      }
+      @media (max-width: 460px) {
+        .footer-legal-links {
+          width: 100%;
+          justify-content: space-between;
+          gap: 0.5rem;
+        }
+      }
+      /* Below the WordPress mobile breakpoint, section padding stays 1rem.
+         Tailwind sm:px-gutter (1.5rem from 640px) does not match the live page. */
+      @media (max-width: 781px) {
+        main > section,
+        header > nav {
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+        main > section.hero {
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+        }
+      }
+      .hero-veil {
+        background: linear-gradient(
+          45deg,
+          #fcf9f8 0%,
+          rgba(252, 249, 248, 0.6) 50%,
+          transparent 100%
+        );
+      }
+      .project-veil {
+        background: linear-gradient(45deg, #000, transparent);
+      }
+      .hero-title {
+        line-height: 1.125;
+      }
+      @media (min-width: 768px) {
+        .hero-title {
+          line-height: 1.1;
+        }
+      }
+      .hero-stats {
+        margin-left: 0;
+      }
+      .hero-stats > div {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      .hero-stats > div > p:first-child {
+        font-size: var(--preset--font-size--x-large);
+        margin-bottom: 0;
+        line-height: 1.2;
+      }
+      .hero-stats > div > p:last-child {
+        font-size: var(--preset--font-size--small);
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+      }
+      .nav-dropdown {
+        position: relative;
+      }
+      .nav-dropdown__toggle {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+      .nav-dropdown__chevron {
+        font-size: 18px;
+        transition: transform 0.2s ease;
+      }
+      .nav-dropdown.is-open .nav-dropdown__chevron {
+        transform: rotate(180deg);
+      }
+      .nav-dropdown__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 60;
+        min-width: 12.5rem;
+        padding: 0.75rem 0 0;
+      }
+      .nav-dropdown__menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0.75rem;
+      }
+      .nav-dropdown__panel {
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem;
+        background: rgba(252, 249, 248, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid color-mix(in srgb, #d3c1d0 45%, transparent);
+        border-radius: 0.75rem;
+        box-shadow: 0 12px 24px -10px rgba(68, 0, 80, 0.18);
+      }
+      .nav-dropdown__menu a {
+        color: #50434f;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+      .nav-dropdown__menu a:hover {
+        color: #440050;
+        background: color-mix(in srgb, #440050 6%, transparent);
+      }
+      @media (min-width: 1024px) {
+        .nav-dropdown {
+          display: flex;
+          align-items: center;
+        }
+        .nav-dropdown__toggle {
+          appearance: none;
+          line-height: 1.25rem;
+        }
+        .nav-dropdown:hover .nav-dropdown__menu,
+        .nav-dropdown:focus-within .nav-dropdown__menu,
+        .nav-dropdown.is-open .nav-dropdown__menu {
+          display: block;
+        }
+      }
+      #mobile-menu .nav-dropdown__menu {
+        position: static;
+        min-width: 0;
+        padding: 0 0 0.25rem 0.75rem;
+      }
+      #mobile-menu .nav-dropdown__menu::before {
+        display: none;
+      }
+      #mobile-menu .nav-dropdown__panel {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+      #mobile-menu .nav-dropdown.is-open .nav-dropdown__menu {
+        display: block;
+      }
+    </style>
+    <!-- END: Custom Styles -->
+  </head>
+  <body class="bg-background text-on-background font-sans">
+    <!-- BEGIN: TopNavBar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-outline-variant/30 shadow-xs"
+    >
+      <nav
+        class="max-w-container-max mx-auto px-4 sm:px-gutter h-18 flex justify-between items-center gap-2"
+      >
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-2">
+            <img
+              alt="Intertiempo Logo"
+              class="h-8 lg:h-9 xl:h-10 object-contain"
+              src="wp-content\uploads\2026\09\logo_BdT.png"
+            />
+            <span class="font-display text-lg lg:text-xl xl:text-2xl font-bold text-primary"
+              >Intertiempo</span
+            >
+          </div>
+          <div class="hidden lg:flex items-center gap-6">
+            <a class="active-nav text-on-surface-variant hover:text-secondary transition-colors text-sm" href="#">Inicio</a
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Cómo funciona</a
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Comunidad</a
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Proyectos</a
+            ><div class="nav-dropdown">
+              <button
+                type="button"
+                class="nav-dropdown__toggle text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm inline-flex items-center gap-0.5"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                Noticias y Eventos
+                <span class="material-symbols-outlined nav-dropdown__chevron" aria-hidden="true">expand_more</span>
+              </button>
+              <div class="nav-dropdown__menu">
+                <div class="nav-dropdown__panel">
+                  <a href="#">Noticias</a>
+                  <a href="#">Eventos</a>
+                  <a href="#">Fotos</a>
+                  <a href="#">BdT Escolar</a>
+                  <a href="#">Blog</a>
+                </div>
+              </div>
+            </div
+            ><a
+              class="text-on-surface-variant hover:text-secondary hover:font-bold transition-colors text-sm"
+              href="#"
+              >Contacto</a
+            >
+          </div>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button
+            class="hidden sm:block text-primary font-semibold text-sm px-4 py-2 rounded-btn hover:bg-primary/5 hover:scale-95 active:scale-90 transition-all"
+          >
+            Entrar
+          </button>
+          <button
+            class="bg-primary text-on-primary font-semibold text-sm px-4 py-2 rounded-btn shadow-md hover:scale-95 active:scale-90 transition-transform"
+          >
+            Unirse
+          </button>
+          <button
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+            class="lg:hidden inline-flex items-center justify-center w-11 h-11 text-primary rounded-btn hover:bg-primary/5 transition-colors"
+            id="menu-toggle"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[28px]" id="menu-icon"
+              >menu</span
+            >
+          </button>
+        </div>
+      </nav>
+      <div
+        class="hidden md:hidden border-t border-outline-variant/20"
+        id="mobile-menu"
+      >
+        <div
+          class="max-w-container-max mx-auto px-gutter py-stack-md flex flex-col gap-1"
+        >
+          <a class="active-nav text-sm py-3" href="#">Inicio</a>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Cómo funciona</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Comunidad</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Proyectos</a
+          >
+          <div class="nav-dropdown">
+            <button
+              type="button"
+              class="nav-dropdown__toggle text-on-surface-variant hover:text-primary transition-colors text-sm py-3 inline-flex items-center gap-0.5"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              Noticias y Eventos
+              <span class="material-symbols-outlined nav-dropdown__chevron" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="nav-dropdown__menu">
+              <div class="nav-dropdown__panel">
+                <a class="py-2" href="#">Noticias</a>
+                <a class="py-2" href="#">Eventos</a>
+                <a class="py-2" href="#">Fotos</a>
+                <a class="py-2" href="#">BdT Escolar</a>
+                <a class="py-2" href="#">Blog</a>
+              </div>
+            </div>
+          </div>
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-sm py-3"
+            href="#"
+            >Contacto</a
+          >
+          <button
+            class="sm:hidden mt-2 w-full text-primary font-semibold text-sm px-6 py-3 rounded-btn hover:bg-primary/5 transition-all border border-outline-variant/30"
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- END: TopNavBar -->
+    <main class="pt-18">
+      <!-- BEGIN: Hero Section -->
+      <section
+        class="hero relative min-h-[85vh] flex items-center overflow-hidden py-8 px-4 sm:py-section-padding sm:px-gutter"
+      >
+        <div class="absolute inset-0 z-0">
+          <img
+            alt="Community members smiling"
+            class="w-full h-full object-cover"
+            src="wp-content\uploads\2026\09\fondo6_up.png"
+          />
+          <!-- Background gradient veil for readability -->
+          <div
+            class="hero-veil absolute inset-0"
+          ></div>
+        </div>
+        <div
+          class="relative z-10 max-w-container-max mx-auto w-full"
+        >
+          <div class="space-y-8 max-w-[720px]">
+            <div
+              class="inline-flex items-center gap-2 max-w-full px-4 py-2 rounded-full glass-card border border-white/50"
+            >
+              <span class="material-symbols-outlined text-[1.5rem] md:text-[2rem] text-primary shrink-0"
+                >group</span
+              >
+              <span class="text-base sm:text-lg md:text-xl font-semibold text-primary whitespace-nowrap"
+                >441 personas conectadas ahora</span
+              >
+            </div>
+            <h1
+              class="hero-title font-display text-primary font-bold max-w-155"
+            >
+              ¿Qué puedes <span class="text-secondary">intercambiar</span> hoy?
+            </h1>
+            <p class="text-on-surface max-w-md">
+              Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos
+              vida. La red social que construye barrio.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button
+                class="bg-primary text-on-primary font-bold text-sm px-8 py-4 rounded-btn shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2"
+              >
+                Únete gratis
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+              <button
+                class="glass-card text-on-surface font-bold text-sm px-8 py-4 rounded-btn border border-outline-variant hover:bg-white transition-all"
+              >
+                Descubre cómo funciona
+              </button>
+            </div>
+            <!-- Stats Pill -->
+            <div
+              class="hero-stats flex flex-nowrap items-start gap-4 sm:gap-6 md:gap-8 pt-8 border-t border-outline-variant/30"
+            >
+              <div class="text-center">
+                <p class="font-display font-bold text-primary">
+                  4.781
+                </p>
+                <p
+                  class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                >
+                  Intercambios
+                </p>
+              </div>
+              <div class="text-center">
+                <p class="font-display font-bold text-secondary">
+                  +15.000
+                </p>
+                <p
+                  class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                >
+                  Horas compartidas
+                </p>
+              </div>
+              <div class="text-center">
+                <p class="font-display font-bold text-tertiary">13</p>
+                <p
+                  class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                >
+                  Proyectos
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Hero Section -->
+      <!-- BEGIN: School Banner Section -->
+      <section class="bg-tertiary-container p-4 sm:p-gutter">
+        <div
+          class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
+        >
+          <div class="flex items-center gap-4 sm:gap-6 min-w-0">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 overflow-hidden bg-white p-2 rounded-xl">
+              <img
+                alt="BdT Escolar"
+                class="w-full h-full object-contain"
+                src="/wp-content/uploads/2026/09/logo_BdT_escolar.png"
+              />
+            </div>
+            <div class="min-w-0">
+              <h2
+                class="font-display font-bold text-on-tertiary-container"
+              >
+                Banco del Tiempo Escolar
+              </h2>
+              <p class="text-tertiary-fixed/80 max-w-lg">
+                Fomentando la solidaridad y el intercambio desde las aulas de
+                Rivas. ¡Los más jóvenes también hacen barrio!
+              </p>
+            </div>
+          </div>
+          <button
+            class="w-full sm:w-auto bg-tertiary-fixed text-on-tertiary-fixed font-bold text-sm px-8 py-4 rounded-btn hover:scale-105 transition-transform shadow-lg"
+          >
+            Ver proyectos escolares
+          </button>
+        </div>
+      </section>
+      <!-- END: School Banner Section -->
+      <!-- BEGIN: Popular Services -->
+      <section class="py-8 px-4 sm:py-section-padding sm:px-gutter bg-surface-container-low">
+        <div class="max-w-container-max mx-auto">
+          <div class="flex flex-wrap justify-between items-end gap-4 mb-stack-md">
+            <div>
+              <h2 class="font-display font-bold text-primary mb-1">
+                Servicios populares
+              </h2>
+              <p class="text-on-surface-variant">
+                Lo que más se está moviendo esta semana en la comunidad
+              </p>
+            </div>
+            <a
+              class="text-secondary font-bold text-sm flex items-center gap-1 hover:underline"
+              href="#"
+            >
+              Ver todos
+              <span class="material-symbols-outlined text-[18px]"
+                >open_in_new</span
+              >
+            </a>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter"
+          >
+            <!-- Card 1: Inglés -->
+            <div
+              class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift group"
+            >
+              <div class="relative h-48">
+                <img
+                  alt="Clases de Inglés"
+                  class="w-full h-full object-cover"
+                  src="wp-content\uploads\2026\10\clases_up.png"
+                />
+                <span
+                  class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase"
+                  >Idiomas</span
+                >
+              </div>
+              <div class="px-6 py-4">
+                <h5 class="font-display font-bold text-primary">
+                  Inglés
+                </h5>
+              </div>
+            </div>
+            <!-- Card 2: Bricolaje -->
+            <div
+              class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift"
+            >
+              <div class="relative h-48">
+                <img
+                  alt="Furniture assembly"
+                  class="w-full h-full object-cover"
+                  src="wp-content\uploads\2026\09\montar_muebles.jpeg"
+                />
+                <span
+                  class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-secondary uppercase"
+                  >Reparaciones domésticas</span
+                >
+              </div>
+              <div class="px-6 py-4">
+                <h5 class="font-display font-bold text-primary">
+                  Bricolaje
+                </h5>
+              </div>
+            </div>
+            <!-- Card 3: Manejar internet -->
+            <div
+              class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift"
+            >
+              <div class="relative h-48">
+                <img
+                  alt="Tech help"
+                  class="w-full h-full object-cover"
+                  src="wp-content\uploads\2026\09\moviles.png"
+                />
+                <span
+                  class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-tertiary-container uppercase"
+                  >Informática</span
+                >
+              </div>
+              <div class="px-6 py-4">
+                <h5 class="font-display font-bold text-primary">
+                  Manejar internet
+                </h5>
+              </div>
+            </div>
+            <!-- Card 4: Atención animales -->
+            <div
+              class="bg-surface-container-lowest rounded-card overflow-hidden border border-outline-variant/30 hover-lift"
+            >
+              <div class="relative h-48">
+                <img
+                  alt="Dog walking"
+                  class="w-full h-full object-cover"
+                  src="wp-content\uploads\2026\10\mascotas_en.jpeg"
+                />
+                <span
+                  class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase"
+                  >Atención a animales</span
+                >
+              </div>
+              <div class="px-6 py-4">
+                <h5 class="font-display font-bold text-primary">
+                  Cuidado animales
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Popular Services -->
+      <!-- BEGIN: How it Works -->
+      <section
+        class="py-8 px-4 sm:py-section-padding sm:px-gutter overflow-hidden relative bg-white"
+      >
+        <div class="max-w-container-max mx-auto relative z-10">
+          <div class="text-center mb-stack-md">
+            <h2 class="font-display font-bold text-primary mb-1">
+              ¿Cómo funciona?
+            </h2>
+            <p class="text-on-surface-variant">
+              Intercambiar es tan fácil como estos 4 pasos
+            </p>
+          </div>
+          <div
+            class="relative flex flex-col md:flex-row justify-between gap-8 md:gap-4 py-8"
+          >
+            <!-- Timeline Path -->
+            <div
+              class="absolute left-8 top-0 bottom-0 w-0.5 step-path md:hidden"
+            ></div>
+            <div
+              class="absolute top-1/2 left-0 right-0 h-0.5 step-path hidden md:block -translate-y-1/2 mx-16"
+            ></div>
+            <!-- Steps -->
+            <div
+              class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white group-hover:scale-110 transition-transform"
+              >
+                1
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-primary">
+                  Regístrate
+                </h4>
+                <p class="text-on-surface-variant text-sm max-w-[200px]">
+                  Crea tu perfil y define qué sabes hacer y qué necesitas.
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white group-hover:scale-110 transition-transform"
+              >
+                2
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-secondary">
+                  Ofrece / Busca
+                </h4>
+                <p class="text-on-surface-variant text-sm max-w-[200px]">
+                  Publica tus servicios o busca lo que otros vecinos ofrecen.
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white group-hover:scale-110 transition-transform"
+              >
+                3
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-tertiary">
+                  Conecta
+                </h4>
+                <p class="text-on-surface-variant text-sm max-w-[200px]">
+                  Chatea con el vecino y acordad el momento para el intercambio.
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative z-10 flex md:flex-col items-start md:items-center text-left md:text-center gap-6 md:gap-4 group"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xl shadow-lg ring-8 ring-white group-hover:scale-110 transition-transform"
+              >
+                4
+              </div>
+              <div>
+                <h4
+                  class="font-display font-bold text-primary-container"
+                >
+                  Intercambia
+                </h4>
+                <p class="text-on-surface-variant text-sm max-w-[200px]">
+                  Realiza el servicio y suma (o resta) horas en tu cuenta de
+                  tiempo.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center mt-stack-lg">
+            <button
+              class="bg-primary text-on-primary font-bold text-sm px-10 py-4 rounded-btn shadow-xl hover:scale-105 transition-transform"
+            >
+              Empezar ahora
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- END: How it Works -->
+      <!-- BEGIN: Projects Bento Grid -->
+      <section class="py-8 px-4 sm:py-section-padding sm:px-gutter bg-surface">
+        <div class="max-w-container-max mx-auto">
+          <div class="mb-stack-md">
+            <h2 class="font-display font-bold text-primary mb-1">
+              Proyectos que mueven Rivas <span class="text-secondary">♥</span>
+            </h2>
+            <p class="text-on-surface-variant">
+              Descubre todo lo que estamos creando juntos
+            </p>
+          </div>
+          <div class="bento-grid">
+            <!-- Large Item -->
+            <div
+              class="col-span-12 md:col-span-8 h-80 overflow-hidden relative group hover-lift rounded-xl"
+            >
+              <img
+                alt="Knitting group"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="wp-content\uploads\2026\10\teConLanas_up.png"
+              />
+              <div
+                class="project-veil absolute inset-0 flex flex-col justify-end p-6 sm:p-8"
+              >
+                <h3 class="text-white font-display font-bold">
+                  Té con Lanas
+                </h3>
+                <p class="text-white/80">
+                  Tejemos comunidad, un punto a la vez.
+                </p>
+                <a
+                  class="mt-4 w-fit bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-white/30 hover:bg-white hover:text-primary transition-all"
+                  href="#"
+                  >Más info</a
+                >
+              </div>
+            </div>
+            <!-- Smaller Item -->
+            <div
+              class="col-span-12 md:col-span-4 h-80 overflow-hidden relative group hover-lift rounded-xl"
+            >
+              <img
+                alt="Book exchange"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="wp-content\uploads\2026\10\rivasLee_up.png"
+              />
+              <div
+                class="project-veil absolute inset-0 flex flex-col justify-end p-6 sm:p-8"
+              >
+                <h3 class="text-white font-display font-bold">
+                  Rivas Lee
+                </h3>
+                <p class="text-white/80">Libros que viajan por el barrio.</p>
+                <a
+                  class="mt-4 w-fit bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-white/30 hover:bg-white hover:text-primary transition-all"
+                  href="#"
+                  >Más info</a
+                >
+              </div>
+            </div>
+            <!-- Second Row -->
+            <div
+              class="col-span-12 md:col-span-4 h-64 overflow-hidden relative group hover-lift rounded-xl"
+            >
+              <img
+                alt="Heart pillows"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="wp-content\uploads\2026\10\almohadasDeCorazon_up.png"
+              />
+              <div
+                class="project-veil absolute inset-0 flex flex-col justify-end p-6"
+              >
+                <h3 class="text-white font-display font-bold">
+                  Almohadas de Corazón
+                </h3>
+                <p class="text-white/80">
+                  Hechas con amor para quien lo necesita.
+                </p>
+                <a
+                  class="mt-4 w-fit bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-white/30 hover:bg-white hover:text-primary transition-all"
+                  href="#"
+                  >Más info</a
+                >
+              </div>
+            </div>
+            <div
+              class="col-span-12 md:col-span-8 h-64 overflow-hidden relative group hover-lift rounded-xl"
+            >
+              <img
+                alt="Community garden"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="wp-content\uploads\2026\10\huertoVecinal_up.png"
+              />
+              <div
+                class="project-veil absolute inset-0 flex flex-col justify-end p-6 sm:p-8"
+              >
+                <h3 class="text-white font-display font-bold">
+                  Huerto Vecinal
+                </h3>
+                <p class="text-white/80">
+                  Sembrando juntos el futuro de Rivas.
+                </p>
+                <a
+                  class="mt-4 w-fit bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-white/30 hover:bg-white hover:text-primary transition-all"
+                  href="#"
+                  >Más info</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Projects Bento Grid -->
+      <!-- BEGIN: Achievements & Activity -->
+      <section class="py-8 px-4 sm:py-section-padding sm:px-gutter bg-surface-container-low">
+        <div
+          class="max-w-container-max mx-auto grid grid-cols-1 gap-x-gutter gap-y-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:grid-rows-[auto_450px]"
+        >
+          <!-- Achievements Section -->
+          <div class="lg:col-start-1 lg:row-start-1">
+            <h2 class="font-display font-bold text-primary mb-1">
+              Logros
+            </h2>
+            <p class="text-on-surface-variant">Estas son nuestras cifras</p>
+          </div>
+          <div
+            class="h-[450px] overflow-hidden shadow-inner bg-surface-dim relative border border-outline-variant/30 rounded-xl lg:col-start-1 lg:row-start-2 lg:h-full"
+          >
+              <img
+                alt="Comunidad de Intertiempo en Rivas"
+                class="w-full h-full object-cover"
+                src="wp-content\uploads\2026\09\fondo2.png"
+                style="object-position: left center"
+              />
+              <!-- Readability Overlay -->
+              <div
+                class="absolute inset-0 z-10 bg-linear-to-r from-black/80 to-transparent"
+              ></div>
+              <!-- Centered Stats Pill -->
+              <div class="absolute top-1/2 left-4 right-4 sm:left-8 sm:right-auto -translate-y-1/2 z-20">
+                <div
+                  class="activity-stats max-w-full py-4 px-2 xl:py-6 xl:px-4 rounded-card glass-card border border-white/50 shadow-2xl"
+                >
+                  <div class="stat">
+                    <p class="stat-value font-display font-bold text-primary">
+                      21
+                    </p>
+                    <p
+                      class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                    >
+                      Años
+                    </p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-value font-display font-bold text-rose">
+                      441
+                    </p>
+                    <p
+                      class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                    >
+                      Usuarios
+                    </p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-value font-display font-bold text-secondary">
+                      4.781
+                    </p>
+                    <p
+                      class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                    >
+                      Intercambios
+                    </p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-value font-display font-bold text-teal">
+                      +15.000
+                    </p>
+                    <p
+                      class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                    >
+                      Horas
+                    </p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-value font-display font-bold text-tertiary">
+                      13
+                    </p>
+                    <p
+                      class="text-on-surface-variant uppercase tracking-wider font-semibold"
+                    >
+                      Proyectos
+                    </p>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- Activity Feed -->
+          <div class="lg:col-start-2 lg:row-start-1">
+            <h2 class="font-display font-bold text-primary mb-1">
+              Actividad reciente
+            </h2>
+            <p class="text-on-surface-variant">Lo último que está pasando</p>
+          </div>
+          <div
+            class="activity-feed bg-surface-container-lowest p-6 border border-outline-variant/30 flex flex-col lg:col-start-2 lg:row-start-2 lg:h-full lg:min-h-0 overflow-y-auto rounded-xl"
+          >
+              <div class="flex flex-1 gap-4 items-start">
+                <div
+                  class="w-10 h-10 rounded-full bg-surface-container-high shrink-0 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px] leading-none"
+                    >self_improvement</span
+                  >
+                </div>
+                <div>
+                  <p class="text-on-surface text-sm">
+                    <strong>Clases de yoga</strong>
+                  </p>
+                  <p class="text-on-surface-variant text-[12px]">Hace 10 min</p>
+                </div>
+              </div>
+              <div
+                class="flex flex-1 gap-4 items-start border-t border-outline-variant/20 pt-4"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-surface-container-high shrink-0 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px] leading-none"
+                    >smartphone</span
+                  >
+                </div>
+                <div>
+                  <p class="text-on-surface text-sm">
+                    <strong>Manejo de internet</strong>
+                  </p>
+                  <p class="text-on-surface-variant text-[12px]">
+                    Hace 2 horas
+                  </p>
+                </div>
+              </div>
+              <div
+                class="flex flex-1 gap-4 items-start border-t border-outline-variant/20 pt-4"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-surface-container-high shrink-0 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px] leading-none"
+                    >pets</span
+                  >
+                </div>
+                <div>
+                  <p class="text-on-surface text-sm">
+                    <strong>Atención animales</strong>
+                  </p>
+                  <p class="text-on-surface-variant text-[12px]">Hace 1 día</p>
+                </div>
+              </div>
+              <div
+                class="flex flex-1 gap-4 items-start border-t border-outline-variant/20 pt-4"
+              >
+                <div
+                  class="w-10 h-10 rounded-full bg-surface-container-high shrink-0 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px] leading-none"
+                    >music_note</span
+                  >
+                </div>
+                <div>
+                  <p class="text-on-surface text-sm">
+                    <strong>Clases de guitarra</strong>
+                  </p>
+                  <p class="text-on-surface-variant text-[12px]">Hace 2 días</p>
+                </div>
+              </div>
+              <div class="pt-4 mt-auto">
+                <button
+                  class="w-full bg-surface-container-high text-primary font-bold text-sm py-3 rounded-full hover:bg-primary/10 transition-colors"
+                >
+                  Ver toda la actividad
+                </button>
+              </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Achievements & Activity -->
+      <!-- BEGIN: CTA Section -->
+      <section
+        class="py-8 px-4 sm:py-section-padding sm:px-gutter overflow-hidden bg-primary relative"
+      >
+        <!-- Soft blurred orbs -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+          <div
+            class="absolute top-10 right-20 w-64 h-64 bg-white rounded-full blur-[100px]"
+          ></div>
+          <div
+            class="absolute bottom-10 left-20 w-96 h-96 bg-secondary rounded-full blur-[150px]"
+          ></div>
+        </div>
+        <div class="max-w-container-max mx-auto text-center relative z-10">
+          <div
+            class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-secondary text-on-secondary mb-8 shadow-2xl"
+          >
+            <span
+              class="material-symbols-outlined text-[48px]"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >volunteer_activism</span
+            >
+          </div>
+          <h2
+            class="font-display text-white mb-6 font-bold"
+          >
+            Únete a nuestra comunidad
+          </h2>
+          <p class="text-white/80 text-lg mb-stack-lg max-w-2xl mx-auto">
+            Recibe novedades, eventos y mucho más. Ayúdanos a seguir
+            construyendo una red de apoyo mutuo en Rivas Vaciamadrid.
+          </p>
+          <form
+            class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-stack-lg"
+          >
+            <input
+              class="grow bg-white/10 border border-white/20 rounded-btn px-6 py-4 text-white placeholder:text-white/50 focus:outline-hidden focus:ring-2 focus:ring-secondary"
+              placeholder="Tu email"
+              type="email"
+            />
+            <button
+              class="bg-secondary text-on-secondary px-8 py-4 rounded-btn font-bold shadow-lg hover:scale-105 active:scale-95 transition-all"
+            >
+              Suscribirme
+            </button>
+          </form>
+          <div class="flex justify-center gap-6 text-white/60">
+            <a class="hover:text-white transition-colors" href="#"
+              ><span class="material-symbols-outlined text-[32px]">hub</span></a
+            >
+            <a class="hover:text-white transition-colors" href="#"
+              ><span class="material-symbols-outlined text-[32px]"
+                >diversity_3</span
+              ></a
+            >
+            <a class="hover:text-white transition-colors" href="#"
+              ><span class="material-symbols-outlined text-[32px]"
+                >verified</span
+              ></a
+            >
+          </div>
+        </div>
+      </section>
+      <!-- END: CTA Section -->
+    </main>
+    <!-- BEGIN: Footer -->
+    <footer
+      class="bg-surface-container-low border-t border-outline-variant/30 pt-[1.5rem] pb-[0.5rem]"
+    >
+      <div
+        class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-3 gap-gutter mb-6"
+      >
+        <div class="space-y-6">
+          <div class="flex items-center gap-2">
+            <img
+              alt="Intertiempo Logo"
+              class="h-8"
+              src="wp-content\uploads\2026\09\logo_BdT.png"
+            />
+            <span class="font-display text-xl font-bold text-primary"
+              >Intertiempo</span
+            >
+          </div>
+          <p class="text-on-surface-variant text-sm">
+            Intercambiamos tiempo, no dinero. Creamos comunidad, compartimos
+            vida.
+          </p>
+          <div class="flex gap-4">
+            <a
+              class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[20px]">public</span>
+            </a>
+            <a
+              class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >camera_alt</span
+              >
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-row justify-evenly max-[460px]:justify-between">
+          <div class="flex flex-col h-full">
+            <h4
+              class="font-bold text-primary uppercase tracking-widest mt-2 mb-4"
+            >
+              Navegación
+            </h4>
+            <ul class="text-sm text-on-surface-variant flex flex-col justify-between grow">
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Cómo funciona</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Comunidad</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Proyectos</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Noticias</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Eventos</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col h-full">
+            <h4
+              class="font-bold text-primary uppercase tracking-widest mt-2 mb-4"
+            >
+              Recursos
+            </h4>
+            <ul
+              class="text-sm text-on-surface-variant flex flex-col justify-between grow"
+            >
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Preguntas frecuentes</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Guía de uso</a
+                >
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#">Blog</a>
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-surface-container-high p-4 rounded-xl">
+          <h4 class="font-bold text-primary mb-4">¿Necesitas ayuda?</h4>
+          <p class="text-on-surface-variant text-xs mb-4">
+            Contáctanos directamente vía WhatsApp o mail.
+          </p>
+          <a
+            class="flex items-center gap-3 text-secondary font-bold text-sm hover:underline mb-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined">call</span> 649 73 24 86
+          </a>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant text-sm hover:text-primary transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">mail</span>
+            info@bancodeltiempo.org
+          </a>
+        </div>
+      </div>
+      <div class="w-full border-t border-outline-variant/50">
+        <div
+          class="max-w-container-max mx-auto px-gutter pt-2 flex flex-col-reverse md:flex-row justify-between items-center gap-4 text-center"
+        >
+          <p class="text-on-surface-variant text-[12px] mb-0 leading-[1.1]">
+            © 2024 Intertiempo - Banco del Tiempo de Rivas<span class="footer-copy-sep"> |</span> Hacemos&nbsp;barrio
+          </p>
+          <div class="footer-legal-links flex gap-6 text-[12px]">
+            <a class="text-on-surface-variant hover:underline" href="#"
+              >Aviso legal</a
+            ><a class="text-on-surface-variant hover:underline" href="#"
+              >Privacidad</a
+            ><a class="text-on-surface-variant hover:underline" href="#"
+              >Cookies</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END: Footer -->
+    <script>
+      ;(function () {
+        var toggle = document.getElementById("menu-toggle")
+        var menu = document.getElementById("mobile-menu")
+        var icon = document.getElementById("menu-icon")
+        if (!toggle || !menu || !icon) return
+
+        toggle.addEventListener("click", function () {
+          var open = menu.classList.toggle("hidden") === false
+          icon.textContent = open ? "close" : "menu"
+          toggle.setAttribute("aria-expanded", open ? "true" : "false")
+          toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú")
+        })
+
+        menu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            menu.classList.add("hidden")
+            icon.textContent = "menu"
+            toggle.setAttribute("aria-expanded", "false")
+            toggle.setAttribute("aria-label", "Abrir menú")
+          })
+        })
+
+        document.querySelectorAll(".nav-dropdown__toggle").forEach(function (button) {
+          button.addEventListener("click", function (event) {
+            event.stopPropagation()
+            var item = button.closest(".nav-dropdown")
+            var open = item.classList.toggle("is-open")
+            button.setAttribute("aria-expanded", open ? "true" : "false")
+            document.querySelectorAll(".nav-dropdown.is-open").forEach(function (other) {
+              if (other === item) return
+              other.classList.remove("is-open")
+              var otherButton = other.querySelector(".nav-dropdown__toggle")
+              if (otherButton) otherButton.setAttribute("aria-expanded", "false")
+            })
+          })
+        })
+
+        document.addEventListener("click", function () {
+          document.querySelectorAll(".nav-dropdown.is-open").forEach(function (item) {
+            item.classList.remove("is-open")
+            var button = item.querySelector(".nav-dropdown__toggle")
+            if (button) button.setAttribute("aria-expanded", "false")
+          })
+        })
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key !== "Escape") return
+          document.querySelectorAll(".nav-dropdown.is-open").forEach(function (item) {
+            item.classList.remove("is-open")
+            var button = item.querySelector(".nav-dropdown__toggle")
+            if (button) button.setAttribute("aria-expanded", "false")
+          })
+        })
+      })()
+    </script>
+  </body>
+</html>

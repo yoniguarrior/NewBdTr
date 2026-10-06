@@ -27,6 +27,9 @@ $map = array(
     'como-funciona-benefits.php',
     'como-funciona-cta.php',
   ),
+  'contacto' => array(
+    'contacto.php',
+  ),
 );
 
 $intros = array(
@@ -54,6 +57,11 @@ foreach ($map as $slug => $files) {
   if (class_exists('WP_CLI')) {
     WP_CLI::success($slug . ' actualizada (' . strlen($content) . ' bytes).');
   }
+}
+
+$contact = get_page_by_path('contacto');
+if ($contact) {
+  update_post_meta($contact->ID, '_wp_page_template', 'page-contacto');
 }
 
 foreach ($intros as $slug => $content) {

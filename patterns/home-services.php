@@ -3,16 +3,14 @@
  * Title: Servicios populares
  * Slug: newbdtr/home-services
  * Categories: newbdtr
- * Description: Cuatro servicios destacados de la comunidad.
+ * Description: Cuatro servicios más realizados en los últimos 120 días.
  *
  * @package NewBdTr
  */
 
 $comunidad = esc_url(newbdtr_page_url('comunidad'));
-$ingles = newbdtr_img('clases_up.png');
-$bricolaje = newbdtr_img('montar_muebles.jpeg');
-$internet = newbdtr_img('moviles.png');
-$mascotas = newbdtr_img('mascotas_en.jpeg');
+$services = newbdtr_get_popular_services();
+$tag_modifiers = array('primary', 'secondary', 'tertiary');
 ?>
 <!-- wp:group {"align":"full","backgroundColor":"surface-container-low","className":"newbdtr-section newbdtr-services py-8 px-4 sm:py-section-padding sm:px-gutter","style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
 <div class="wp-block-group alignfull newbdtr-section newbdtr-services has-surface-container-low-background-color has-background py-8 px-4 sm:py-section-padding sm:px-gutter">
@@ -24,7 +22,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 			<h2 class="wp-block-heading">Servicios populares</h2>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"textColor":"on-surface-variant"} -->
-			<p class="has-on-surface-variant-color has-text-color">Lo que más se está moviendo esta semana en la comunidad</p>
+			<p class="has-on-surface-variant-color has-text-color">Lo que más se ha intercambiado últimamente</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -37,6 +35,9 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 
 	<!-- wp:columns {"align":"wide","className":"newbdtr-cards"} -->
 	<div class="wp-block-columns alignwide newbdtr-cards">
+		<?php foreach ($services as $index => $service) :
+			$modifier = $tag_modifiers[$index % count($tag_modifiers)];
+		?>
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"newbdtr-card hover-lift","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
@@ -44,17 +45,17 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group newbdtr-card__media">
 					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $ingles; ?>" alt="Clases de inglés" style="object-fit:cover"/></figure>
+					<figure class="wp-block-image size-large"><img src="<?php echo esc_url($service['image']); ?>" alt="<?php echo esc_attr($service['name']); ?>" style="object-fit:cover"/></figure>
 					<!-- /wp:image -->
-					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--primary"} -->
-					<p class="newbdtr-card__tag newbdtr-card__tag--primary">Idiomas</p>
+					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--<?php echo esc_attr($modifier); ?>"} -->
+					<p class="newbdtr-card__tag newbdtr-card__tag--<?php echo esc_attr($modifier); ?>"><?php echo esc_html($service['type']); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
-				<!-- wp:group {"className":"p-6","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group p-6">
-					<!-- wp:heading {"level":3} -->
-					<h3 class="wp-block-heading">Inglés</h3>
+				<!-- wp:group {"className":"px-6 py-4 m-0!","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group px-6 py-4 m-0!">
+					<!-- wp:heading {"level":5} -->
+					<h5 class="wp-block-heading"><?php echo esc_html($service['name']); ?></h5>
 					<!-- /wp:heading -->
 				</div>
 				<!-- /wp:group -->
@@ -62,84 +63,7 @@ $mascotas = newbdtr_img('mascotas_en.jpeg');
 			<!-- /wp:group -->
 		</div>
 		<!-- /wp:column -->
-
-		<!-- wp:column -->
-		<div class="wp-block-column">
-			<!-- wp:group {"className":"newbdtr-card hover-lift","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group newbdtr-card hover-lift">
-				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group newbdtr-card__media">
-					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $bricolaje; ?>" alt="Bricolaje" style="object-fit:cover"/></figure>
-					<!-- /wp:image -->
-					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--secondary"} -->
-					<p class="newbdtr-card__tag newbdtr-card__tag--secondary">Reparaciones domésticas</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
-				<!-- wp:group {"className":"p-6","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group p-6">
-					<!-- wp:heading {"level":3} -->
-					<h3 class="wp-block-heading">Bricolaje</h3>
-					<!-- /wp:heading -->
-				</div>
-				<!-- /wp:group -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:column -->
-
-		<!-- wp:column -->
-		<div class="wp-block-column">
-			<!-- wp:group {"className":"newbdtr-card hover-lift","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group newbdtr-card hover-lift">
-				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group newbdtr-card__media">
-					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $internet; ?>" alt="Manejar internet" style="object-fit:cover"/></figure>
-					<!-- /wp:image -->
-					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--tertiary"} -->
-					<p class="newbdtr-card__tag newbdtr-card__tag--tertiary">Informática</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
-				<!-- wp:group {"className":"p-6","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group p-6">
-					<!-- wp:heading {"level":3} -->
-					<h3 class="wp-block-heading">Manejar internet</h3>
-					<!-- /wp:heading -->
-				</div>
-				<!-- /wp:group -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:column -->
-
-		<!-- wp:column -->
-		<div class="wp-block-column">
-			<!-- wp:group {"className":"newbdtr-card hover-lift","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group newbdtr-card hover-lift">
-				<!-- wp:group {"className":"newbdtr-card__media","style":{"spacing":{"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group newbdtr-card__media">
-					<!-- wp:image {"scale":"cover","sizeSlug":"large"} -->
-					<figure class="wp-block-image size-large"><img src="<?php echo $mascotas; ?>" alt="Cuidado de animales" style="object-fit:cover"/></figure>
-					<!-- /wp:image -->
-					<!-- wp:paragraph {"className":"newbdtr-card__tag newbdtr-card__tag--primary"} -->
-					<p class="newbdtr-card__tag newbdtr-card__tag--primary">Atención a animales</p>
-					<!-- /wp:paragraph -->
-				</div>
-				<!-- /wp:group -->
-				<!-- wp:group {"className":"p-6","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group p-6">
-					<!-- wp:heading {"level":3} -->
-					<h3 class="wp-block-heading">Cuidado animales</h3>
-					<!-- /wp:heading -->
-				</div>
-				<!-- /wp:group -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:column -->
+		<?php endforeach; ?>
 	</div>
 	<!-- /wp:columns -->
 </div>

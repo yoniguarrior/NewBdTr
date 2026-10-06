@@ -14,7 +14,13 @@ require_once get_stylesheet_directory() . '/inc/register-notice.php';
 require_once get_stylesheet_directory() . '/inc/register-event.php';
 require_once get_stylesheet_directory() . '/inc/register-location.php';
 require_once get_stylesheet_directory() . '/inc/register-gallery.php';
+require_once get_stylesheet_directory() . '/inc/register-project.php';
 require_once get_stylesheet_directory() . '/inc/projects-tree.php';
+
+/**
+ * Image used when a popular service has neither a subtype nor a type image.
+ */
+define('NEWBDTR_DEFAULT_SERVICE_IMAGE', newbdtr_img('comunidad.png'));
 
 /**
  * Theme setup.
@@ -138,6 +144,30 @@ function newbdtr_dequeue_conflicting_styles()
   wp_deregister_style('twentytwentyfive-style');
 }
 add_action('wp_enqueue_scripts', 'newbdtr_dequeue_conflicting_styles', 100);
+
+/**
+ * Keep the newsletter fields in one row.
+ *
+ * Contact Form 7 would otherwise wrap them in a paragraph.
+ *
+ * @param bool  $autop   Whether autop runs.
+ * @param array $options Autop context. The form key is "form".
+ * @return bool
+ */
+function newbdtr_cta_form_autop($autop, $options)
+{
+  if (($options['for'] ?? 'form') !== 'form' || !class_exists('WPCF7_ContactForm')) {
+    return $autop;
+  }
+
+  $contact_form = WPCF7_ContactForm::get_current();
+  if ($contact_form && $contact_form->hash() === 'ccb769d') {
+    return false;
+  }
+
+  return $autop;
+}
+add_filter('wpcf7_autop_or_not', 'newbdtr_cta_form_autop', 10, 2);
 
 /**
  * Flush rewrite rules after switching to this theme.
@@ -384,6 +414,128 @@ function newbdtr_elapsed_since($date)
 
   return $days === 1 ? 'Hace 1 día' : sprintf('Hace %d días', $days);
 }
+
+/**
+ * Four service subtypes performed most often in the last 120 days.
+ *
+ * Exchanges of the type "Servicios internos BdT" are left out.
+ *
+ * Image URL falls back from the subtype, to its type, to NEWBDTR_DEFAULT_SERVICE_IMAGE.
+ *
+ * @return array<int, array{name: string, type: string, image: string}>
+ */
+function newbdtr_get_popular_services()
+{
+  global $wpdb;
+
+  $since = (new DateTimeImmutable('today', wp_timezone()))->modify('-120 days')->format('Y-m-d');
+
+  $rows = $wpdb->get_results(
+    $wpdb->prepare(
+      "SELECT s.svc_subtype_name, t.svc_type_name, s.svc_subtype_image_url, t.svc_type_image_url, COUNT(*) AS total
+      FROM {$wpdb->prefix}sbdtpq_svcs_provided p
+      INNER JOIN {$wpdb->prefix}sbdtpq_svc_subtypes s ON s.svc_subtype_id = p.svc_subtype_id
+      LEFT JOIN {$wpdb->prefix}sbdtpq_svc_types t ON t.svc_type_id = s.svc_type_id
+      WHERE p.date_provided >= %s
+        AND p.svc_subtype_id > 0
+        AND s.deleted = 0
+        AND (t.svc_type_name IS NULL OR t.svc_type_name <> %s)
+      GROUP BY s.svc_subtype_id, s.svc_subtype_name, t.svc_type_name, s.svc_subtype_image_url, t.svc_type_image_url
+      ORDER BY total DESC, s.svc_subtype_name ASC
+      LIMIT 4",
+      $since,
+      'Servicios internos BdT'
+    )
+  );
+
+  if (!is_array($rows)) {
+    return array();
+  }
+
+  $services = array();
+  foreach ($rows as $row) {
+    $name = trim((string) $row->svc_subtype_name);
+    if ($name === '') {
+      continue;
+    }
+
+    $subtype_image = trim((string) $row->svc_subtype_image_url);
+    $type_image = trim((string) $row->svc_type_image_url);
+    if ($subtype_image !== '') {
+      $image = $subtype_image;
+    } elseif ($type_image !== '') {
+      $image = $type_image;
+    } else {
+      $image = NEWBDTR_DEFAULT_SERVICE_IMAGE;
+    }
+
+    $services[] = array(
+      'name' => $name,
+      'type' => trim((string) $row->svc_type_name),
+      'image' => $image,
+    );
+  }
+
+  return $services;
+}
+
+/**
+ * Column markup for the popular services cards.
+ *
+ * @return string
+ */
+function newbdtr_popular_services_cards_html()
+{
+  $modifiers = array('primary', 'secondary', 'tertiary');
+  $html = '';
+
+  foreach (newbdtr_get_popular_services() as $index => $service) {
+    $modifier = $modifiers[$index % count($modifiers)];
+    $html .= sprintf(
+      '<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><div class="wp-block-group newbdtr-card hover-lift is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-group newbdtr-card__media is-layout-constrained wp-block-group-is-layout-constrained"><figure class="wp-block-image size-large"><img src="%s" alt="%s" style="object-fit:cover"/></figure><p class="newbdtr-card__tag newbdtr-card__tag--%s">%s</p></div><div class="wp-block-group px-6 py-4 m-0! is-layout-constrained wp-block-group-is-layout-constrained"><h5 class="wp-block-heading">%s</h5></div></div></div>',
+      esc_url($service['image']),
+      esc_attr($service['name']),
+      esc_attr($modifier),
+      esc_html($service['type']),
+      esc_html($service['name'])
+    );
+  }
+
+  return $html;
+}
+
+/**
+ * Replace the static popular-service cards with the latest exchanges.
+ *
+ * @param string $content
+ * @param array  $block
+ * @return string
+ */
+function newbdtr_render_popular_services($content, $block)
+{
+  if (($block['blockName'] ?? '') !== 'core/columns') {
+    return $content;
+  }
+
+  $class = $block['attrs']['className'] ?? '';
+  if (!str_contains($class, 'newbdtr-cards')) {
+    return $content;
+  }
+
+  $cards = newbdtr_popular_services_cards_html();
+  if ($cards === '') {
+    return $content;
+  }
+
+  $open_end = strpos($content, '>');
+  $close = strrpos($content, '</div>');
+  if ($open_end === false || $close === false || $close <= $open_end) {
+    return $content;
+  }
+
+  return substr($content, 0, $open_end + 1) . $cards . substr($content, $close);
+}
+add_filter('render_block', 'newbdtr_render_popular_services', 10, 2);
 
 /**
  * Replace the static activity items with the latest exchanges.

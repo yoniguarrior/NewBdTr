@@ -30,8 +30,8 @@ $hero_alt = esc_attr('Comunidad de Intertiempo');
 			?></p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":1,"className":"newbdtr-hero__title text-3xl! sm:text-4xl! md:text-5xl!"} -->
-			<h1 class="wp-block-heading newbdtr-hero__title text-3xl! sm:text-4xl! md:text-5xl! lg:text-6xl! max-w-md"><?php
+			<!-- wp:heading {"level":1,"className":"newbdtr-hero__title"} -->
+			<h1 class="wp-block-heading newbdtr-hero__title"><?php
 				echo wp_kses(
 					'¿Qué puedes <mark class="bg-transparent has-inline-color has-secondary-color">intercambiar</mark> hoy?',
 					array(
@@ -63,33 +63,33 @@ $hero_alt = esc_attr('Comunidad de Intertiempo');
 			<div class="wp-block-columns is-not-stacked-on-mobile newbdtr-hero__stats gap-4! sm:gap-6! md:gap-8!">
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!"} -->
-					<h3 class="wp-block-heading newbdtr-hero__stat-value text-2xl! sm:text-3xl!"><?php echo esc_html($facts['exchanges']); ?></h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value","textColor":"primary"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value has-primary-color has-text-color"><?php echo esc_html($facts['exchanges']); ?></h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"} -->
-					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"><?php echo esc_html('Intercambios'); ?></p>
+					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color"><?php echo esc_html('Intercambios'); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
 
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!","textColor":"secondary"} -->
-					<h3 class="wp-block-heading newbdtr-hero__stat-value text-2xl! sm:text-3xl! has-secondary-color has-text-color"><?php echo esc_html($facts['hours']); ?></h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value","textColor":"secondary"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value has-secondary-color has-text-color"><?php echo esc_html($facts['hours']); ?></h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"} -->
-					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"><?php echo esc_html('Horas compartidas'); ?></p>
+					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color"><?php echo esc_html('Horas compartidas'); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->
 
 				<!-- wp:column -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value text-2xl! sm:text-3xl!","textColor":"tertiary"} -->
-					<h3 class="wp-block-heading newbdtr-hero__stat-value text-2xl! sm:text-3xl! has-tertiary-color has-text-color"><?php echo esc_html($facts['projects']); ?></h3>
+					<!-- wp:heading {"level":3,"className":"newbdtr-hero__stat-value","textColor":"tertiary"} -->
+					<h3 class="wp-block-heading newbdtr-hero__stat-value has-tertiary-color has-text-color"><?php echo esc_html($facts['projects']); ?></h3>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"} -->
-					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color text-[10px] sm:text-xs"><?php echo esc_html('Proyectos'); ?></p>
+					<!-- wp:paragraph {"className":"newbdtr__stat-label has-on-surface-variant-color has-text-color"} -->
+					<p class="newbdtr__stat-label has-on-surface-variant-color has-text-color"><?php echo esc_html('Proyectos'); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->

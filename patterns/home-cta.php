@@ -8,7 +8,6 @@
  * @package NewBdTr
  */
 
-$register = esc_url(newbdtr_page_url('register'));
 $comunidad = esc_url(newbdtr_page_url('comunidad'));
 $como = esc_url(newbdtr_page_url('como-funciona'));
 $proyectos = esc_url(newbdtr_page_url('proyectos'));
@@ -27,13 +26,9 @@ $proyectos = esc_url(newbdtr_page_url('proyectos'));
 	<p class="has-text-align-center newbdtr-cta__lead has-on-primary-color has-text-color">Recibe novedades, eventos y mucho más. Ayúdanos a seguir construyendo una red de apoyo mutuo en Rivas Vaciamadrid.</p>
 	<!-- /wp:paragraph -->
 
-	<!-- wp:html -->
-	<form class="newbdtr-cta__form" action="<?php echo $register; ?>" method="get">
-		<label class="screen-reader-text" for="newbdtr-cta-email">Tu email</label>
-		<input id="newbdtr-cta-email" type="email" name="email" placeholder="Tu email" required />
-		<button type="submit">Suscribirme</button>
-	</form>
-	<!-- /wp:html -->
+	<!-- wp:shortcode -->
+	[contact-form-7 id="ccb769d" title="Suscripción al Boletín"]
+	<!-- /wp:shortcode -->
 
 	<!-- wp:group {"className":"newbdtr-cta__glyphs","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 	<div class="wp-block-group newbdtr-cta__glyphs">
